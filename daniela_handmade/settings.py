@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['8000-bogdan-branzaniuc-daniel-ixu8nhhob4.us2.codeanyapp.com']
 SITE_ID = 1
 
 SOCIALACCOUNT_EMAIL_REQUIRED = True
-EMAIL_BACKEND = 'django.core.mail.backends.comsole.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -68,8 +68,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '123',
-            'secret': '456',
+            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
             'key': ''
         }
     }
@@ -110,8 +110,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
 
 
 WSGI_APPLICATION = 'daniela_handmade.wsgi.application'
