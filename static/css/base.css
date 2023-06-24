@@ -1,0 +1,6 @@
+body nav .navbar .collapse,
+body nav .navbar .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
