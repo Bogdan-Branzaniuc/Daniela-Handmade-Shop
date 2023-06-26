@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'django_unicorn',
     'home',
     'profiles',
+    'products',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {

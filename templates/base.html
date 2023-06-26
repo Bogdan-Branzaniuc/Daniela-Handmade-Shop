@@ -62,7 +62,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profiles' %}">Profile</a>
                 </li>
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'products' %}">Products <span class="sr-only">(current)</span></a>
+                </li>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,10 +81,11 @@
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout <span class="
                                         sr-only">(current)</span></a>
                 </li>
+
                 {% else %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'account_login' %}">Login <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'account_logout' %}">Login <span class="
+                                                                        sr-only">(current)</span></a>
                 </li>
                 {% endif %}
             </ul>
