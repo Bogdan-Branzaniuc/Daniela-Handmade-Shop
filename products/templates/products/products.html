@@ -21,16 +21,14 @@
     </div>
     <div class="row h-100">
         <div class="col-7 col-md-6 my-auto">
-
             <img class='rotating-immages' src="{{ product.image_url }}" alt="immage of the product"
-                style="width:500px; height: 800px">
-            {{ product.name }}
-            {{ product.name }}
-            {{ product.name }}
+                style=" height: 400px">
+            <p>{{ product.name }}</p>
+            <p>{{ product.description }}</p>
+            <p>EUR {{ product.price }}</p>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="{% static 'products/js/rotate_products.js' %}"></script>
 {% endblock %}
 
 {% block postloadjs %}

@@ -32,6 +32,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
+class ProductImages(models.Model):
+    product = models.ForeignKey(
+        'Product', null=True, blank=True, on_delete=models.SET_NULL)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
+
+    def __str__(self):
+        return self.product.name
+
+
 # class ProductRotation(models.Model):
 #     name = models.OneToOneField(
 #         Product,
