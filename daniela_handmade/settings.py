@@ -16,6 +16,9 @@ from pathlib import Path
 if os.path.isfile('env.py'):
     import env
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,6 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -62,6 +66,10 @@ INSTALLED_APPS = [
     'home',
     'profiles',
     'products',
+    'django_countries',
+    
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -127,6 +135,13 @@ DATABASES = {
 }
 
 
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.getenv('CLOUDINARY_API_KEY'),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET')
+)
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -156,11 +171,23 @@ USE_L10N = True
 USE_TZ = True
 
 
+# cloudinary.config(
+#     cloud_name="YOUR_CLOUD_NAME",
+#     api_key="YOUR_API_KEY",
+#     api_secret="YOUR_API_SECRET"
+# )
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

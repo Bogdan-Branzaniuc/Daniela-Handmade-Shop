@@ -19,4 +19,15 @@
         </div>
     </div>
 </div>
+
+{% if user.is_authenticated %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" id="myFile" name="profile_image">
+    <button type="submit">Upload</button>
+</form>
+
+<p>set your password here</p> <a class="btn-primary" href="{% url 'account_set_password' %}"> Set Password
+</a>
+{% endif %}
 {% endblock %}
