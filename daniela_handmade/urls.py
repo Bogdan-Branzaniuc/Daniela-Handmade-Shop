@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('profile/', include('profiles.urls')),
     path('products/', include('products.urls')),
+    path('bag/', include('bag.urls')),
     path('unicorn/', include('django_unicorn.urls')),
 ]

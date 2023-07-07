@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import UserProfile
 from django.shortcuts import get_object_or_404
+import cloudinary.uploader
+import cloudinary
 
 
 def profile(request):
@@ -11,12 +13,10 @@ def profile(request):
 
     if request.method == "POST":
         data = request.FILES
-        print(data)
         image = data.get('profile_image')
         user_profile.profile_image = image
         user_profile.save()
     context = {
         'user_profile': user_profile,
-
     }
     return render(request, 'profiles/profile.html', context)

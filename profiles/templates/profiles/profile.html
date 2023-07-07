@@ -27,7 +27,14 @@
     <button type="submit">Upload</button>
 </form>
 
+{% if user_profile.profile_image %}
+<img src="{{user_profile.profile_image.url}}" alt="profile image">
+{% else %}
+<img src="{{user_profile.google_profile_image}}" alt="google profile image">
+{% endif %}
+
 <p>set your password here</p> <a class="btn-primary" href="{% url 'account_set_password' %}"> Set Password
 </a>
+
 {% endif %}
 {% endblock %}

@@ -1,9 +1,11 @@
 {% load static %}
+{% load unicorn %}
 
 <!doctype html>
 <html lang="en">
 
 <head>
+    <title>Handmade Daniela With passion{% block extra_title %}{% endblock %}</title>
     {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
@@ -37,11 +39,13 @@
     {% endblock %}
 
     {% block extra_js %}
+    {% unicorn_scripts %}
+
     {% endblock %}
-    <title>Handmade Daniela With passion{% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
+    {% csrf_token %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'home' %}">Daniela Handmade</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -87,7 +91,9 @@
                 </li>
                 {% endif %}
             </ul>
-
+            {% block unicorn_bag_status %}
+            {% unicorn 'bagstatus' %}
+            {% endblock %}
         </div>
     </nav>
     {% block content %}
