@@ -1,9 +1,12 @@
+{% load static %}
+{% load unicorn %}
 <div>
     <div class="col-7 col-md-6 my-auto">
         <img class='rotating-immages' src="{{ product.image_url }}" alt="immage of the product" style=" height: 400px">
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button u:click="product_test(1)">Add to bag</button>
+
+        {% unicorn 'product_to_bag' parent=view %}
     </div>
 </div>

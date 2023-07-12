@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
+{% endblock %}
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -28,9 +32,9 @@
 </form>
 
 {% if user_profile.profile_image %}
-<img src="{{user_profile.profile_image.url}}" alt="profile image">
+<img src="{{user_profile.profile_image.url}}" alt="profile image" class="user_profile_image">
 {% else %}
-<img src="{{user_profile.google_profile_image}}" alt="google profile image">
+<img src="{{user_profile.google_profile_image}}" alt="google profile image" class="user_profile_image">
 {% endif %}
 
 <p>set your password here</p> <a class="btn-primary" href="{% url 'account_set_password' %}"> Set Password
