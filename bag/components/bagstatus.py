@@ -17,8 +17,6 @@ class BagstatusView(UnicornView):
         product = get_object_or_404(Product, id=product_id)
         if product:
             self.grand_total += int(product.price)
-
         bag = self.request.session.get('bag', {})
         bag[product_id] = 1
-
-        print(bag)
+        self.request.session['bag'] = bag

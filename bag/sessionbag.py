@@ -11,6 +11,8 @@ def bag_contents(request):
     product_count = 0
     bag = request.session.get('bag', {})
     context = {
+        'bag_items': bag_items,
+        'total': total,
         'bag': bag,
     }
 

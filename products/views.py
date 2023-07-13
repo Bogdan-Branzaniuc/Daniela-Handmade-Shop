@@ -7,7 +7,7 @@ def products(request):
     A view to return the home page index.html
     '''
     product = get_object_or_404(Product, id=1)
-
+    
     context = {
         'product': product,
     }

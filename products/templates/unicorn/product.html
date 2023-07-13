@@ -6,7 +6,7 @@
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-
-        {% unicorn 'product_to_bag' parent=view %}
+        <button onclick="Unicorn.call('bagstatus', 'add_to_bag(1)')" u:click="product_in_bag">Add to bag</button>
+        {{ bagtest }}
     </div>
 </div>
