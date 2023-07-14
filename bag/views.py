@@ -4,12 +4,9 @@ from products.models import Product
 
 def bag(request):
     '''
-    A view to return the home page index.html
+    A view to return the bag page bag.html
     '''
-    product = get_object_or_404(Product, id=1)
 
-    context = {
-        'product': product,
-    }
+    context = {}
 
-    return render(request, 'products/products.html', context)
+    return render(request, 'bag/bag.html', context)

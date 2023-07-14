@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load unicorn %}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -15,18 +15,13 @@
     <div class="row h-100">
         <div class="col-7 col-md-6 my-auto">
             <h1 class="display-4 logo-font text-black">
-                Products
+                Bag
             </h1>
         </div>
     </div>
     <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
-            <img class='rotating-immages' src="{{ product.image_url }}" alt="immage of the product"
-                style=" height: 400px">
-            <p>{{ product.name }}</p>
-            <p>{{ product.description }}</p>
-            <p>EUR {{ product.price }}</p>
-        </div>
+
+        {% unicorn 'baglist' %}
     </div>
 </div>
 {% endblock %}

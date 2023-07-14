@@ -6,7 +6,8 @@
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button onclick="Unicorn.call('bagstatus', 'add_to_bag(1)')" u:click="product_in_bag">Add to bag</button>
-        {{ bagtest }}
+        <button onclick="Unicorn.call('bagstatus', 'add_to_bag({{ product.id }})')"
+            u:click="product_in_bag({{ product.id }})">Add to bag</button>
+        {{ bag }}
     </div>
 </div>
