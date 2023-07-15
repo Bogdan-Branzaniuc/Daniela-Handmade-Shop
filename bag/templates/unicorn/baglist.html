@@ -1,3 +1,7 @@
 <div>
-    {{bag_items}}
+    {% for item in bag_items %}
+
+    {{ item.product }}
+
+    {% endfor %}
 </div>
