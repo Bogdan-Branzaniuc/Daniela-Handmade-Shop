@@ -7,17 +7,17 @@ class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
-    product = None
+    products = None
     bag = None
+    bag_keys = None
 
     def mount(self, *args, **kwargs):
-        self.product = get_object_or_404(Product, id=1)
+        self.products = Product.objects.all()
         self.bag = self.request.session.get('bag', {})
+        self.bag_keys = list(int(key) for key in self.bag.keys())
         return super().mount()
 
-    def product_in_bag(self, product_id):
+    def ad_or_remove_from_bag(self):
+        self.bag = self.request.session.get('bag', {})
+        self.bag_keys = list(int(key) for key in self.bag.keys())
 
-        if str(product_id) in self.bag.keys():
-            print('in the bag')
-        else:
-            print('it wasn"t in the bag')

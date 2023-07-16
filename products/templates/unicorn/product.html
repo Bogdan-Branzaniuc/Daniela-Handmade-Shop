@@ -1,13 +1,25 @@
 {% load static %}
 {% load unicorn %}
-<div>
-    <div class="col-7 col-md-6 my-auto">
-        <img class='rotating-immages' src="{{ product.image_url }}" alt="immage of the product" style=" height: 400px">
+
+<div class="row h-100">
+    {% for product in products %}
+    <div class="col-3 col-md-6 my-auto">
+        <img class="rotating-immages" src="{{ product.image_url }}" alt="immage of the product" style="height: 400px" />
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button onclick="Unicorn.call('bagstatus', 'add_to_bag({{ product.id }})')"
-            u:click="product_in_bag({{ product.id }})">Add to bag</button>
+        <button onclick="Unicorn.call('bagstatus', 'add_to_bag({{ product.id }})')">
+            Add to bag
+        </button>
         {{ bag }}
+        <p>{{product.id}}</p>
+
+        {% if product.id in bag_keys %}
+        <button onclick="Unicorn.call('bagstatus', 'remove_from_bag({{ product.id }})')">
+            Remove item
+        </button>
+        <p>{{bag_keys}}</p>
+        {% endif %}
     </div>
+    {% endfor %}
 </div>

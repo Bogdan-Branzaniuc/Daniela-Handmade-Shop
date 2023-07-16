@@ -33,10 +33,10 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-bogdan-branzaniuc-daniel-ixu8nhhob4.us2.codeanyapp.com']
+ALLOWED_HOSTS = ['8000-bogdan-branzaniuc-daniel-ixu8nhhob4.us2.codeanyapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
-SITE_ID = 1
+SITE_ID = 2
 
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

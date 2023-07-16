@@ -21,3 +21,11 @@ class BagstatusView(UnicornView):
         self.quantity = 1
         self.bag[f'{product_id}'] = self.quantity
         self.request.session['bag'] = self.bag
+        print(1)
+
+
+    def remove_from_bag(self, product_id):
+        self.bag.pop(str(product_id))
+        print(self.bag)
+        print(1)
+        self.request.session['bag'] = self.bag
