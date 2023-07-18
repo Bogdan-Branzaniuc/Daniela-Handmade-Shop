@@ -1,13 +1,20 @@
-{% load static %}
-{% load unicorn %}
-<div>
-    <div class="col-7 col-md-6 my-auto">
-        <img class='rotating-immages' src="{{ product.image_url }}" alt="immage of the product" style=" height: 400px">
+<div  class="row h-100">
+    {% for product in products %}
+    <div class="col-3 col-md-6 my-auto">
+        <img class="rotating-immages" src="{{ product.image_url }}" alt="immage of the product" style="height: 400px" />
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button onclick="Unicorn.call('bagstatus', 'add_to_bag({{ product.id }})')"
-            u:click="product_in_bag({{ product.id }})">Add to bag</button>
-        {{ bag }}
+
+        <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click="add_to_bag({{product.id}})"> Add to bag </button>
+        <p>{{product.id}}</p>
+        <button id="remove-from-bag-btn-{{ product.id }}" class="remove-from-bag-btn" u:click="remove_from_bag({{ product.id }})"
+        {% if product.id in comp_bag_keys %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
+            Remove item
+        </button>
+        {{ comp_bag_keys }}
+
     </div>
+    {% endfor %}
 </div>
+

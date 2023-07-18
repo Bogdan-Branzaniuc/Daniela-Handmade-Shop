@@ -9,8 +9,9 @@ class BagstatusView(UnicornView):
     """
     Unicorn Component view that handles all the interractions with the bag session
     """
-    bag = None
-    quantity = int
+
+   ## bag['1']['L']['blue'] = 5 #qty
+
 
     def mount(self, *args, **kwargs):
         self.bag = self.request.session.get('bag', {})
@@ -21,3 +22,8 @@ class BagstatusView(UnicornView):
         self.quantity = 1
         self.bag[f'{product_id}'] = self.quantity
         self.request.session['bag'] = self.bag
+
+    def remove_from_bag(self, product_id):
+        self.bag.pop(str(product_id))
+        self.request.session['bag'] = self.bag
+

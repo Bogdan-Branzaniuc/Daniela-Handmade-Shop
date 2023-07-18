@@ -6,10 +6,10 @@ def products(request):
     '''
     A view to return the home page index.html
     '''
-    product = get_object_or_404(Product, id=1)
+    products = Product.objects.all()
     
     context = {
-        'product': product,
+        'products': products,
     }
 
     return render(request, 'products/products.html', context)
