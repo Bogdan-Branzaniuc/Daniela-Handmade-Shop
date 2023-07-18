@@ -16,8 +16,6 @@ from pathlib import Path
 if os.path.isfile('env.py'):
     import env
 
-import cloudinary
-import cloudinary.uploader
 import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +31,9 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-bogdan-branzaniuc-daniel-ixu8nhhob4.us2.codeanyapp.com', 'localhost', '127.0.0.1']
+
+
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 SITE_ID = 2
@@ -48,6 +48,7 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,8 +87,7 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_STORE_TOKENS = True
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://8000-bogdan-branzaniuc-daniel-ixu8nhhob4.us2.codeanyapp.com']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'http://127.0.0.1:8000/products/']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

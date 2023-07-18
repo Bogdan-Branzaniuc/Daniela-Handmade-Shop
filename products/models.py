@@ -27,16 +27,16 @@ class Product(models.Model):
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-
+    ## Cloudinary immage
     def __str__(self):
         return self.name
 
 
-class ProductImages(models.Model):
+class ProductImage(models.Model):
     product = models.ForeignKey(
         'Product', null=True, blank=True, on_delete=models.SET_NULL)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-
+    #cliudinary field with image attr
     def __str__(self):
         return self.product.name
 
