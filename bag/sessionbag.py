@@ -11,25 +11,17 @@ def bag_contents(request):
     product_count = 0
     bag = request.session.get('bag', {})
     delivery = 20
-
-    for item_id, item_data in bag.items():
+    request.session['bag'] = {'1': {'M': {'red': '3'}}}
+    for item_id, size_level in bag.items():
         product = get_object_or_404(Product, pk=item_id)
-
-        if isinstance(item_data, int):
-            total += item_data * product.price
-            product_count += item_data
-            bag_items.append({
-                'item_id': item_id,
-                'quantity': item_data,
-                'product': product,
-            })
-        else:
-            for quantity in item_data.items():
-                total += quantity * product.price
-                product_count += quantity
+        for size, color_level in size_level.items():
+            for color, qty in color_level.items():
+                total += int(qty) * product.price
                 bag_items.append({
                     'item_id': item_id,
-                    'quantity': quantity,
+                    'size': size,
+                    'color': color,
+                    'quantity': qty,
                     'product': product,
                 })
 
