@@ -1,8 +1,13 @@
+import os
 from django.core.management import execute_from_command_line
 import sys
+from django.conf import settings
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'daniela_handmade.settings')
+settings.DEBUG = True
+
 
 
 if __name__ == '__main__':
-    sys.argv.append('runserver')
-    sys.argv.append('127.0.0.1:8000')  # Specify the desired host and port
-    execute_from_command_line(sys.argv)
+    args = ['manage.py', 'runserver']
+    execute_from_command_line(args)

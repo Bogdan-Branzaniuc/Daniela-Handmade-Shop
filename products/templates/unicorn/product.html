@@ -28,36 +28,38 @@
                 </div>
             </div>
             <div class="input-group">
-                <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click.prevent="add_to_bag({{product.id}})"> Add to bag </button>
+                <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click.prevent="add_to_bag"> Add to bag </button>
             </div>
             <div class="input-group">
-                <button id="remove-from-bag-btn-{{ product.id }}" class="remove-from-bag-btn" u:click.prevent="remove_from_bag({{ product.id }})"
-                {% if product.id in comp_bag_keys %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
+                {{ in_bag }}
+                <button id="remove-from-bag-btn-{{ product.id }}" class="remove-from-bag-btn" u:click.prevent="remove_from_bag"
+                {% if in_bag %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
                     Remove item
                 </button>
             </div>
+            {% for item in bag_items %}
+            <p> {{item }}</p>
+            {% endfor %}
             <div class="input-group">
-                {% if sellected == 'red' %}
-                <p> red </p>
-                {% endif %}
-                <button style="width:30px; height:30px; background-color:red; border-radius: 50%" u:click.prevent="sellect_color('red')"></button>
-                <button style="width:30px; height:30px; background-color:green; border-radius: 50%"></button>
-                <button style="width:30px; height:30px; background-color:blue; border-radius: 50%"></button>
+                {{selected_color}}
+                <button style="width:30px; height:30px; background-color:red; border-radius: 50%" u:click.prevent="select_color('red')"></button>
+                <button style="width:30px; height:30px; background-color:green; border-radius: 50%" u:click.prevent="select_color('green')"></button>
+                <button style="width:30px; height:30px; background-color:blue; border-radius: 50%" u:click.prevent="select_color('blue')"></button>
             </div>
             <div class="input-group">
+                <p>{{selected_size}}</p>
+                </br>
                 {% if product.size == 'baby' %}
                     <p>months: </p>
-                    <button style="width:30px; height:30px; border-radius: 50%">2</button>
-                    <button style="width:30px; height:30px; border-radius: 50%">3</button>
-                    <button style="width:30px; height:30px; border-radius: 50%">6</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('2m')">2</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('3m')">3</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('6m')">6</button>
                 {% elif product.size == 'standard' %}
-                    <button style="width:30px; height:30px; border-radius: 50%">S</button>
-                    <button style="width:30px; height:30px; border-radius: 50%">M</button>
-                    <button style="width:30px; height:30px; border-radius: 50%">L</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('S')">S</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('M')">M</button>
+                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('L')">L</button>
                 {% endif %}
             </div>
         </div>
     </form>
 </div>
-
-

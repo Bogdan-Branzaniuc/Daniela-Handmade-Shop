@@ -20,11 +20,22 @@
             </h1>
         </div>
     </div>
+    <script>
+        let selectedColorJs
+        let selectedSizeJs
+        function setSelectedColor(value) {
+            selectedColorJs = value;
+        }
+        function setSelectedSize(value){
+            selectedSizeJs = value
+        }
+    </script>
     <div  class="row g-0 h-100">
         {% for product in products %}
         {% unicorn 'product' with product=product %}
         {% endfor %}
     </div>
+
 </div>
 
 {% endblock %}

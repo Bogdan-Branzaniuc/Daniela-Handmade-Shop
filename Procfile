@@ -1,0 +1,1 @@
+web: gunicorn daniela_handmade.wsgi

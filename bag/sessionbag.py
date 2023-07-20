@@ -11,7 +11,6 @@ def bag_contents(request):
     product_count = 0
     bag = request.session.get('bag', {})
     delivery = 20
-    request.session['bag'] = {'1': {'M': {'red': '3'}}}
     for item_id, size_level in bag.items():
         product = get_object_or_404(Product, pk=item_id)
         for size, color_level in size_level.items():
