@@ -22,14 +22,19 @@ for(let button of document.querySelectorAll('.remove-from-bag-btn')){
     })
 }
 
-for(let button of document.querySelectorAll('.adjust-the-bag-btn')){
-    button.addEventListener('click', (e)=>{
+for (let button of document.querySelectorAll('.adjust-the-bag-btn')){
+    button.addEventListener('click', (e) => {
         setTimeout(()=>{
             let productId = button.id.split('-')[4]
             let size = selectedSizeJs
             let color = selectedColorJs
-            console.log('called bagstatus with',selectedSizeJs, selectedColorJs)
-        }, 300)
+            let qty = Number(document.querySelector(`#id_qty_${productId}`).value)
+            if(qty > 0){
+                Unicorn.call('bagstatus', 'add_to_bag', productId, size, color, qty)
+            }else{
+                Unicorn.call('bagstatus', 'remove_from_bag', productId, size, color)
+            }
+        },300)
     })
 }
 

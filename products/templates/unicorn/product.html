@@ -25,20 +25,24 @@
                     </button>
                 </div>
             </div>
-
             <div class="input-group">
-                {% if component_quantity_changed %}
-                    <button id="adjust-the-bag-btn-{{ product.id }}" class="adjust-the-bag-btn" u:click.prevent="adjust_bag"> Adjust bag </button>
+                {% if component_quantity_changed and in_bag %}
+                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: none" u:click.prevent="add_to_bag" > Add to bag </button>
+                    <button id="adjust-the-bag-btn-{{ product.id }}" class="adjust-the-bag-btn" style="display:block" u:click.prevent="adjust_bag"> Adjust bag </button>
                 {% else %}
-                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click.prevent="add_to_bag"> Add to bag </button>
+                    {% if in_bag %}
+                        <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: block" u:click.prevent="add_to_bag" disabled> Add to bag <i class="fas fa-check-circle"></i></button>
+                        <button id="adjust-the-bag-btn-{{ product.id }}" class="adjust-the-bag-btn" style="display:none" u:click.prevent="adjust_bag"> Adjust bag </button>
+                    {% else %}
+                        <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: block" u:click.prevent="add_to_bag" > Add to bag </button>
+                        <button id="adjust-the-bag-btn-{{ product.id }}" class="adjust-the-bag-btn" style="display:none" u:click.prevent="adjust_bag"> Adjust bag </button>
+                    {% endif %}
                 {% endif %}
             </div>
-
             <div class="input-group">
                 <button id="remove-from-bag-btn-{{ product.id }}" class="remove-from-bag-btn" u:click.prevent="remove_from_bag"
                 {% if in_bag %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
                     Remove item
-<!--                    add css conditional classes   -->
                 </button>
             </div>
             <div class="input-group">

@@ -26,6 +26,7 @@ class BagstatusView(UnicornView):
             self.bag[product_id] = {size: {color: qty}}
 
         self.request.session['bag'] = self.bag
+        print(self.bag)
 
     def remove_from_bag(self, product_id, size, color):
         product_id = str(product_id)
@@ -35,4 +36,5 @@ class BagstatusView(UnicornView):
                     self.bag[product_id][size].pop(color)
 
         self.request.session['bag'] = self.bag
+        print(self.bag)
 
