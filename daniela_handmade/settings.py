@@ -69,7 +69,7 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'django_countries',
-
+    'colorfield',
     'cloudinary_storage',
     'cloudinary',
 ]

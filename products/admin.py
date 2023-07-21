@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category
+from .models import Product, Category, AvailableColors, AvailableSizes
 
 # Register your models here.
 
@@ -14,8 +14,7 @@ class ProductAdmin(admin.ModelAdmin):
         'image_url',
     )
 
-    ordering = ('sku',)
-
+    filter_horizontal = ('colors', 'sizes')
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (
@@ -23,6 +22,15 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
     )
 
+class AvailableColorsAdmin(admin.ModelAdmin):
+    list_display = ('name_EN', 'hexcolor', 'colored_name')
+
+class AvailableSizesAdmin(admin.ModelAdmin):
+    list_display = (
+        'size',
+    )
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(AvailableColors, AvailableColorsAdmin)
+admin.site.register(AvailableSizes, AvailableSizesAdmin)

@@ -3,62 +3,54 @@
     <p>{{ product.name }}</p>
     <p>{{ product.description }}</p>
     <p>EUR {{ product.price }}</p>
-    <form >
+    <form>
         <div class="form-group w-50">
             <div class="input-group">
-                <div class="input-group-prepend">
-                    <button class="decrement-qty btn btn-black rounded-0"
-                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                        <span class="icon">
-                            <i class="fas fa-minus"></i>
-                        </span>
-                    </button>
-                </div>
                 <input class="form-control qty_input" type="number"
-                    name="quantity" value="1" min="1" max="99"
+                    name="quantity" value="{{component_quantity}}" min="1" max="99"
                     data-item_id="{{ product.id }}"
                     id="id_qty_{{ product.id }}">
-                <div class="input-group-append">
-                    <button class="increment-qty btn btn-black rounded-0"
-                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                <div>
+                    <button class="increment-qty btn btn-black rounded-0" u:click.prevent="increment_component_quantity">
                         <span class="icon">
-                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-arrow-up"></i>
+                        </span>
+                    </button>
+                </div>
+                <div>
+                    <button class="decrement-qty btn btn-black rounded-5" u:click.prevent="decrement_component_quantity">
+                        <span class="icon">
+                            <i class="fas fa-arrow-down"></i>
                         </span>
                     </button>
                 </div>
             </div>
+
             <div class="input-group">
-                <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click.prevent="add_to_bag"> Add to bag </button>
+                {% if component_quantity_changed %}
+                    <button id="adjust-the-bag-btn-{{ product.id }}" class="adjust-the-bag-btn" u:click.prevent="adjust_bag"> Adjust bag </button>
+                {% else %}
+                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" u:click.prevent="add_to_bag"> Add to bag </button>
+                {% endif %}
             </div>
+
             <div class="input-group">
-                {{ in_bag }}
                 <button id="remove-from-bag-btn-{{ product.id }}" class="remove-from-bag-btn" u:click.prevent="remove_from_bag"
                 {% if in_bag %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
                     Remove item
+<!--                    add css conditional classes   -->
                 </button>
             </div>
-            {% for item in bag_items %}
-            <p> {{item }}</p>
-            {% endfor %}
             <div class="input-group">
-                {{selected_color}}
-                <button style="width:30px; height:30px; background-color:red; border-radius: 50%" u:click.prevent="select_color('red')"></button>
-                <button style="width:30px; height:30px; background-color:green; border-radius: 50%" u:click.prevent="select_color('green')"></button>
-                <button style="width:30px; height:30px; background-color:blue; border-radius: 50%" u:click.prevent="select_color('blue')"></button>
+                 {% for color_instance in product.colors.all %}
+                    <div id="button-{{color_instance}}-{{product.id}}" style="background-color:{{color_instance.hexcolor}}; border-radius: 50%" u:click.prevent="select_size_or_color('{{color_instance.name_EN}}', 'color')">{{color_instance.name_EN}}</div>
+                {% endfor %}
             </div>
             <div class="input-group">
-                <p>{{selected_size}}</p>
-                </br>
-                {% if product.size == 'baby' %}
-                    <p>months: </p>
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('2m')">2</button>
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('3m')">3</button>
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('6m')">6</button>
-                {% elif product.size == 'standard' %}
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('S')">S</button>
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('M')">M</button>
-                    <button style="width:30px; height:30px; border-radius: 50%" u:click.prevent="select_size('L')">L</button>
-                {% endif %}
+                {% for size_instance in product.sizes.all %}
+                    <div id="button-{{size_instance}}-{{product.id}}" style="width:40px; height:40px; background-color:lightblue; border-radius: 50%;" u:click.prevent="select_size_or_color('{{size_instance.size}}', 'size')">{{size_instance.size}}</div>
+                {% endfor %}
+                <br>
             </div>
         </div>
     </form>

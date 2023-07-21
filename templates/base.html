@@ -100,8 +100,9 @@
     {% block content %}
     {% endblock %}
     {% block postloadjs %}
+    <!--<script type="text/javascript" src="{% static 'products/js/rotate_products.js' %}"></script>-->
+    <script type="text/javascript" src="{% static 'products/js/product_component_selectors.js' %}"></script>
     <script type="text/javascript" src="{% static 'bag/js/bag_callers.js' %}"></script>
-<!--    <script type="text/javascript" src="{% static 'products/js/rotate_products.js' %}"></script>-->
     {% endblock %}
 </body>
 

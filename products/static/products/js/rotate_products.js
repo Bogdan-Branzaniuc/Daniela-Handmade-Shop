@@ -1,3 +1,7 @@
+```
+js file for future functionality on rotating 3d models instead of flat product images
+```
+
 function rotate() {
 
     let urls = [

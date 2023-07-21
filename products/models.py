@@ -1,8 +1,8 @@
 from django.db import models
-
+from colorfield.fields import ColorField
+from django.utils.html import format_html
 
 class Category(models.Model):
-
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -15,34 +15,48 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
+class AvailableColors(models.Model):
+    name_EN = models.CharField(max_length=100, unique=True, null=True)
+    hexcolor = ColorField(max_length=7, default="#ffffff")
+
+    def colored_name(self):
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            self.hexcolor,
+            self.name_EN,
+        )
+
+    def __str__(self):
+        return self.name_EN
+
+class AvailableSizes(models.Model):
+    size = models.CharField(max_length=3, unique=True)
+    expressed_in = models.CharField(
+        max_length=9,
+        choices=(('infants', 'infants'), ('standard', 'standard'), ('universal', 'universal')),
+        default='standard')
+    def __str__(self):
+        return self.size
+
 
 class Product(models.Model):
-    ST = "standard"
-    BB = "baby"
-    UN = "universal"
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField(null=True, blank=True)
-    size = models.CharField(max_length=50, choices=((ST, 'standard'), (BB, 'baby'), (UN, 'universal')),
-                            default='standard', null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    ## Cloudinary immage
+    # Cloudinary image
+    colors = models.ManyToManyField(
+        'AvailableColors')
+    sizes = models.ManyToManyField(
+        'AvailableSizes')
+
     def __str__(self):
         return self.name
-
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(
-        'Product', null=True, blank=True, on_delete=models.SET_NULL)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    #cliudinary field with image attr
-    def __str__(self):
-        return self.product.name
 
 
 # class ProductRotation(models.Model):
