@@ -1,10 +1,4 @@
 from django_unicorn.components import UnicornView
-from products.models import Product
-from django.shortcuts import get_object_or_404
-import time
-
-import json
-
 
 class BagstatusView(UnicornView):
     """

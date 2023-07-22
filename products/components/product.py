@@ -19,12 +19,8 @@ class ProductView(UnicornView):
         self.bag = self.request.session.get('bag', {})
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
-        self.call('setSelectedColor', self.selected_color)
-        self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+        self.update_selections_focus_buttons(self)
         self.is_in_bag()
-        print(self.component_quantity)
         return super().mount()
 
     def is_in_bag(self):
@@ -46,6 +42,15 @@ class ProductView(UnicornView):
                 self.in_bag = False
         else:
             self.in_bag = False
+
+    def update_selections_focus_buttons(self):
+        """
+        code that transfers selected options and focused buttons from this view to product_component_selectors.js file
+        """
+        self.call('setSelectedSizeColorQty', self.selected_size, self.selected_color, self.component_quantity)
+        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
+        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+
     def add_to_bag(self):
         """
         sets in_bag to True for instantaneous rendering of the product component template
@@ -55,10 +60,8 @@ class ProductView(UnicornView):
             self.component_quantity = 1
         self.in_bag = True
         self.component_quantity_changed = False
-        self.call('setSelectedColor', self.selected_color)
-        self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+
+        self.update_selections_focus_buttons()
 
     def remove_from_bag(self):
         """
@@ -68,10 +71,8 @@ class ProductView(UnicornView):
         self.in_bag = False
         self.component_quantity_changed = False
         self.component_quantity = 0
-        self.call('setSelectedColor', self.selected_color)
-        self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+
+        self.update_selections_focus_buttons()
 
     def adjust_bag(self):
         self.component_quantity_changed = False
@@ -79,7 +80,7 @@ class ProductView(UnicornView):
             self.in_bag = True
         else:
             self.in_bag = False
-
+        self.update_selections_focus_buttons()
 
     def select_size_or_color(self, selection, size_or_color):
         """
@@ -87,23 +88,17 @@ class ProductView(UnicornView):
         """
         if size_or_color == 'color':
             self.selected_color = selection
-            self.call('setSelectedColor', self.selected_color)
         elif size_or_color == 'size':
             self.selected_size = selection
-            self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
         self.is_in_bag()
-
+        self.update_selections_focus_buttons()
 
     def increment_component_quantity(self):
         print(self.component_quantity)
         self.component_quantity += 1
+
         self.component_quantity_changed = True
-        self.call('setSelectedColor', self.selected_color)
-        self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+        self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
         print(self.component_quantity)
@@ -112,7 +107,4 @@ class ProductView(UnicornView):
         else:
             self.component_quantity = 0
         self.component_quantity_changed = True
-        self.call('setSelectedColor', self.selected_color)
-        self.call('setSelectedSize', self.selected_size)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
-        self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+        self.update_selections_focus_buttons()
