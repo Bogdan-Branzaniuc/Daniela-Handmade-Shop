@@ -34,7 +34,10 @@ class BagstatusView(UnicornView):
             if size in self.bag[product_id].keys():
                 if color in self.bag[product_id][size].keys():
                     self.bag[product_id][size].pop(color)
-
+                    if self.bag[product_id][size] == {}:
+                        self.bag[product_id].pop(size)
+                    if self.bag[product_id] == {}:
+                        self.bag.pop(product_id)
         self.request.session['bag'] = self.bag
         print(self.bag)
 

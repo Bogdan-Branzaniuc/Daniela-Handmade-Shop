@@ -93,6 +93,7 @@ class ProductView(UnicornView):
             self.call('setSelectedSize', self.selected_size)
         self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
         self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+        self.is_in_bag()
 
 
     def increment_component_quantity(self):
