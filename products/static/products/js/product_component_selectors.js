@@ -10,12 +10,8 @@ function focusProductButtons(buttonId, currentValue){
         $('#'+buttonId).css('border', 'solid 2px black');
     }
 }
-function setSelectedSizeColorQty(color, size, qty) {
+function setSelectedSizeColorQty(size, color, qty) {
     selectedColorJs = color;
     selectedSizeJs = size;
     componentQuantityJs = qty
-}
-
-function displayProductToBagStatus(status){
-    productToBagStatusJs = status
 }

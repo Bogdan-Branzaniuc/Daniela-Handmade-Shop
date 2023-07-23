@@ -1,0 +1,26 @@
+<div class="row g-0">
+    <div class="col-5">
+        <img src="{{ item.product.image_url}}" ald="product image" style="width:75%">
+    </div>
+    <div class="col-6">
+        <p>{{ product.name }}</p>
+        <p>{{ product.description }}</p>
+        {% if editing %}
+            {% for size in product.sizes.all %}
+                <button> {{size}} </button>
+            {% endfor %}
+             {% for color in product.colors.all %}
+                <button> {{color}} </button>
+            {% endfor %}
+            <button u:click="submit_changes"> Adjust </button>
+        {% else %}
+            <p>size: {{ item.size }}</p>
+            <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
+            <p>quantity: {{ item.quantity }}</p>
+            <p>price: EUR{{ item.product.price }}</p>
+            <button u:click="editing_product"> Edit Product </button>
+            <button> Delete Product </button>
+        {% endif %}
+    </div>
+    </div>
+    <hr>

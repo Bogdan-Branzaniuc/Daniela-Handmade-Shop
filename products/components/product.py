@@ -19,7 +19,7 @@ class ProductView(UnicornView):
         self.bag = self.request.session.get('bag', {})
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
-        self.update_selections_focus_buttons(self)
+        self.update_selections_focus_buttons()
         self.is_in_bag()
         return super().mount()
 
