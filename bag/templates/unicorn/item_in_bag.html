@@ -1,26 +1,29 @@
 <div class="row g-0">
     <div class="col-5">
-        <img src="{{ item.product.image_url}}" ald="product image" style="width:75%">
+        <img src="{{ item.product.image_url}}" alt="product image" style="width:75%">
     </div>
     <div class="col-6">
-        <p>{{ product.name }}</p>
-        <p>{{ product.description }}</p>
-        {% if editing %}
+        <div id="editing-bag-item-div-{{item_index}}" class="editing-bag-item-div">
+            <p>{{ product.name }}</p>
+            <p>{{ product.description }}</p>
             {% for size in product.sizes.all %}
-                <button> {{size}} </button>
+            <button> {{size}} </button>
             {% endfor %}
              {% for color in product.colors.all %}
                 <button> {{color}} </button>
             {% endfor %}
-            <button u:click="submit_changes"> Adjust </button>
-        {% else %}
+            <button class="noteyet-adjust-the-bag-btn" u:click="submit_changes"> Adjust </button>
+        </div>
+        <div id="bag-item-data-div-{{item_index}}" class="bag-item-data-div">
+            <p>{{ product.name }}</p>
+            <p>{{ product.description }}</p>
             <p>size: {{ item.size }}</p>
             <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
             <p>quantity: {{ item.quantity }}</p>
             <p>price: EUR{{ item.product.price }}</p>
-            <button u:click="editing_product"> Edit Product </button>
-            <button> Delete Product </button>
-        {% endif %}
+            <button u:click="editing_product()"> Edit Product </button>
+            <button class="remove-from-bag-btn"> Remove </button>
+        </div>
     </div>
-    </div>
+</div>
     <hr>
