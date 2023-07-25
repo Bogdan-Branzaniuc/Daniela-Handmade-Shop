@@ -1,29 +1,54 @@
 <div class="row g-0">
     <div class="col-5">
         <img src="{{ item.product.image_url}}" alt="product image" style="width:75%">
+        <p>{{ product.name }}</p>
+        <p>{{ product.description }}</p>
     </div>
     <div class="col-6">
+        {% if editing %}
         <div id="editing-bag-item-div-{{item_index}}" class="editing-bag-item-div">
-            <p>{{ product.name }}</p>
-            <p>{{ product.description }}</p>
-            {% for size in product.sizes.all %}
-            <button> {{size}} </button>
-            {% endfor %}
-             {% for color in product.colors.all %}
-                <button> {{color}} </button>
-            {% endfor %}
-            <button class="noteyet-adjust-the-bag-btn" u:click="submit_changes"> Adjust </button>
+            <div class="input-group">
+                 {% for color_instance in product.colors.all %}
+                    <div id="button-{{color_instance}}-{{item_index}}" style="background-color:{{color_instance.hexcolor}}; border-radius: 50%" u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')">{{color_instance.name_EN}}</div>
+                {% endfor %}
+            </div>
+            <div class="input-group">
+                {% for size_instance in product.sizes.all %}
+                    <div id="button-{{size_instance}}-{{item_index}}" style="width:40px; height:40px; background-color:lightblue; border-radius: 50%;" u:click="select_size_or_color('{{size_instance.size}}', 'size')">{{size_instance.size}}</div>
+                {% endfor %}
+                <br>
+            </div>
+            <button class="fas fa-arrow-up" u:click="increment_component_quantity"></button>
+            <input class="form-control qty_input" type="number"
+                   value="{{component_quantity}}" min="1" max="99"
+                    id="id_qty_{{ product.id }}">
+            <div>
+            <button class="fas fa-arrow-down" u:click="decrement_component_quantity"></button>
+            {{product.id}}
+            <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn" u:click="adjust_bag" onclick="Unicorn.call('bagstatus', 'update')"> Adjust </button>
+            </div>
         </div>
+        {% elif soft_deleted %}
+        <div id="bag-item-soft-deleted-{{item_index}}" class="bag-item-soft-deleted">
+            <button u:click="add_item_back">Add back</button>
+            <button u:click="remove_bag_item" onclick="Unicorn.call('bagstatus', 'update')">permanently delete </button>
+        </div>
+        {% else %}
         <div id="bag-item-data-div-{{item_index}}" class="bag-item-data-div">
+<!--            {% for item in bag_items %}-->
+<!--            <p>{{item}}</p>-->
+<!--            {% endfor %}-->
             <p>{{ product.name }}</p>
             <p>{{ product.description }}</p>
             <p>size: {{ item.size }}</p>
             <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
-            <p>quantity: {{ item.quantity }}</p>
+            <p>quantity: {{ component_quantity }}</p>
             <p>price: EUR{{ item.product.price }}</p>
-            <button u:click="editing_product()"> Edit Product </button>
-            <button class="remove-from-bag-btn"> Remove </button>
+            <button u:click="editing_product"> Edit Product </button>
+            <button u:click="soft_removal_from_bag" > Remove </button>
         </div>
+        {% endif %}
     </div>
 </div>
-    <hr>
+<hr>
+

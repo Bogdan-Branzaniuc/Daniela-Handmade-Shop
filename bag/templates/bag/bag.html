@@ -12,8 +12,12 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container h-100">
+    {% if messages %}
+        {% for message in messages %}
+            <p> {{message}} </p>
+        {% endfor %}
+    {% endif %}
     <div class="row">
         <div class="col-7 col-md-6 my-auto">
             <h1 class="display-4 logo-font text-black">
@@ -22,7 +26,7 @@
         </div>
     </div>
     {% for item in bag_items %}
-            {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product%}
+            {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product %}
     {% endfor %}
 
 </div>

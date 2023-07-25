@@ -1,10 +1,10 @@
 from django_unicorn.components import UnicornView
+import time
 
 class BagstatusView(UnicornView):
     """
     Unicorn Component view that handles all the interractions with the bag session
     """
-
     def mount(self, *args, **kwargs):
         self.bag = self.request.session.get('bag', {})
         return super().mount()
@@ -33,5 +33,9 @@ class BagstatusView(UnicornView):
                     if self.bag[product_id] == {}:
                         self.bag.pop(product_id)
         self.request.session['bag'] = self.bag
-        print(self.bag)
+        print(self.request.session['bag'])
 
+    def update(self):
+        time.sleep(0.2)
+        self.bag = self.request.session.get('bag', {})
+        print(self.bag)

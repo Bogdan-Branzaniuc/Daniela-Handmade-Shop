@@ -22,14 +22,15 @@ for(let button of document.querySelectorAll('.remove-from-bag-btn')){
     })
 }
 
-for (let button of document.querySelectorAll('.adjust-the-bag-btn')){
+for (let button of document.querySelectorAll('.adjust-product-bag-btn')){
     button.addEventListener('click', (e) => {
         setTimeout(()=>{
             let productId = button.id.split('-')[4]
             let size = selectedSizeJs
             let color = selectedColorJs
             let qty = Number(document.querySelector(`#id_qty_${productId}`).value)
-            console.log('adjust')
+            console.log('adjust product')
+            console.log(qty)
             if(qty > 0){
                 Unicorn.call('bagstatus', 'add_to_bag', productId, size, color, qty)
             }else{
@@ -39,11 +40,6 @@ for (let button of document.querySelectorAll('.adjust-the-bag-btn')){
     })
 }
 
-function enableEditingMode(index){
-    $('#editing-bag-item-div-' + index).css('display', 'block')
-    $('#bag-item-data-div-' + index).css('display', 'none')
-}
-function disableEditingMode(index){
-    $('#editing-bag-item-div-' + index).css('display', 'none')
-    $('#bag-item-data-div-' + index).css('display', 'block')
+function pageReload(){
+    location.reload()
 }
