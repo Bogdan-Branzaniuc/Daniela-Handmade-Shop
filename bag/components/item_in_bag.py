@@ -28,9 +28,9 @@ class ItemInBagView(UnicornView):
 
     def editing_product(self):
         self.editing = True
+        self.update_selections_focus_buttons()
 
     def adjust_bag(self):
-
         bag = self.bag
         o_size = self.original_state_size
         s_size = self.selected_size

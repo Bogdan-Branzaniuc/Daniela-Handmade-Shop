@@ -15,3 +15,7 @@ function setSelectedSizeColorQty(size, color, qty) {
     selectedSizeJs = size;
     componentQuantityJs = qty
 }
+
+function pageReload(){
+    location.reload()
+}
