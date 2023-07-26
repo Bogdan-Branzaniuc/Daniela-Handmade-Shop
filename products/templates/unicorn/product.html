@@ -27,19 +27,19 @@
         <div class="input-group">
             {% if component_quantity_changed and in_bag %}
                 <button style="display: none" u:click="add_to_bag" onclick="Unicorn.call('bagstatus', 'update')"> Add to bag </button>
-                <button class="adjust-product-bag-btn" style="display:block" u:click="adjust_bag" onclick="Unicorn.call('bagstatus', 'update')"> Adjust bag </button>
+                <button class="adjust-product-bag-btn" style="display:block" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust bag </button>
             {% else %}
                 {% if in_bag %}
-                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: block" u:click.prevent="add_to_bag" disabled> Add to bag <i class="fas fa-check-circle"></i></button>
-                    <button  class="adjust-product-bag-btn" style="display:none" u:click="adjust_bag" onclick="Unicorn.call('bagstatus', 'update')"> Adjust bag </button>
+                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: block" disabled> Add to bag <i class="fas fa-check-circle"></i></button>
+                    <button  class="adjust-product-bag-btn" style="display:none" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust bag </button>
                 {% else %}
-                    <button style="display: block" u:click="add_to_bag" onclick="Unicorn.call('bagstatus', 'update')"> Add to bag </button>
-                    <button style="display:none" u:click="adjust_bag" onclick="Unicorn.call('bagstatus', 'update')"> Adjust bag </button>
+                    <button style="display: block" u:click="add_to_bag" onclick="updateBagstatus()"> Add to bag </button>
+                    <button style="display:none" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust bag </button>
                 {% endif %}
             {% endif %}
         </div>
         <div class="input-group">
-            <button u:click="remove_from_bag" onclick="Unicorn.call('bagstatus', 'update')"
+            <button u:click="remove_from_bag" onclick="updateBagstatus()"
             {% if in_bag %} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
                 Remove item
             </button>

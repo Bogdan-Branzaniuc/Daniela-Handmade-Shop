@@ -19,3 +19,9 @@ function setSelectedSizeColorQty(size, color, qty) {
 function pageReload(){
     location.reload()
 }
+
+function updateBagstatus(){
+    setTimeout(()=>{
+        Unicorn.call('bagstatus', 'update')
+    },300)
+}

@@ -38,6 +38,7 @@ class ProductView(UnicornView):
                     self.in_bag = True
                 else:
                     self.in_bag = False
+                    self.component_quantity = 0
             else:
                 self.in_bag = False
         else:
@@ -56,9 +57,11 @@ class ProductView(UnicornView):
         sets in_bag to True for instantaneous rendering of the product component template
         calls js product_component_selector.js functions to send this component's view properties into JS that calls the bag component's view
         """
+        self.bag = self.request.session.get('bag', {})
         if self.component_quantity == 0:
             self.component_quantity = 1
         str_id = str(self.product.id)
+        print('str_id = ', str_id)
         if str_id in self.bag.keys():
             if self.selected_size in self.bag[str_id].keys():
                 self.bag[str_id][self.selected_size][self.selected_color] = self.component_quantity
@@ -68,8 +71,7 @@ class ProductView(UnicornView):
             self.bag[str_id] = {self.selected_size: {self.selected_color: self.component_quantity}}
 
         self.request.session['bag'] = self.bag
-        print(self.bag)
-
+        print('product', self.bag)
         self.in_bag = True
         self.component_quantity_changed = False
         self.update_selections_focus_buttons()
@@ -116,11 +118,11 @@ class ProductView(UnicornView):
             self.selected_size = selection
         self.is_in_bag()
         self.update_selections_focus_buttons()
+        print(self.component_quantity)
 
     def increment_component_quantity(self):
         print(self.component_quantity)
         self.component_quantity += 1
-
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
 

@@ -1,4 +1,5 @@
 <div class="row g-0">
+    {% if not deleted %}
     <div class="col-5">
         <img src="{{ item.product.image_url}}" alt="product image" style="width:75%">
         <p>{{ product.name }}</p>
@@ -25,13 +26,13 @@
             <div>
             <button class="fas fa-arrow-down" u:click="decrement_component_quantity"></button>
             {{product.id}}
-            <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn" u:click="adjust_bag" onclick="Unicorn.call('bagstatus', 'update')"> Adjust </button>
+            <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust </button>
             </div>
         </div>
         {% elif soft_deleted %}
         <div id="bag-item-soft-deleted-{{item_index}}" class="bag-item-soft-deleted">
             <button u:click="add_item_back">Add back</button>
-            <button u:click="remove_bag_item" onclick="Unicorn.call('bagstatus', 'update')">permanently delete </button>
+            <button u:click="remove_bag_item" onclick="updateBagstatus()">permanently delete </button>
         </div>
         {% else %}
         <div id="bag-item-data-div-{{item_index}}" class="bag-item-data-div">
@@ -49,6 +50,8 @@
         </div>
         {% endif %}
     </div>
-</div>
 <hr>
+
+    {% endif %}
+</div>
 

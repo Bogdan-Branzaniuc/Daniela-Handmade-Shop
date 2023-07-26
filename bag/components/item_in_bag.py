@@ -18,12 +18,12 @@ class ItemInBagView(UnicornView):
     def mount(self, *args, **kwargs):
         self.editing = False
         self.soft_deleted = False
+        self.deleted = False
         self.original_state_size = self.selected_size = self.item['size']
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
         self.update_selections_focus_buttons()
         self.bag = self.request.session.get('bag', {})
-
         return super().mount()
 
     def editing_product(self):
@@ -31,7 +31,7 @@ class ItemInBagView(UnicornView):
         self.update_selections_focus_buttons()
 
     def adjust_bag(self):
-        bag = self.bag
+        bag = self.request.session.get('bag', {})
         o_size = self.original_state_size
         s_size = self.selected_size
         o_color = self.original_state_color
@@ -70,8 +70,6 @@ class ItemInBagView(UnicornView):
         else:
             self.soft_deleted = True
 
-
-
         self.item['color'] = self.product.colors.get(name_EN=s_color)
         self.item['size'] = self.product.sizes.get(size=s_size)
         self.original_state_size = s_size
@@ -95,6 +93,7 @@ class ItemInBagView(UnicornView):
         self.editing = False
 
     def remove_bag_item(self):
+        self.bag = self.request.session.get('bag', {})
         product_id = self.item['item_id']
         if product_id in self.bag.keys():
             if self.selected_size in self.bag[product_id].keys():
@@ -106,10 +105,10 @@ class ItemInBagView(UnicornView):
                         self.bag.pop(product_id)
 
         self.request.session['bag'] = self.bag
+        self.deleted = True
         print(self.selected_size)
         print(self.selected_color)
         print(self.bag)
-        self.call('pageReload')
 
     def increment_component_quantity(self):
         self.component_quantity += 1
