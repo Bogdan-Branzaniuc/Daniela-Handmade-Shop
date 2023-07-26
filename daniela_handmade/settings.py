@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'profiles',
     'products',
     'bag',
+    'checkout',
     'django_countries',
     'colorfield',
     'cloudinary_storage',

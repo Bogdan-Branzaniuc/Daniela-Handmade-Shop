@@ -1,6 +1,4 @@
-from django.shortcuts import render, get_object_or_404
-from products.models import Product
-
+from django.shortcuts import render
 
 def bag(request):
     '''
