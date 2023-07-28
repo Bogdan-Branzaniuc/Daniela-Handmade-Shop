@@ -31,8 +31,6 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-
 ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
@@ -73,6 +71,8 @@ INSTALLED_APPS = [
     'colorfield',
     'cloudinary_storage',
     'cloudinary',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -102,6 +102,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'daniela_handmade.urls'
 
+CRISPY_TEMPLATE_PACK = 'Bootstrap4'
+
 LOGIN_REDIRECT_URL = 'home'
 TEMPLATES = [
     {
@@ -119,6 +121,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.sessionbag.bag_contents'
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -198,3 +204,10 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_CURRENCY = 'eur'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
+FREE_DELIVERY_THRESHOLD = 30
+STANDARD_DELIVERY_PERCENTAGE = 10

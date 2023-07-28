@@ -1,14 +1,11 @@
 from django import forms
-from .models import Order
+from .models import UserProfile
 
 
-class OrderForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
     class Meta:
-        model = Order
-        fields = ('full_name', 'email', 'phone_number',
-                  'address1', 'address2',
-                  'town_or_city', 'postcode', 'country',
-                  'county',)
+        model = UserProfile
+        exclude = ('user', 'profile_image', 'google_profile_image')
 
     def __init__(self, *args, **kwargs):
         """
@@ -17,8 +14,6 @@ class OrderForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'full_name': 'Full Name',
-            'email': 'Email Address',
             'phone_number': 'Phone Number',
             'postcode': 'Postal Code',
             'town_or_city': 'Town or City',
@@ -27,7 +22,7 @@ class OrderForm(forms.ModelForm):
             'county': 'County, State or Locality',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True
+        self.fields['phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
             if field != 'country':
                 if self.fields[field].required:
@@ -35,5 +30,5 @@ class OrderForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
