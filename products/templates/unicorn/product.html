@@ -26,7 +26,7 @@
         </div>
         <div class="input-group">
             {% if component_quantity_changed and in_bag %}
-                <button style="display: none" u:click="add_to_bag" onclick="Unicorn.call('bagstatus', 'update')"> Add to bag </button>
+                <button style="display: none" u:click="add_to_bag" onclick="updateBagstatus()"> Add to bag </button>
                 <button class="adjust-product-bag-btn" style="display:block" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust bag </button>
             {% else %}
                 {% if in_bag %}

@@ -1,16 +1,21 @@
 from django_unicorn.components import UnicornView
 
-
 class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
+
     bag = None
     in_bag = None
     component_quantity = None
     component_quantity_changed = None
     selected_color = None
     selected_size = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
+        self.update_selections_focus_buttons()
+        self.is_in_bag()
 
     def mount(self, *args, **kwargs):
         self.in_bag = False
@@ -21,6 +26,7 @@ class ProductView(UnicornView):
         self.selected_color = str(self.product.colors.all()[0])
         self.update_selections_focus_buttons()
         self.is_in_bag()
+
         return super().mount()
 
     def is_in_bag(self):
