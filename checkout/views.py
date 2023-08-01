@@ -61,7 +61,6 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-            print('it was a post and valid ')
             for item_id, size_level in bag.items():
                 for size, color_level in size_level.items():
                     for color, qty in color_level.items():
@@ -90,7 +89,8 @@ def checkout(request):
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment")
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
@@ -102,7 +102,6 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        print('It wasnt a post')
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -128,7 +127,7 @@ def checkout(request):
         template = 'checkout/checkout.html'
         context = {
             'order_form': order_form,
-            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+            'stripe_public_key': stripe_public_key,
             'client_secret': intent.client_secret,
         }
 

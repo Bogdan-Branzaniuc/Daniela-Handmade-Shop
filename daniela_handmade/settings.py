@@ -31,7 +31,8 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 '8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com']
 
 # Application definition
 SITE_ID = 2
@@ -88,7 +89,10 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_STORE_TOKENS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'http://127.0.0.1:8000/products/']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/',
+                        'http://127.0.0.1:8000/products/',
+                        'https://8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com',
+                        'https://8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com/products/',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,7 +106,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'daniela_handmade.urls'
 
-CRISPY_TEMPLATE_PACK = 'Bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home'
 TEMPLATES = [
@@ -208,6 +212,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
 
 FREE_DELIVERY_THRESHOLD = 30
 STANDARD_DELIVERY_PERCENTAGE = 10
