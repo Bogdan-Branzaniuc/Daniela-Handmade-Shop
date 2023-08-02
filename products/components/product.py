@@ -11,11 +11,14 @@ class ProductView(UnicornView):
     component_quantity_changed = None
     selected_color = None
     selected_size = None
+    product_image_url = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.update_selections_focus_buttons()
         self.is_in_bag()
+        self.product_image_url = self.product.product_image.url
+
 
     def mount(self, *args, **kwargs):
         self.in_bag = False

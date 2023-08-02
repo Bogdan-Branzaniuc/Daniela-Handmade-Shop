@@ -1,6 +1,7 @@
 from django.db import models
 from colorfield.fields import ColorField
 from django.utils.html import format_html
+from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
     class Meta:
@@ -48,7 +49,13 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    product_image = CloudinaryField(
+        use_filename=True,
+        unique_filename=False,
+        folder='daniela_handmade/products',
+        null=True,
+        blank=True,
+    )
     # Cloudinary image
     colors = models.ManyToManyField(
         'AvailableColors')

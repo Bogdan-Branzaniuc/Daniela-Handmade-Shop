@@ -11,7 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'price',
         'rating',
-        'image_url',
+        'product_image',
     )
 
     filter_horizontal = ('colors', 'sizes')

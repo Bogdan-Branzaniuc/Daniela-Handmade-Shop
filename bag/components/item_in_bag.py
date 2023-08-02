@@ -13,6 +13,7 @@ class ItemInBagView(UnicornView):
     selected_color = None
     soft_deleted = None
     deleted = None
+    product_image_url = None
     bag = {}
 
     def mount(self, *args, **kwargs):
@@ -24,6 +25,7 @@ class ItemInBagView(UnicornView):
         self.component_quantity = self.item['quantity']
         self.update_selections_focus_buttons()
         self.bag = self.request.session.get('bag', {})
+        self.product_image_url = self.product.product_image.url
         return super().mount()
 
     def editing_product(self):
