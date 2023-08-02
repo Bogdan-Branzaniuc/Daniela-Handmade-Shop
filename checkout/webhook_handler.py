@@ -9,6 +9,7 @@ from profiles.models import UserProfile
 
 import json
 import time
+import stripe
 
 
 class StripeWH_Handler:
@@ -50,10 +51,12 @@ class StripeWH_Handler:
         pid = intent.id
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
-
-        billing_details = intent.charges.data[0].billing_details
+        stripe_charge = stripe.Charge.retrieve(
+            intent.latest_charge
+        )
+        billing_details = stripe_charge.billing_details  # updated
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        grand_total = round(stripe_charge.amount / 100, 2)  # updated
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -66,13 +69,13 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                profile.default_phone_number = shipping_details.phone
-                profile.default_country = shipping_details.address.country
-                profile.default_postcode = shipping_details.address.postal_code
-                profile.default_town_or_city = shipping_details.address.city
-                profile.default_street_address1 = shipping_details.address.line1
-                profile.default_street_address2 = shipping_details.address.line2
-                profile.default_county = shipping_details.address.state
+                profile.phone_number = shipping_details.phone
+                profile.country = shipping_details.address.country
+                profile.postcode = shipping_details.address.postal_code
+                profile.town_or_city = shipping_details.address.city
+                profile.address1 = shipping_details.address.line1
+                profile.ddress2 = shipping_details.address.line2
+                profile.county = shipping_details.address.state
                 profile.save()
 
         order_exists = False
@@ -86,8 +89,8 @@ class StripeWH_Handler:
                     country__iexact=shipping_details.address.country,
                     postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=shipping_details.address.city,
-                    street_address1__iexact=shipping_details.address.line1,
-                    street_address2__iexact=shipping_details.address.line2,
+                    address1__iexact=shipping_details.address.line1,
+                    address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
                     original_bag=bag,
@@ -99,7 +102,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            self._send_confirmation_email(order)
+            # self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
@@ -114,8 +117,8 @@ class StripeWH_Handler:
                     country=shipping_details.address.country,
                     postcode=shipping_details.address.postal_code,
                     town_or_city=shipping_details.address.city,
-                    street_address1=shipping_details.address.line1,
-                    street_address2=shipping_details.address.line2,
+                    address1=shipping_details.address.line1,
+                    address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
                     original_bag=bag,
                     stripe_pid=pid,
@@ -127,10 +130,9 @@ class StripeWH_Handler:
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
-                                size=size,
-                                color=color,
-                                quantity=quantity,
                                 product_size=size,
+                                product_color_name=color,
+                                quantity=quantity,
                             )
                             order_line_item.save()
             except Exception as e:
@@ -139,7 +141,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
-        self._send_confirmation_email(order)
+        # self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
