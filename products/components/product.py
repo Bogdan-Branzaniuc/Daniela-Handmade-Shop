@@ -18,6 +18,7 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
         self.is_in_bag()
         self.product_image_url = self.product.product_image.url
+        print(self.product)
 
 
     def mount(self, *args, **kwargs):
@@ -70,7 +71,7 @@ class ProductView(UnicornView):
         if self.component_quantity == 0:
             self.component_quantity = 1
         str_id = str(self.product.id)
-        print('str_id = ', str_id)
+
         if str_id in self.bag.keys():
             if self.selected_size in self.bag[str_id].keys():
                 self.bag[str_id][self.selected_size][self.selected_color] = self.component_quantity
@@ -80,7 +81,7 @@ class ProductView(UnicornView):
             self.bag[str_id] = {self.selected_size: {self.selected_color: self.component_quantity}}
 
         self.request.session['bag'] = self.bag
-        print('product', self.bag)
+
         self.in_bag = True
         self.component_quantity_changed = False
         self.update_selections_focus_buttons()
@@ -101,7 +102,7 @@ class ProductView(UnicornView):
                         self.bag.pop(product_id)
 
         self.request.session['bag'] = self.bag
-        print(self.request.session['bag'])
+
         self.in_bag = False
         self.component_quantity_changed = False
         self.component_quantity = 0
@@ -127,16 +128,14 @@ class ProductView(UnicornView):
             self.selected_size = selection
         self.is_in_bag()
         self.update_selections_focus_buttons()
-        print(self.component_quantity)
+
 
     def increment_component_quantity(self):
-        print(self.component_quantity)
         self.component_quantity += 1
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
-        print(self.component_quantity)
         if self.component_quantity > 0:
             self.component_quantity -= 1
         else:

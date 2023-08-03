@@ -39,7 +39,6 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
-        print('POST')
         bag = request.session.get('bag')
 
         form_data = {
@@ -65,7 +64,6 @@ def checkout(request):
                 for size, color_level in size_level.items():
                     for color, qty in color_level.items():
                         try:
-                            print('creating line items')
                             product = Product.objects.get(id=item_id)
                             order_line_item = OrderLineItem(
                                 order=order,
