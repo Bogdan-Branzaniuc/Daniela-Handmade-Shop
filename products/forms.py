@@ -34,7 +34,3 @@ class AvailableSizesForm(forms.ModelForm):
             'size': 'add Size',
             'expressed_in': 'Category Size'
         }
-
-
-class AvailableColorsForm(forms.Form):
-    hexcolor = forms.CharField(max_length=7, empty_value='#FFF')

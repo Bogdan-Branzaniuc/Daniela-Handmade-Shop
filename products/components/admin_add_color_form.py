@@ -6,10 +6,7 @@ from webcolors import CSS3_HEX_TO_NAMES, hex_to_rgb
 from django.contrib import messages
 
 
-
 class AdminAddColorFormView(UnicornView):
-
-    form_class = AvailableColorsForm
 
     available_colors = None
     hexcolor = None
