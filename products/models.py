@@ -31,14 +31,22 @@ class AvailableColors(models.Model):
         return self.name_EN
 
 class AvailableSizes(models.Model):
+    SIZE_CHOICES = [
+        ('infants', 'infants'),
+        ('standard', 'standard'),
+        ('universal', 'universal'),
+    ]
     size = models.CharField(max_length=3, unique=True)
     expressed_in = models.CharField(
         max_length=9,
-        choices=(('infants', 'infants'), ('standard', 'standard'), ('universal', 'universal')),
-        default='standard')
+        choices=SIZE_CHOICES,
+        default='standard'
+    )
     def __str__(self):
         return self.size
 
+    class Meta:
+        ordering = ['expressed_in']
 
 class Product(models.Model):
     category = models.ForeignKey(

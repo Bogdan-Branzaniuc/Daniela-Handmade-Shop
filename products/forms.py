@@ -9,7 +9,7 @@ class ProductForm(forms.ModelForm):
         fields = '__all__'
 
     product_image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
-
+    available_colors = forms.MultipleChoiceField(label='colors', required=True)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
@@ -20,17 +20,7 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class AvailableSizesForm(forms.ModelForm):
-    class Meta:
-        model = AvailableSizes
-        fields = ('size', 'expressed_in')
-
-    def __init__(self, *args, **kwargs):
-        """
-        Add placeholders
-        """
-        super().__init__(*args, **kwargs)
-        placeholders = {
-            'size': 'add Size',
-            'expressed_in': 'Category Size'
-        }
+class AvailableSizesForm(forms.Form):
+    size = forms.CharField(max_length=2, required=True)
+    expressed_in = forms.ChoiceField(
+        choices=(('infants', 'infants'), ('standard', 'standard'), ('universal', 'universal')))

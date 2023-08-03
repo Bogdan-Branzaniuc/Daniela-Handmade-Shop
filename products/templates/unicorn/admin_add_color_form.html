@@ -10,7 +10,17 @@
     </div>
     <div class="col-6">
         {% for color in available_colors %}
-            {{color.hexcolor}}
+        <div>
+            {% if color.name_EN in soft_deleted_colors %}
+                <p style="display:inline-block; color:darkgrey">{{color.name_EN}}</p>
+                <a u:click="restore_color('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-arrow-left"></i>Restore</a>
+                <a u:click="perma_delete_color('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i>Delete Permanently</a>
+            {% else %}
+                <p style="display:inline-block; color: {{color.hexcolor}}">{{color.name_EN}}</p>
+                <div style="display:inline-block; width:10px; height:10px; background-color: {{color.hexcolor}}"></div>
+                <a u:click="soft_delete('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i></a>
+            {% endif %}
+        </div>
         {% endfor %}
     </div>
 </div>
