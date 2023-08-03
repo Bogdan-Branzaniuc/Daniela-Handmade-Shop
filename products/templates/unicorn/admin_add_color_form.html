@@ -1,11 +1,16 @@
-<div>
-    <form action="{% url 'admin_crud_products' %}" method="POST" id="product-form">
-
+<div class="row g-0">
+    <div class="col-6">
         <div class="submit-button text-right mt-5 mb-2">
-            <button id="submit-button" class="btn btn-black rounded-0">
-                <span class="font-weight-bold">Add Product</span>
+            <input type="color" u:model="hexcolor" value="#000000">
+            {{ hexcolor }}
+            <button u:click="add_color" id="submit-button" class="btn btn-black rounded-0">
+                <span class="font-weight-bold">Add Color</span>
             </button>
         </div>
-    </form>
-    <hr>
+    </div>
+    <div class="col-6">
+        {% for color in available_colors %}
+            {{color.hexcolor}}
+        {% endfor %}
+    </div>
 </div>

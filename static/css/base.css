@@ -6,7 +6,10 @@ body nav .navbar .navbar-collapse {
 }
 
 /* Product Form */
-
+.btn-black {
+    background: black;
+    color: white;
+}
 .btn-file {
     position: relative;
     overflow: hidden;

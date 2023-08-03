@@ -36,18 +36,5 @@ class AvailableSizesForm(forms.ModelForm):
         }
 
 
-class AvailableColorsForm(forms.ModelForm):
-    hexcolor = '#fff'
-
-    class Meta:
-        model = AvailableColors
-        fields = ('name_EN',)
-
-    def __init__(self, *args, **kwargs):
-        """
-        Add placeholders
-        """
-        super().__init__(*args, **kwargs)
-        placeholders = {
-            'name_EN': 'Color name',
-        }
+class AvailableColorsForm(forms.Form):
+    hexcolor = forms.CharField(max_length=7, empty_value='#FFF')
