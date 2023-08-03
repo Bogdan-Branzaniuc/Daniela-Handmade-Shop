@@ -32,21 +32,25 @@ class AvailableColors(models.Model):
 
 class AvailableSizes(models.Model):
     SIZE_CHOICES = [
-        ('infants', 'infants'),
-        ('standard', 'standard'),
-        ('universal', 'universal'),
+        ('XS', 'XS_standard'),
+        ('S', 'S_standard'),
+        ('M', 'M_standard'),
+        ('L', 'L_standard'),
+        ('XL', 'XL_standard'),
+        ('0-6', '0-6_infant'),
+        ('6-12', '6-12_infant'),
+        ('12-18', '12-18_infant'),
+        ('18-24', '18-24_infant'),
+        ('2-4', '2-4_infant'),
+        ('24-30', '24-30_shoe'),
+        ('30-35', '30-35_shoe'),
+        ('35-38', '35-38_shoe'),
+        ('38-43', '38-43_shoe'),
     ]
-    size = models.CharField(max_length=3, unique=True)
-    expressed_in = models.CharField(
-        max_length=9,
-        choices=SIZE_CHOICES,
-        default='standard'
-    )
+    size = models.CharField(max_length=5, choices=SIZE_CHOICES, unique=True)
     def __str__(self):
         return self.size
 
-    class Meta:
-        ordering = ['expressed_in']
 
 class Product(models.Model):
     category = models.ForeignKey(

@@ -3,7 +3,6 @@ from products.models import Category
 from django.contrib import messages
 
 class AdminAddCategoryFormView(UnicornView):
-
     categories = None
     category = ''
     soft_deleted_categories = None

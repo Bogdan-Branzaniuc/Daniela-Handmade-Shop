@@ -23,7 +23,9 @@
             <form method="POST" action="{% url 'admin_crud_products' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    {% if field.name != 'product_image' %}
+                    {% if field.name == 'sizes' %}
+                        {% unicorn 'size_by_sizecategory_choice_field' %}
+                    {% elif field.name != 'product_image' %}
                         {{ field | as_crispy_field }}
                     {% else %}
                         {{ field }}
