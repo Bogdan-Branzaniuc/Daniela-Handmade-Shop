@@ -4,19 +4,19 @@ from django.contrib import messages
 
 class SizeBySizecategoryChoiceFieldView(UnicornView):
 
-    selected_size_category = None
     available_sizes = None
-    universal_sizes = None
     standard_sizes = []
     infant_sizes = []
     shoe_sizes = []
+    product = None
 
+    selected_size_category = None
     selected_standard_sizes = []
     selected_infant_sizes = []
     selected_shoe_sizes = []
     final_sizes = []
     def __init__(self, *args, **kwargs):
-        super().__init__(**kwargs)  # calling super is required
+        super().__init__(**kwargs)
         self.selected_size_category = 'universal'
         self.final_sizes = ['U']
         self.standard_sizes = []
@@ -25,6 +25,24 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
 
 
     def mount(self):
+        """
+        1- mounts the existing product if editing one, and sets the sellectors to properly render the component template
+        2- creates lists of possible future selections based on the AvailableSizes model's field SIZE_CHOICES
+        """
+        if self.product:
+            product_sizes = [size.size for size in self.product.sizes.all()]
+            for choice_tuple in AvailableSizes.SIZE_CHOICES:
+                if product_sizes[0] == choice_tuple[0]:
+                    self.selected_size_category = choice_tuple[1].split('_')[1]
+            if self.selected_size_category == 'standard':
+                self.selected_standard_sizes = product_sizes
+            elif self.selected_size_category == 'infant':
+                self.selected_infant_sizes = product_sizes
+            elif self.selected_size_category == 'shoe':
+                self.selected_shoe_sizes = product_sizes
+
+            self.final_sizes = product_sizes
+
         for size_tuple in AvailableSizes.SIZE_CHOICES:
             if size_tuple[1].split('_')[1] == 'standard':
                 self.standard_sizes.append(size_tuple[0])

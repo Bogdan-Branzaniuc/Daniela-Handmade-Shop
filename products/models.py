@@ -32,6 +32,7 @@ class AvailableColors(models.Model):
 
 class AvailableSizes(models.Model):
     SIZE_CHOICES = [
+        ('U', 'U_universal'),
         ('XS', 'XS_standard'),
         ('S', 'S_standard'),
         ('M', 'M_standard'),
@@ -50,7 +51,6 @@ class AvailableSizes(models.Model):
     size = models.CharField(max_length=5, choices=SIZE_CHOICES, unique=True)
     def __str__(self):
         return self.size
-
 
 class Product(models.Model):
     category = models.ForeignKey(

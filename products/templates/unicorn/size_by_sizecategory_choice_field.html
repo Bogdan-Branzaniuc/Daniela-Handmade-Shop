@@ -1,7 +1,7 @@
 <div>
     Sizes
      <div>
-        <button u:click.prevent="select_category_size('universal')" class="btn" autofocus> Universal </button>
+        <button u:click.prevent="select_category_size('universal')" class="btn" {% if selected_size_category == 'universal' %} autofocus {% endif %}> Universal </button>
         {% if selected_size_category == 'universal' %}
             <button class="btn btn-info" style="display: inline-block;" disabled> Products without size </button>
         {% else %}
@@ -10,7 +10,7 @@
 
     </div>
     <div>
-        <button u:click.prevent="select_category_size('standard')" class="btn"> Standard </button>
+        <button u:click.prevent="select_category_size('standard')" class="btn" {% if selected_size_category == 'standard' %} autofocus {% endif %}> Standard </button>
         {% if selected_size_category == 'standard' %}
             {% for size in standard_sizes %}
                 {% if size in selected_standard_sizes %}
@@ -24,7 +24,7 @@
         {% endif %}
     </div>
     <div>
-        <button u:click.prevent="select_category_size('infant')" class="btn">Infant</button>
+        <button u:click.prevent="select_category_size('infant')" class="btn" {% if selected_size_category == 'infant' %} autofocus {% endif %}>Infant</button>
         {% if selected_size_category == 'infant' %}
             {% for size in infant_sizes %}
                 {% if size in selected_infant_sizes %}
@@ -38,7 +38,7 @@
         {% endif %}
     </div>
     <div>
-        <button u:click.prevent="select_category_size('shoe')" class="btn"> shoe </button>
+        <button u:click.prevent="select_category_size('shoe')" class="btn" {% if selected_size_category == 'shoe' %} autofocus {% endif %}> shoe </button>
         {% if selected_size_category == 'shoe' %}
             {% for size in shoe_sizes %}
                 {% if size in selected_shoe_sizes %}
