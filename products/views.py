@@ -72,12 +72,19 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        print('post')
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            form.save()
+            new_product_sizes = ast.literal_eval(request.POST.get('extra_field_sizes'))
+            if AvailableSizes.objects.filter(size__in=new_product_sizes).count() == len(new_product_sizes):
+                size_instances = AvailableSizes.objects.filter(size__in=new_product_sizes)
+                form.save()
+                product.sizes.set(size_instances)
+                product.save()
+                messages.success(request, 'Successfully updated product!')
+                return redirect(reverse('admin_crud_products'))
+            else:
+                print('something went wrong')
 
-            messages.success(request, 'Successfully updated product!')
             return redirect(reverse('admin_crud_products'))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')

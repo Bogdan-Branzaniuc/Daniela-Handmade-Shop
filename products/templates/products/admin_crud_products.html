@@ -1,23 +1,37 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
 {% block content %}
-
-{% if messages %}
-    {% for message in messages %}
-        <p> {{message}} </p>
-    {% endfor %}
-{% endif %}
-
-<button class="nav-item">
-    <a href="{% url 'add_product' %}">Add Product</a>
-</button>
-
-{% for product in products %}
-
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <p> {{message}} </p>
+        {% endfor %}
+    {% endif %}
     <button class="nav-item">
-        <a href="{% url 'edit_product' product.id%}">Edit {{ product }}</a>
+        <a href="{% url 'add_product' %}">Add new Products content</a>
     </button>
 
-{% endfor %}
+    {% for product in products %}
+        <div class="row g-0">
+            <div class="col-6">
+                <img src="{{ product.product_image.url }}" alt="immage of the product" style="height: 250px" />
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+                <p>EUR {{ product.price }}</p>
+                <button class="btn"><a href="{% url 'edit_product' product.id%}">Edit</a></button>
+                <button class="btn"><a href="{% url 'edit_product' product.id%}">Delete</a></button>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</div>
 {% endblock %}
