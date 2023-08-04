@@ -6,7 +6,6 @@ from django.contrib import messages
 
 
 class AdminAddColorFormView(UnicornView):
-
     available_colors = None
     hexcolor = None
     name = None

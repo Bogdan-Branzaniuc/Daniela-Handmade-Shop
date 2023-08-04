@@ -39,13 +39,14 @@
             </form>
         </div>
         <div class="col-6">
-            Available products
+            <h3> Manage Categories </h3>
+            {% unicorn 'admin_add_category_form' %}
+            <hr>
+            <h3> Manage Colors </h3>
+            {% unicorn 'admin_add_color_form' %}
+            <hr>
         </div>
     </div>
-    <hr>
-        {% unicorn 'admin_add_category_form' %}
-    <hr>
-        {% unicorn 'admin_add_color_form' %}
 </div>
  <script type="text/javascript">
     $('#new-image').change(function() {

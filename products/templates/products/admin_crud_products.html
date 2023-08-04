@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load unicorn %}
+{% csrf_token %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -26,12 +28,10 @@
                 <p>{{ product.name }}</p>
                 <p>{{ product.description }}</p>
                 <p>EUR {{ product.price }}</p>
-                <button class="btn"><a href="{% url 'edit_product' product.id%}">Edit</a></button>
-                <button class="btn"><a href="{% url 'edit_product' product.id%}">Delete</a></button>
+                <button class="btn btn-success"><a href="{% url 'edit_product' product.id%}"><i class="fas fa-edit"></i> Edit</a></button>
+                {% unicorn 'delete_product' product=product %}
             </div>
         </div>
-
     {% endfor %}
-
 </div>
 {% endblock %}

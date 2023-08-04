@@ -1,0 +1,8 @@
+<div>
+    {% if soft_deleted_product %}
+        <button u:click="restore_product" btn="btn-warning"><i class="fas fa-arrow-left"></i> Restore </button>
+        <button u:click="delete_product" class="btn btn-danger"><i class="fas fa-trash"></i> Permanently delete</button>
+    {% else %}
+        <button u:click="soft_delete_this_product" class="btn btn-danger">Delete</button>
+    {% endif %}
+</div>
