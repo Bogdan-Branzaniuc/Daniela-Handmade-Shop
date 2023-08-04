@@ -1,0 +1,18 @@
+{% with id=widget.attrs.id %}
+<div {% if id %} id="{{ id }}"{% endif %}{% if widget.attrs.class %} class="{{ widget.attrs.class }}"{% endif %}>
+  {% for group, options, index in widget.optgroups %}
+  {% if group %}
+  <div>
+    <label>{{ group }}</label>
+      {% endif %}
+      {% for option in options %}
+    <div>
+      <div style="display:inline-block">{% include option.template_name with widget=option %}</div>
+      <div style="display:inline-block; width:10px; height:10px; border-radius: 50%; background-color: {{option.label}}"> </div>
+    </div>
+      {% endfor %}
+      {% if group %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>{% endwith %}

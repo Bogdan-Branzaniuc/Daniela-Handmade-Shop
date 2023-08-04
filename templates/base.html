@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
+
     {% endblock %}
 
     {% block extra_css %}
@@ -67,6 +68,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'profiles' %}">Profile</a>
                 </li>
+
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="products" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -82,6 +84,11 @@
                     </div>
                 </div>
                 {% if user.is_authenticated %}
+                {% if user.is_superuser  %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin_crud_products' %}">Manage Products</a>
+                </li>
+                {% endif %}
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout <span class="
                                         sr-only">(current)</span></a>
@@ -103,7 +110,6 @@
     {% block postloadjs %}
     <!--<script type="text/javascript" src="{% static 'products/js/rotate_products.js' %}"></script>-->
     <script type="text/javascript" src="{% static 'products/js/product_component_selectors.js' %}"></script>
-    <script type="text/javascript" src="{% static 'bag/js/bag_callers.js' %}"></script>
     {% endblock %}
 </body>
 

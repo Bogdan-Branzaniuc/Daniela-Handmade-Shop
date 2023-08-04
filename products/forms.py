@@ -1,5 +1,5 @@
 from .models import Product, Category, AvailableSizes, AvailableColors
-from .widgets import CustomClearableFileInput
+from .widgets import CustomClearableFileInput, CustomCheckboxSelectMultiple
 from django import forms
 
 class ProductForm(forms.ModelForm):
@@ -7,9 +7,15 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+        exclude = ['sizes']
 
-    product_image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
-    available_colors = forms.MultipleChoiceField(label='colors', required=True)
+    colors = forms.ModelMultipleChoiceField(
+        label='Colors',
+        queryset=AvailableColors.objects.all(),
+        widget=CustomCheckboxSelectMultiple
+    )
+    product_image = forms.ImageField(label='Image', required=True, widget=CustomClearableFileInput)
+    # available_colors = forms.MultipleChoiceField(label='colors', required=True)
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
@@ -20,7 +26,4 @@ class ProductForm(forms.ModelForm):
             field.widget.attrs['class'] = 'border-black rounded-0'
 
 
-class AvailableSizesForm(forms.Form):
-    size = forms.CharField(max_length=2, required=True)
-    expressed_in = forms.ChoiceField(
-        choices=(('infants', 'infants'), ('standard', 'standard'), ('universal', 'universal')))
+
