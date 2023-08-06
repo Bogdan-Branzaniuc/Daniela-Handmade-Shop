@@ -33,19 +33,12 @@
                 {% endfor %}
                 {% unicorn 'size_by_sizecategory_choice_field' product=product %}
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'admin_crud_products' %}">Go Back</a>
                     <button class="btn btn-black rounded-0" type="submit">Edit Product</button>
                 </div>
             </form>
         </div>
-        <div class="col-6">
-            Available products
-        </div>
     </div>
-    <hr>
-        {% unicorn 'admin_add_category_form' %}
-    <hr>
-        {% unicorn 'admin_add_color_form' %}
 </div>
  <script type="text/javascript">
     $('#new-image').change(function() {

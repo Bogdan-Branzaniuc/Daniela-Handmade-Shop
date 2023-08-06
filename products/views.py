@@ -1,19 +1,25 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Product
+from .models import Product, Category
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
 from .models import AvailableSizes
 import ast
-def products(request):
+
+def products(request, category_name):
     '''
     A view to return the home page index.html
     '''
 
-    products = Product.objects.all()
+    if category_name == 'All':
+        products = Product.objects.all()
+    else:
+        category = get_object_or_404(Category, name=category_name)
+        products = Product.objects.filter(category=category)
     
     context = {
         'products': products,
+        'category_name': category_name,
     }
 
     return render(request, 'products/products.html', context)

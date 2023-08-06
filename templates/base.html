@@ -74,14 +74,7 @@
                         aria-haspopup="true" aria-expanded="false">
                         Products
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="products">
-                        <button class="dropdown-item" type="button"><a class="nav-link" href="{% url 'products' %}">All
-                                Products <span class="sr-only">(current)</span></a></button>
-                        <button class="dropdown-item" type="button">Hats and Scarfs</button>
-                        <button class="dropdown-item" type="button">Jewlery</button>
-                        <button class="dropdown-item" type="button">Tailoring</button>
-                        <button class="dropdown-item" type="button">Little Humans</button>
-                    </div>
+                    {% unicorn 'nav_categories' %}
                 </div>
                 {% if user.is_authenticated %}
                 {% if user.is_superuser  %}
@@ -98,9 +91,9 @@
                 </li>
                 {% endif %}
             </ul>
-            {% block unicorn_bagstatus %}
+
             {% unicorn 'bagstatus' %}
-            {% endblock %}
+
         </div>
     </nav>
     {% block content %}

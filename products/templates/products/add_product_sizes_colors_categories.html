@@ -20,6 +20,7 @@
 <div class="container">
     <div class="row g-0">
         <div class="col-6">
+            <h3> Add New Product </h3>
             <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
