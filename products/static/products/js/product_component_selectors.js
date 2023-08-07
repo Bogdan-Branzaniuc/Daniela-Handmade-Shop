@@ -3,17 +3,15 @@ Js file to store functionality for django unicorn product component view
 **/
 let selectedColorJs
 let selectedSizeJs
-let componentQuantityJs
 
 function focusProductButtons(buttonId, currentValue){
-    if($('#'+buttonId).text() == currentValue) {
-        $('#'+buttonId).css('border', 'solid 2px black');
+    if($('#'+buttonId).attr('data-btn-info') == currentValue) {
+        $('#'+buttonId).css('border', 'solid 3px black');
     }
 }
-function setSelectedSizeColorQty(size, color, qty) {
+function setSelectedSizeColorQty(size, color) {
     selectedColorJs = color;
     selectedSizeJs = size;
-    componentQuantityJs = qty
 }
 
 function pageReload(){

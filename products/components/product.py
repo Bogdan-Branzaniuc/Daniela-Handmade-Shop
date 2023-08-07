@@ -4,7 +4,6 @@ class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
-
     bag = None
     in_bag = None
     component_quantity = None
@@ -12,14 +11,16 @@ class ProductView(UnicornView):
     selected_color = None
     selected_size = None
     product_image_url = None
+    str_id = None
+    show_detail = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.update_selections_focus_buttons()
         self.is_in_bag()
         self.product_image_url = self.product.product_image.url
-        print(self.product)
-
+        self.str_id = str(self.product.id)
+        self.show_detail = False
 
     def mount(self, *args, **kwargs):
         self.in_bag = False
@@ -28,10 +29,12 @@ class ProductView(UnicornView):
         self.bag = self.request.session.get('bag', {})
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
+        return super().mount()
+
+    def toggle_detail(self):
+        self.show_detail = True if not self.show_detail else False
         self.update_selections_focus_buttons()
         self.is_in_bag()
-
-        return super().mount()
 
     def is_in_bag(self):
         """
@@ -59,8 +62,9 @@ class ProductView(UnicornView):
         code that transfers selected options and focused buttons from this view to product_component_selectors.js file
         """
         self.call('setSelectedSizeColorQty', self.selected_size, self.selected_color, self.component_quantity)
-        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
         self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
+        self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
+
 
     def add_to_bag(self):
         """
