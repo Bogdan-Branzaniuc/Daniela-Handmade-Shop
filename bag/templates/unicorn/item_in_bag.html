@@ -1,57 +1,91 @@
-<div class="row g-0">
+<div class="row g-0  product-card">
     {% if not deleted %}
-    <div class="col-5">
-        <img src="{{ product_image_url }}" alt="product image" style="width:75%">
-        <p>{{ product.name }}</p>
-        <p>{{ product.description }}</p>
-    </div>
-    <div class="col-6">
         {% if editing %}
-        <div id="editing-bag-item-div-{{item_index}}" class="editing-bag-item-div">
-            <div class="input-group">
-                 {% for color_instance in product.colors.all %}
-                    <div id="button-{{color_instance}}-{{item_index}}" style="background-color:{{color_instance.hexcolor}}; border-radius: 50%" u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')">{{color_instance.name_EN}}</div>
-                {% endfor %}
+            <div class="col-5">
+                <img src="{{ product_image_url }}" alt="product image">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
             </div>
-            <div class="input-group">
-                {% for size_instance in product.sizes.all %}
-                    <div id="button-{{size_instance}}-{{item_index}}" style="width:40px; height:40px; background-color:lightblue; border-radius: 50%;" u:click="select_size_or_color('{{size_instance.size}}', 'size')">{{size_instance.size}}</div>
-                {% endfor %}
-                <br>
+            <div id="editing-bag-item-div-{{item_index}}" class="col-7 editing-bag-item-div">
+                <div class="row g-0">
+                    <div class="col-4 label-edit-widget">
+                        <label for="colors">Color</label>
+                    </div>
+                    <div class="non-label-row-widget col-8" name="sizes">
+                        {% for color_instance in product.colors.all %}
+                            <button u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')"
+                                    data-btn-info="{{color_instance.name_EN}}"
+                                    id="button-{{color_instance.name_EN}}-{{item_index}}"
+                                    class="color-size-button"
+                                    style="background-color:{{color_instance.hexcolor}};">
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <hr>
+                <div class="row g-0">
+                    <div class="col-4 label-edit-widget">
+                        <label for="sizes">Size</label>
+                    </div>
+                    <div class="non-label-row-widget col-8" name="sizes">
+                        {% for size_instance in product.sizes.all %}
+                            <button u:click="select_size_or_color('{{size_instance.size}}', 'size')"
+                                    data-btn-info="{{size_instance.size}}" id="button-{{size_instance.size}}-{{item_index}}"
+                                    class="color-size-button">
+                                {{size_instance.size}}
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+                <hr>
+                <div class="quantity-bag-widget row g-0">
+                    <div class="label-edit-widget col-4"><label for="quantity">Quantity</label></div>
+                    <div class="non-label-col-widget col-8">
+                        <button class="increment-qty btn" u:click="increment_component_quantity"><i class="fas fa-arrow-up"></i>
+                        </button>
+                        <input class="col-4 col-md-4" type="number" disabled
+                            name="quantity" value="{{component_quantity}}" min="1" max="99">
+                        <button class="decrement-qty btn" u:click="decrement_component_quantity"><i class="fas fa-arrow-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn form-control" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust </button>
             </div>
-            <button class="fas fa-arrow-up" u:click="increment_component_quantity"></button>
-            <input class="form-control qty_input" type="number"
-                   value="{{component_quantity}}" min="1" max="99"
-                    id="id_qty_{{ product.id }}">
-            <div>
-            <button class="fas fa-arrow-down" u:click="decrement_component_quantity"></button>
-            {{product.id}}
-            <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust </button>
-            </div>
-        </div>
         {% elif soft_deleted %}
-        <div id="bag-item-soft-deleted-{{item_index}}" class="bag-item-soft-deleted">
-            <button u:click="add_item_back">Add back</button>
-            <button u:click="remove_bag_item" onclick="updateBagstatus()">permanently delete </button>
-        </div>
-        {% else %}
-        <div id="bag-item-data-div-{{item_index}}" class="bag-item-data-div">
-<!--            {% for item in bag_items %}-->
-<!--            <p>{{item}}</p>-->
-<!--            {% endfor %}-->
-            <p>{{ product.name }}</p>
-            <p>{{ product.description }}</p>
-            <p>size: {{ item.size }}</p>
-            <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
-            <p>quantity: {{ component_quantity }}</p>
-            <p>price: EUR{{ item.product.price }}</p>
-            <button u:click="editing_product"> Edit Product </button>
-            <button u:click="soft_removal_from_bag" > Remove </button>
-        </div>
-        {% endif %}
-    </div>
-<hr>
+            <div class="col-5">
+                <img src="{{ product_image_url }}" alt="product image">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+            </div>
+            <div class="col-7 bag-item-soft-deleted">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+                <p>size: {{ item.size.size }}</p>
+                <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
+                <p>quantity: {{ component_quantity }}</p>
+                <p>price: EUR{{ item.product.price }}</p>
+                <button u:click="remove_bag_item" onclick="updateBagstatus()" class="btn btn-danger form-control"><i class="fas fa-trash"></i> permanently delete </button>
+                <button u:click="add_item_back" class="btn btn-secondary form-control"><i class="fas fa-arrow-left"> </i> Add back</button>
 
+            </div>
+        {% else %}
+            <div class="col-5">
+                <img src="{{ product_image_url }}" alt="product image">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+            </div>
+            <div id="bag-item-data-div-{{item_index}}" class="col-7 bag-item-data-div">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+                <p>size: {{ original_state_size }}</p>
+                <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
+                <p>quantity: {{ component_quantity }}</p>
+                <p>price: EUR{{ item.product.price }}</p>
+                <button u:click="editing_product" class="btn form-control"><i class="fas fa-edit"></i> Edit </button>
+                <button u:click="soft_removal_from_bag" class="btn form-control"><i class="fas fa-trash"></i> Remove </button>
+            </div>
+        {% endif %}
     {% endif %}
 </div>
+<hr>
 

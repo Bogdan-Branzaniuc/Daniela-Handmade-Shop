@@ -29,3 +29,11 @@
     display: flex;
     flex-direction: row;
 }
+
+.product-detail-menu {
+    position: relative;
+}
+.product-detail-menu .quantity-widget{
+    position: relative;
+    right:0;
+}

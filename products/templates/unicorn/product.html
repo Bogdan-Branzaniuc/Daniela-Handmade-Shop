@@ -1,4 +1,4 @@
-<div class="col-4 product-card">
+<div class="col-12 col-md-6 col-lg-4 product-card">
     <div class="product-combinations-in-cart-widget col-12">
         {% if str_id in bag %}
             <i class="fas fa-shopping-cart">:</i>
@@ -11,14 +11,19 @@
         {% endfor %}
         <hr>
     </div>
-    <img src="{{ product_image_url }}" alt="immage of the product">
-    <p>{{ product.name }}</p>
-    <p>{{ product.description }}</p>
-    <p>EUR {{ product.price }}</p>
-    <button u:click="toggle_detail" class="btn form-control" type="button" id="product-detail-button-{{ str_id}}">
-            <i class="fas fa-arrow-circle-down"> </i>buy
-    </button>
-    <div class="form-group row g-0" if="product-detail-card-{{str_id}}" {% if show_detail %}style="display:visible" {%else%} style="display:none" {%endif%}>
+    <div class="col-12">
+        <img src="{{ product_image_url }}" alt="immage of the product">
+        <p>{{ product.name }}</p>
+        <p>{{ product.description }}</p>
+        <p>EUR {{ product.price }}</p>
+        {% if not show_detail %}
+            <button u:click="toggle_detail" class="btn col-9" type="button">
+                <i class="fas fa-caret-down"></i> buy
+            </button>
+        {% endif %}
+    </div>
+    {% if show_detail %}
+    <div class="form-group row g-0 product-detail-menu">
         <div class="col-9">
             {% if component_quantity_changed and in_bag %}
                 <button style="display: none" u:click="add_to_bag" onclick="updateBagstatus()" class="form-control"> Add to cart </button>
@@ -60,18 +65,19 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-3 quantity-widget">
             <button class="increment-qty btn form-control" u:click="increment_component_quantity">
                 <i class="fas fa-arrow-up"></i>
             </button>
             <input class="form-control" type="number" disabled
-                name="quantity" value="{{component_quantity}}" min="1" max="99"
-                id="id_qty_{{ product.id }}">
+                name="quantity" value="{{component_quantity}}" min="1" max="99">
             <button class="decrement-qty btn form-control" u:click="decrement_component_quantity">
                 <i class="fas fa-arrow-down"></i>
             </button>
         </div>
     </div>
+    <button u:click="toggle_detail" class="btn col-9" type="button"><i class="fas fa-caret-up"></i></button>
+    {% endif %}
     <hr>
 </div>
 

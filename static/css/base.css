@@ -35,3 +35,9 @@ body nav .navbar .navbar-collapse {
     border-color: #dc3545;
     border-radius: 0;
 }
+
+footer{
+    height:10em;
+    width:100%;
+    background-color:lightblue;
+}

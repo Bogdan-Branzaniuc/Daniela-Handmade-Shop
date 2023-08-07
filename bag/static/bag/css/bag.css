@@ -1,0 +1,41 @@
+.bag-body{
+margin-bottom: 10em;
+}
+
+.bag-item-soft-deleted{
+    color:grey;
+}
+
+.label-edit-widget{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.label-edit-widget label{
+    margin:0;
+}
+
+.non-label-col-widget{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.non-lable-row-widget{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-gate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #10122b;
+}
+.btn-gate a {
+    text-decoration: none;
+    color: inherit;
+}
