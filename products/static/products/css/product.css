@@ -9,8 +9,8 @@
     font-weight: bold;
 }
 .product-card-img-div{
-    height:350px;
-    width:350px;
+    height:20em;
+    width:20em;
     border-radius: 10px;
     background-size: contain;
     background-repeat: no-repeat;

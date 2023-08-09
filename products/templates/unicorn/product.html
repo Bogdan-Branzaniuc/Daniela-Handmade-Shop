@@ -24,7 +24,7 @@
                 {% for item in bag_items %}
                     {% if item.item_id == str_id %}
                         &nbsp
-                        <div style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </div>
+                        <button u:click="set_size_color('{{item.color}}', '{{item.size}}')" style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </button>
                     {% endif %}
                 {% endfor %}
             <hr>

@@ -150,3 +150,11 @@ class ProductView(UnicornView):
             self.component_quantity = 0
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
+
+    def set_size_color(self, color, size):
+        self.selected_size = size
+        self.selected_color = color
+        self.selected_rgba = self.rgba_colors[self.selected_color]
+        self.update_selections_focus_buttons()
+        self.is_in_bag()
+        self.toggle_detail()
