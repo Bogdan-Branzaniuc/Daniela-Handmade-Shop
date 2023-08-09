@@ -1,68 +1,72 @@
-<div class="col-12 col-md-6 col-lg-4 product-card">
-    <div class="product-combinations-in-cart-widget col-12">
-        {% if str_id in bag %}
-            <i class="fas fa-shopping-cart">:</i>
+<div class="row g-0 product-card"
+{% if show_detail %}
+    {% for color, rgbas in rgba_colors.items %}
+        {% if color == selected_color %}
+            style="background: linear-gradient(40deg, {{rgbas.op_one}} 0%, {{rgbas.op_zero}} 32%, {{rgbas.op_zero}} 68%, {{rgbas.op_zero}} 100%);"
         {% endif %}
-        {% for item in bag_items %}
-            {% if item.item_id == str_id %}
-                &nbsp
-                <div style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </div>
-            {% endif %}
-        {% endfor %}
-        <hr>
-    </div>
+    {% endfor %}
+{% endif %}
+>
     <div class="col-12">
-        <img src="{{ product_image_url }}" alt="immage of the product">
+        <div class="product-card-img-div" style="background-image:url('{{product_image_url}}')"></div>
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        {% if not show_detail %}
-            <button u:click="toggle_detail" class="btn col-9" type="button">
-                <i class="fas fa-caret-down"></i> buy
-            </button>
-        {% endif %}
+        <button u:click="toggle_detail" class="btn btn-gate" type="button">
+            {% if not show_detail %}
+                <i class="fas fa-caret-down">&nbsp buy</i>
+            {% else %}
+                &nbsp&nbsp&nbsp&nbsp<i class="fas fa-caret-up"></i>&nbsp&nbsp&nbsp&nbsp
+            {% endif %}
+        </button>
+        <div class="product-combinations-in-cart-widget">
+            <i class="fas fa-shopping-cart">:</i>
+                {% for item in bag_items %}
+                    {% if item.item_id == str_id %}
+                        &nbsp
+                        <div style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </div>
+                    {% endif %}
+                {% endfor %}
+            <hr>
+        </div>
     </div>
     {% if show_detail %}
     <div class="form-group row g-0 product-detail-menu">
         <div class="col-9">
             {% if component_quantity_changed and in_bag %}
-                <button style="display: none" u:click="add_to_bag" onclick="updateBagstatus()" class="form-control"> Add to cart </button>
-                <button style="display:block" u:click="adjust_bag" onclick="updateBagstatus()" class="form-control"> Adjust </button>
+                <button u:click="adjust_bag" onclick="updateBagstatus()" class="form-control btn-gate"> Adjust </button>
             {% else %}
-                {% if in_bag %}
-                    <button id="add-to-bag-btn-{{ product.id }}" class="add-to-bag-btn" style="display: block" disabled class="form-control">
-                        In the cart <i class="fas fa-check"></i>
-                    </button>
-                    <button  class="adjust-product-bag-btn" style="display:none" u:click="adjust_bag" onclick="updateBagstatus()" class="form-control"> Adjust </button>
-                {% else %}
-                    <button style="display: block" u:click="add_to_bag" onclick="updateBagstatus()" class="form-control"> Add to cart </button>
-                    <button style="display:none" u:click="adjust_bag" onclick="updateBagstatus()" class="form-control"> Adjust </button>
-                {% endif %}
+                <button u:click="add_to_bag" onclick="updateBagstatus()" class="btn-gate form-control"> Add to cart </button>
             {% endif %}
+            {%if in_bag %}
             <button u:click="remove_from_bag" onclick="updateBagstatus()"
-                class="form-control" {% if in_bag and show_detail%} style = "visibility: visible;" {%else%} style = "visibility:hidden;" {%endif%}>
-                Remove <i class="fas fa-trash"></i>
+                class="form-control btn-danger">
+                <i class="fas fa-trash"></i>
             </button>
-
+            {% endif %}
             <div class="input-group">
-            <p> select colors </p>
-                {% for color_instance in product.colors.all %}
-                    <button u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')"
-                            data-btn-info="{{color_instance.name_EN}}"
-                            id="button-{{color_instance.name_EN}}-{{product.id}}"
-                            class="color-size-button"
-                            style="background-color:{{color_instance.hexcolor}};">
-                    </button>
-                {% endfor %}
+            <label for="colors" class="label-edit-widget"> select colors </label>
+                <div class="non-lable-row-widget" name="colors">
+                    {% for color_instance in product.colors.all %}
+                        <button u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')"
+                                data-btn-info="{{color_instance.name_EN}}"
+                                id="button-{{color_instance.name_EN}}-{{product.id}}"
+                                class="color-size-button"
+                                style="background-color:{{color_instance.hexcolor}};">
+                        </button>
+                    {% endfor %}
+                </div>
             </div>
             <div class="input-group">
-                <p> select sizes </p>
-                {% for size_instance in product.sizes.all %}
-                    <button u:click="select_size_or_color('{{size_instance.size}}', 'size')"
-                            data-btn-info="{{size_instance.size}}" id="button-{{size_instance.size}}-{{product.id}}"
-                            class="color-size-button">{{size_instance.size}}
-                    </button>
-                {% endfor %}
+                <label for="sizes" class="label-edit-widget">select sizes </label>
+                <div class="non-lable-row-widget" name="sizes">
+                    {% for size_instance in product.sizes.all %}
+                        <button u:click="select_size_or_color('{{size_instance.size}}', 'size')"
+                                data-btn-info="{{size_instance.size}}" id="button-{{size_instance.size}}-{{product.id}}"
+                                class="color-size-button">{{size_instance.size}}
+                        </button>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="col-3 quantity-widget">
@@ -76,8 +80,6 @@
             </button>
         </div>
     </div>
-    <button u:click="toggle_detail" class="btn col-9" type="button"><i class="fas fa-caret-up"></i></button>
     {% endif %}
-    <hr>
 </div>
-
+<hr>

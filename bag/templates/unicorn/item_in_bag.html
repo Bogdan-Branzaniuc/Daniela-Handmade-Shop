@@ -1,12 +1,10 @@
 <div class="row g-0  product-card">
     {% if not deleted %}
         {% if editing %}
-            <div class="col-5">
-                <img src="{{ product_image_url }}" alt="product image">
-                <p>{{ product.name }}</p>
-                <p>{{ product.description }}</p>
+            <div class="col-12 col-md-5">
+                <div class="product-card-img-div" style="background-image:url('{{product_image_url}}')"></div>
             </div>
-            <div id="editing-bag-item-div-{{item_index}}" class="col-7 editing-bag-item-div">
+            <div id="editing-bag-item-div-{{item_index}}" class="col-12 col-md-7 editing-bag-item-div">
                 <div class="row g-0">
                     <div class="col-4 label-edit-widget">
                         <label for="colors">Color</label>
@@ -52,12 +50,10 @@
                 <button id="adjust-bag-btn-{{ product.id }}" class="adjust-bag-btn form-control" u:click="adjust_bag" onclick="updateBagstatus()"> Adjust </button>
             </div>
         {% elif soft_deleted %}
-            <div class="col-5">
-                <img src="{{ product_image_url }}" alt="product image">
-                <p>{{ product.name }}</p>
-                <p>{{ product.description }}</p>
+            <div class="col-12 col-md-5">
+                <div class="product-card-img-div" style="background-image:url('{{product_image_url}}')"></div>
             </div>
-            <div class="col-7 bag-item-soft-deleted">
+            <div class="col-12 col-md-7 bag-item-soft-deleted">
                 <p>{{ product.name }}</p>
                 <p>{{ product.description }}</p>
                 <p>size: {{ item.size.size }}</p>
@@ -69,12 +65,10 @@
 
             </div>
         {% else %}
-            <div class="col-5">
-                <img src="{{ product_image_url }}" alt="product image">
-                <p>{{ product.name }}</p>
-                <p>{{ product.description }}</p>
+            <div class="col-12 col-md-5">
+                <div class="product-card-img-div" style="background-image:url('{{product_image_url}}')"></div>
             </div>
-            <div id="bag-item-data-div-{{item_index}}" class="col-7 bag-item-data-div">
+            <div id="bag-item-data-div-{{item_index}}" class="col-12 col-md-7 bag-item-data-div">
                 <p>{{ product.name }}</p>
                 <p>{{ product.description }}</p>
                 <p>size: {{ original_state_size }}</p>

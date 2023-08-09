@@ -24,9 +24,11 @@
             </h1>
         </div>
     </div>
-    <div  class="row g-0 h-100">
+    <div  class="row g-0">
         {% for product in products %}
-            {% unicorn 'product' with product=product %}
+            <div class="col-12 col-md-6 col-lg-4">
+                {% unicorn 'product' with product=product rgba_colors=available_rgba_colors%}
+            </div>
         {% endfor %}
     </div>
 </div>

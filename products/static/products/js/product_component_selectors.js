@@ -5,9 +5,8 @@ let selectedColorJs
 let selectedSizeJs
 
 function focusProductButtons(buttonId, currentValue){
-    console.log($('#'+buttonId))
     if($('#'+buttonId).attr('data-btn-info') == currentValue) {
-        $('#'+buttonId).css('border', 'solid 3px black');
+        $('#'+buttonId).css('border', 'solid 3px #10122b');
     }
 }
 function setSelectedSizeColorQty(size, color) {

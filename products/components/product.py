@@ -13,6 +13,8 @@ class ProductView(UnicornView):
     product_image_url = None
     str_id = None
     show_detail = None
+    selected_rgba = None
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
@@ -29,6 +31,7 @@ class ProductView(UnicornView):
         self.bag = self.request.session.get('bag', {})
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
+        self.selected_rgba = self.rgba_colors[self.selected_color]
         return super().mount()
 
     def toggle_detail(self):
@@ -65,15 +68,14 @@ class ProductView(UnicornView):
         self.call('focusProductButtons', f"button-{self.selected_size}-{self.product.id}", self.selected_size)
         self.call('focusProductButtons', f"button-{self.selected_color}-{self.product.id}", self.selected_color)
 
-
     def add_to_bag(self):
         """
         sets in_bag to True for instantaneous rendering of the product component template
         calls js product_component_selector.js functions to send this component's view properties into JS that calls the bag component's view
         """
         self.bag = self.request.session.get('bag', {})
-        if self.component_quantity == 0:
-            self.component_quantity = 1
+        if not self.component_quantity_changed:
+            self.component_quantity += 1
         str_id = str(self.product.id)
 
         if str_id in self.bag.keys():
@@ -115,6 +117,7 @@ class ProductView(UnicornView):
     def adjust_bag(self):
         self.component_quantity_changed = False
         if self.component_quantity > 0:
+            self.component_quantity_changed = True
             self.add_to_bag()
             self.in_bag = True
         else:
@@ -131,6 +134,7 @@ class ProductView(UnicornView):
         elif size_or_color == 'size':
             self.selected_size = selection
         self.is_in_bag()
+        self.selected_rgba = self.rgba_colors[self.selected_color]
         self.update_selections_focus_buttons()
 
 

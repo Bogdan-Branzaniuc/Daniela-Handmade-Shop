@@ -24,7 +24,7 @@
     {% for product in products %}
         <div class="row g-0">
             <div class="col-6">
-                <img src="{{ product.product_image.url }}" alt="immage of the product" style="height: 250px" />
+                <div class="product-card-img-div" style="background-image:url('{{ product.product_image.url }}')"></div>
                 <p>{{ product.name }}</p>
                 <p>{{ product.description }}</p>
                 <p>EUR {{ product.price }}</p>

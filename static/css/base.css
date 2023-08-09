@@ -1,14 +1,82 @@
-body nav .navbar .collapse,
-body nav .navbar .navbar-collapse {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat+Alternates:wght@100;400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200;300;400;500&display=swap');:root{
+
+    --base-nav-footer-color: #060d1e;
+}
+*{
+    margin:0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: Montserrat;
+}
+
+body{
+    position: relative;
+    min-height:100vh;
+    background-color: #f3e2a0;
+    color: #100303;
+}
+i, p, a{
+    color:inherit;
+    font-family: Lato ;
+}
+
+.body-section{
+    padding: 12em 0;
+}
+
+.navbar {
+    background-color: var(--base-nav-footer-color);
+    color: #ffffff;
+    width:100%;
+    position: fixed;
+    font-family: "Montserrat" ;
+    z-index: 1500;
+}
+
+nav a{
+    text-decoration: none;
+    color: inherit;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    height: 5em;
+    width: 100%;
+    background-color: var(--base-nav-footer-color);
 }
 
 /* Product Form */
-.btn-black {
-    background: black;
+.btn-green {
+    background: #30E282;
     color: white;
+}
+.btn-purple {
+    background: #DF4ED1;
+    color: white;
+}
+.btn-blue{
+    background: #36B2E8;
+    color: white;
+}
+.btn-gate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #10122b;
+}
+.btn-gate:focus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #10122b;
+}
+.btn-gate a, btn a {
+    text-decoration: none;
+    color: inherit;
 }
 .btn-file {
     position: relative;
@@ -36,8 +104,4 @@ body nav .navbar .navbar-collapse {
     border-radius: 0;
 }
 
-footer{
-    height:10em;
-    width:100%;
-    background-color:lightblue;
-}
+

@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Product, Category
+from .models import Product, Category, AvailableSizes, AvailableColors
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
-from .models import AvailableSizes
 import ast
 
 def products(request, category_name):
@@ -16,10 +15,30 @@ def products(request, category_name):
     else:
         category = get_object_or_404(Category, name=category_name)
         products = Product.objects.filter(category=category)
-    
+
+    available_rgba_colors = {}
+    for color_instance in AvailableColors.objects.all():
+        hex_code = color_instance.hexcolor.replace('#', '')
+        rgba_one = []
+        rgba_zero = []
+        for i in (0, 2, 4):
+            decimal = int(hex_code[i:i + 2], 16)
+            rgba_one.append(decimal)
+            rgba_zero.append(decimal)
+        rgba_one.append(0.15)
+        rgba_zero.append(0)
+        rgba1 = tuple(rgba_one)
+        rgba0 = tuple(rgba_zero)
+        available_rgba_colors[color_instance.name_EN] = {
+            'op_one': f'rgba{rgba1}',
+            'op_zero': f'rgba{rgba0}',
+        }
+
+    print(available_rgba_colors)
     context = {
         'products': products,
         'category_name': category_name,
+        'available_rgba_colors': available_rgba_colors,
     }
 
     return render(request, 'products/products.html', context)
