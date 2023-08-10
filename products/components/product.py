@@ -15,7 +15,6 @@ class ProductView(UnicornView):
     show_detail = None
     selected_rgba = None
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.update_selections_focus_buttons()
@@ -32,6 +31,7 @@ class ProductView(UnicornView):
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
         self.selected_rgba = self.rgba_colors[self.selected_color]
+        print(self.size_units)
         return super().mount()
 
     def toggle_detail(self):

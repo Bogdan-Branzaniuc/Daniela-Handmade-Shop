@@ -27,7 +27,7 @@
     </div>
     <hr>
     {% for item in bag_items %}
-            {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product %}
+            {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product size_units=size_units %}
     {% endfor %}
     <button type="button" class="btn btn-gate form-control"><a class="nav-link" href="{% url 'checkout' %}">Checkout</a></button>
 </div>

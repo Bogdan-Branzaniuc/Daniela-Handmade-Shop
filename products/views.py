@@ -34,11 +34,23 @@ def products(request, category_name):
             'op_zero': f'rgba{rgba0}',
         }
 
-    print(available_rgba_colors)
+    size_units = {
+        '0-6': 'months',
+        '6-12': 'months',
+        '12-18': 'months',
+        '18-24': 'months',
+        '2-4': 'years',
+        '24-30': 'EU',
+        '30-35': 'EU',
+        '35-38': 'EU',
+        '38-43': 'EU',
+    }
+
     context = {
         'products': products,
         'category_name': category_name,
         'available_rgba_colors': available_rgba_colors,
+        'size_units': size_units,
     }
 
     return render(request, 'products/products.html', context)

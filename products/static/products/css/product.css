@@ -49,3 +49,7 @@
     position: relative;
     right:0;
 }
+
+.color-size{
+    border: solid 1px black;
+}

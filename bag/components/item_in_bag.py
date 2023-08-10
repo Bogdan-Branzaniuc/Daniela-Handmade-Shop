@@ -21,6 +21,7 @@ class ItemInBagView(UnicornView):
         self.soft_deleted = False
         self.deleted = False
         self.original_state_size = self.selected_size = self.item['size']
+        print(self.item)
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
         self.update_selections_focus_buttons()

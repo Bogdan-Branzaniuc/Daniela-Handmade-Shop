@@ -27,7 +27,7 @@
     <div  class="row g-0">
         {% for product in products %}
             <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                {% unicorn 'product' with product=product rgba_colors=available_rgba_colors%}
+                {% unicorn 'product' with product=product rgba_colors=available_rgba_colors size_units=size_units %}
             </div>
         {% endfor %}
     </div>

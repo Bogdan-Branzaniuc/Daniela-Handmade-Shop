@@ -44,7 +44,7 @@
                 <i class="fas fa-trash"></i>
             </button>
             {% endif %}
-            <div class="input-group">
+            <div class="input-group color-size">
             <label for="colors" class="label-edit-widget"> select colors </label>
                 <div class="non-lable-row-widget" name="colors">
                     {% for color_instance in product.colors.all %}
@@ -57,8 +57,17 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="input-group">
-                <label for="sizes" class="label-edit-widget">select sizes </label>
+            <div class="input-group color-size">
+                <label for="sizes" class="label-edit-widget">
+                    <strong>
+                        {{selected_size}}
+                        {% for unit, value in size_units.items %}
+                            {% if unit == selected_size %}
+                                {{ value }}
+                            {% endif %}
+                        {% endfor %}
+                    </strong>
+                </label>
                 <div class="non-lable-row-widget" name="sizes">
                     {% for size_instance in product.sizes.all %}
                         <button u:click="select_size_or_color('{{size_instance.size}}', 'size')"

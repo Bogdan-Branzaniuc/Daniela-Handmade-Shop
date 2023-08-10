@@ -33,6 +33,16 @@
                                 {{size_instance.size}}
                             </button>
                         {% endfor %}
+                        <label for="sizes" class="label-edit-widget">
+                                <strong>
+                                    {{selected_size}}
+                                    {% for unit, value in size_units.items %}
+                                        {% if unit == selected_size %}
+                                            {{ value }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </strong>
+                            </label>
                     </div>
                 </div>
                 <hr>
