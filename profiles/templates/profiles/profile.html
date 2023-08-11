@@ -1,44 +1,54 @@
 {% extends "base.html" %}
 {% load static %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
-{% endblock %}
-
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
+{% load socialaccount %}
 
 {% block content %}
-<div class="container h-100">
-    <div class="row h-100">
-        <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black">
-                Profile Page
-            </h1>
+<div class="profile-background background-overlay"></div>
+
+<div class="container profile-body">
+    {% if user.is_authenticated %}
+        <form action="{% url 'profiles' %}" method="POST">
+            {% csrf_token %}
+            {{ user_profile_form.phone_number | as_crispy_field }}
+            {{ user_profile_form.postcode | as_crispy_field }}
+            {{ user_profile_form.town_or_city | as_crispy_field }}
+            {{ user_profile_form.address1 | as_crispy_field }}
+            {{ user_profile_form.address2 | as_crispy_field }}
+            {{ user_profile_form.county | as_crispy_field }}
+            <input type="file" id="myFile" name="profile_image">
+            <button type="submit">Upload</button>
+        </form>
+        {% if user_profile.profile_image %}
+            <img src="{{user_profile.profile_image.url}}" alt="profile image" class="user_profile_image">
+        {% else %}
+            <img src="{{user_profile.google_profile_image}}" alt="google profile image" class="user_profile_image">
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        {% if not user.has_usable_password %}
+            <button class="btn btn-gate form-control"> <a href="{% url 'account_set_password' %}"> Set Password </a></button>
+        {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        {% get_social_accounts user as accounts %}
+        {% if accounts %}
+        <p> Connected accounts:
+            {% for field in accounts.google %}
+            <strong>{{ field.extra_data.name }} <i class="fa-brands fa-google"></i></strong>
+            {% endfor %}
+        </p>
+        {% endif %}
+        <button class="btn btn-green"> <a href="{% url 'socialaccount_connections' %}">Manage Social Accounts:</a></button>
+    {% else %}
+        <div class="container">
+            <h1 class="display-4"> In order to have a profile you must have an account</h1>
+            <button class="btn btn-gate form-control"><a href="{% url 'account_login'%}">Login</a></button>
         </div>
-    </div>
+    {% endif %}
 </div>
-
-{% if user.is_authenticated %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" id="myFile" name="profile_image">
-    <button type="submit">Upload</button>
-</form>
-
-{% if user_profile.profile_image %}
-<img src="{{user_profile.profile_image.url}}" alt="profile image" class="user_profile_image">
-{% else %}
-<img src="{{user_profile.google_profile_image}}" alt="google profile image" class="user_profile_image">
-{% endif %}
-
-<p>set your password here</p> <a class="btn-primary" href="{% url 'account_set_password' %}"> Set Password
-</a>
-
-{% endif %}
 {% endblock %}

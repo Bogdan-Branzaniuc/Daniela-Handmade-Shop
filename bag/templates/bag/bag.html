@@ -3,15 +3,8 @@
 {% load unicorn %}
 {% csrf_token %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
+<div class="bag-background background-overlay"></div>
 <div class="container bag-body">
     {% if messages %}
         {% for message in messages %}
@@ -19,16 +12,17 @@
         {% endfor %}
     {% endif %}
     <div class="row">
-        <div class="col-7 col-md-6 my-auto">
-            <h1 class="display-4 logo-font text-black">
+        <div class="col-7 col-md-6">
+            <h1 class="display-4">
                 Your cart
             </h1>
         </div>
     </div>
     <hr>
+    <hr>
     {% for item in bag_items %}
             {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product size_units=size_units %}
     {% endfor %}
-    <button type="button" class="btn btn-gate form-control"><a class="nav-link" href="{% url 'checkout' %}">Checkout</a></button>
+    <button class="btn btn-gate form-control special"><a href="{% url 'checkout' %}">Checkout</a></button>
 </div>
 {% endblock %}

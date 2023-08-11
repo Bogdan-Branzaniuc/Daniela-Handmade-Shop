@@ -1,21 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat+Alternates:wght@100;400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald:wght@200;300;400;500&display=swap');:root{
 
-    --base-nav-footer-color: #060d1e;
+    --base-nav-footer-color: #030a17;
 }
 *{
     margin:0;
     padding: 0;
 }
+
 h1, h2, h3, h4, h5, h6{
     font-family: Montserrat;
 }
 
 body{
+    background-color: #000000;
     position: relative;
     min-height:100vh;
-    background-color: #f3e2a0;
-    color: #100303;
+    color: #ffffff;
 }
+
+/* different pages backgrounds */
+.home-background{
+    background: url("https://img.freepik.com/free-photo/woven-wool-cap-indigenous-culture-decoration-souvenir-generated-by-ai_188544-13944.jpg?t=st=1691657575~exp=1691661175~hmac=044e1708f079dd3955a5e6db7a3c54ae56460239587c1398da85dda4163de1c6&w=2000");
+    opacity: 40%;
+}
+.bag-background{
+    background: url("https://img.freepik.com/free-photo/vibrant-colors-animal-markings-feathers-generated-by-ai_188544-43060.jpg?t=st=1691661992~exp=1691665592~hmac=109037b2bbc21618e32cb99c545232a559d0a8e2b78d718f79ee0e7be0b99731&w=2000");
+    opacity: 20%;
+}
+.products-background{
+    background: url("https://img.freepik.com/free-photo/vibrant-colors-wool-spools-arrangement-generated-by-ai_188544-24650.jpg?t=st=1691662181~exp=1691665781~hmac=321c37086de2c78b49159252a1e35bf54d03dc4d38769088d2f381eb3a05ac8a&w=2000");
+    opacity: 10%;
+}
+.profile-background{
+    background: url("https://img.freepik.com/free-photo/crafting-origami-sailboat-fun-childhood-pastime-generated-by-ai_188544-29946.jpg?t=st=1691662984~exp=1691666584~hmac=0e340516ae4a41d73a596aece44bfc7352cb7c44e8962b0e567f476260c52686&w=2000");
+    opacity: 20%;
+}
+
+.auth-background{
+    background: url("https://as2.ftcdn.net/v2/jpg/02/16/47/33/1000_F_216473351_FCLq1pZQOBFrgcyPBphKvBd8Z5wjD1dI.jpg");
+    opacity: 20%;
+}
+.auth-block-content{
+    position: relative;
+}
+.background-overlay{
+    width:100vw;
+    height:100vh;
+    position: fixed;
+    top:0;
+    left:0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 i, p, a{
     color:inherit;
     font-family: Lato ;
@@ -47,10 +85,17 @@ footer{
     background-color: var(--base-nav-footer-color);
 }
 
-/* Product Form */
+/* buttons */
+button > a{
+    width:100%;
+    height:100%;
+    text-decoration: none;
+    color:inherit;
+}
 .btn-green {
     background: #30E282;
-    color: white;
+    color: black;
+    font-weight: bold;
 }
 .btn-purple {
     background: #DF4ED1;
@@ -74,10 +119,7 @@ footer{
     color: white;
     background-color: #10122b;
 }
-.btn-gate a, btn a {
-    text-decoration: none;
-    color: inherit;
-}
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -93,6 +135,7 @@ footer{
     cursor: pointer;
 }
 
+/* widgets */
 .custom-checkbox .custom-control-label::before {
     border-radius: 0;
     border-color: #dc3545;

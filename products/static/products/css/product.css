@@ -12,7 +12,7 @@
     height:20em;
     width:20em;
     border-radius: 10px;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }

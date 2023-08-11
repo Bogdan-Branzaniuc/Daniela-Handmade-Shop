@@ -1,5 +1,6 @@
 .bag-body{
-margin-bottom: 10em;
+    position: relative;
+    margin-bottom: 10em;
 }
 
 .bag-item-soft-deleted{

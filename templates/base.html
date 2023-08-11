@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
     <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
-
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -43,8 +43,10 @@
     {% endblock %}
 
     {% block extra_js %}
-
     {% unicorn_scripts %}
+    {% endblock %}
+
+    {% block extra_head %}
     {% endblock %}
 </head>
 
@@ -61,10 +63,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profiles' %}">Profile</a>
-                </li>
-
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="products" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -87,19 +85,19 @@
                     <a class="nav-link" href="{% url 'account_login' %}">Login <span class="sr-only">(current)</span></a>
                 </li>
                 {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles' %}">Profile</a>
+                </li>
             </ul>
-
             {% unicorn 'bagstatus' %}
-
         </div>
     </nav>
-    <section class="body-section">
+    <section class="body-section container">
         {% block content %}
         {% endblock %}
     </section>
     <footer>
         {% block footer %}
-
         {% endblock %}
     </footer>
 
