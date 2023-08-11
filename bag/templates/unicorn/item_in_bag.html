@@ -49,11 +49,11 @@
                 <div class="quantity-bag-widget row g-0">
                     <div class="label-edit-widget col-4"><label for="quantity">Quantity</label></div>
                     <div class="non-label-col-widget col-8">
-                        <button class="increment-qty btn" u:click="increment_component_quantity"><i class="fas fa-arrow-up"></i>
+                        <button class="increment-qty btn text-light" u:click="increment_component_quantity"><i class="fas fa-arrow-up"></i>
                         </button>
-                        <input class="col-4 col-md-4" type="number" disabled
+                        <input class="col-4 col-md-4" type="number" readonly
                             name="quantity" value="{{component_quantity}}" min="1" max="99">
-                        <button class="decrement-qty btn" u:click="decrement_component_quantity"><i class="fas fa-arrow-down"></i>
+                        <button class="decrement-qty btn text-light" u:click="decrement_component_quantity"><i class="fas fa-arrow-down"></i>
                         </button>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
             <div class="col-12 col-md-7 bag-item-soft-deleted">
                 <p>{{ product.name }}</p>
                 <p>{{ product.description }}</p>
-                <p>size: {{ item.size.size }}</p>
+                <p>size: {{ item.size }}</p>
                 <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
                 <p>quantity: {{ component_quantity }}</p>
                 <p>price: EUR{{ item.product.price }}</p>
@@ -85,8 +85,8 @@
                 <p style="display:inline-block">color:</p> <div style="display:inline-block ;width: 15px; height:15px; background-color: {{ item.color.hexcolor }} ;"></div>
                 <p>quantity: {{ component_quantity }}</p>
                 <p>price: EUR{{ item.product.price }}</p>
-                <button u:click="editing_product" class="btn form-control"><i class="fas fa-edit"></i> Edit </button>
-                <button u:click="soft_removal_from_bag" class="btn form-control"><i class="fas fa-trash"></i> Remove </button>
+                <button u:click="editing_product" class="btn form-control text-success"><i class="fas fa-edit"></i> Edit </button>
+                <button u:click="soft_removal_from_bag" class="btn form-control text-danger"><i class="fas fa-trash"></i> Remove </button>
             </div>
         {% endif %}
     {% endif %}

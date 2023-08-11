@@ -132,7 +132,9 @@ footer{
     opacity: 0;
     cursor: pointer;
 }
-
+.increment-qty:focus, .decrement-qty:focus{
+    background-color: rgba(0,0,0,0);
+}
 /* widgets */
 .custom-checkbox .custom-control-label::before {
     border-radius: 0;
@@ -145,4 +147,6 @@ footer{
     border-radius: 0;
 }
 
-
+.order-history{
+    color: white;
+}

@@ -76,7 +76,11 @@ class ProductView(UnicornView):
         self.bag = self.request.session.get('bag', {})
         if not self.component_quantity_changed:
             self.component_quantity += 1
+
         str_id = str(self.product.id)
+
+        if self.component_quantity == 0:
+            self.component_quantity = 1;
 
         if str_id in self.bag.keys():
             if self.selected_size in self.bag[str_id].keys():
@@ -157,4 +161,5 @@ class ProductView(UnicornView):
         self.selected_rgba = self.rgba_colors[self.selected_color]
         self.update_selections_focus_buttons()
         self.is_in_bag()
-        self.toggle_detail()
+        if not self.show_detail:
+            self.toggle_detail()
