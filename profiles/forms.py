@@ -1,12 +1,14 @@
 from django import forms
 from .models import UserProfile
-
+from products.widgets import CustomClearableFileInput
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user', 'profile_image', 'google_profile_image')
+        fields = '__all__'
+        exclude = ('user', 'google_profile_image')
 
+    profile_image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated
@@ -20,6 +22,7 @@ class UserProfileForm(forms.ModelForm):
             'address1': 'Street Address 1',
             'address2': 'Street Address 2',
             'county': 'County, State or Locality',
+            'profile_image': 'Profile Image',
         }
 
         self.fields['phone_number'].widget.attrs['autofocus'] = True
@@ -31,4 +34,3 @@ class UserProfileForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-            self.fields[field].label = False

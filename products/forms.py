@@ -1,4 +1,4 @@
-from .models import Product, Category, AvailableSizes, AvailableColors
+from .models import Product, Category, AvailableColors
 from .widgets import CustomClearableFileInput, CustomCheckboxSelectMultiple
 from django import forms
 

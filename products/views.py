@@ -87,8 +87,6 @@ def add_product(request):
                 product.save()
                 messages.success(request, 'Successfully added product!')
                 return redirect(reverse('admin_crud_products'))
-            else:
-                print('something went wrong')
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
