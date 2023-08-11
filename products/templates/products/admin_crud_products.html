@@ -12,11 +12,6 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    {% if messages %}
-        {% for message in messages %}
-            <p> {{message}} </p>
-        {% endfor %}
-    {% endif %}
     <button class="nav-item">
         <a href="{% url 'add_product' %}">Add new Products content</a>
     </button>

@@ -12,11 +12,6 @@
 {% endblock %}
 
 {% block content %}
-{% if messages %}
-    {% for message in messages %}
-        <p> {{message}} </p>
-    {% endfor %}
-{% endif %}
 <div class="container">
     <div class="row g-0">
         <div class="col-6">
@@ -34,8 +29,8 @@
                 {% endfor %}
                 {% unicorn 'size_by_sizecategory_choice_field' %}
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'admin_crud_products' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Add Product</button>
+                    <a class="btn text-warning" href="{% url 'admin_crud_products' %}">Cancel</a>
+                    <button class="btn text-success" type="submit">Add Product</button>
                 </div>
             </form>
         </div>

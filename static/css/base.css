@@ -76,6 +76,18 @@ nav a{
     text-decoration: none;
     color: inherit;
 }
+.navbar-toggler{
+    color: white;
+}
+.navbar-brand{
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+#navbarSupportedContent{
+    justify-content: space-around;
+    align-items: center;
+}
 
 footer{
     position: absolute;
@@ -85,14 +97,23 @@ footer{
     background-color: var(--base-nav-footer-color);
 }
 
+
+
+/* Messages */
+
+.messages-container{
+    background-color: #3d9a66;
+    border-radius: 10px ;
+}
+
 /* buttons */
 .btn > a{
     text-decoration: none;
     color:inherit;
 }
 .btn-green {
-    background: #30E282;
-    color: black;
+    background: #3d9a66;
+    color: white;
     font-weight: bold;
 }
 .btn-purple {
@@ -100,7 +121,7 @@ footer{
     color: white;
 }
 .btn-blue{
-    background: #36B2E8;
+    background: #5592a9;
     color: white;
 }
 .btn-gate{
@@ -149,4 +170,9 @@ footer{
 
 .order-history{
     color: white;
+}
+
+.message-container{
+    background-color: lightgreen;
+    color: darkgrey;
 }

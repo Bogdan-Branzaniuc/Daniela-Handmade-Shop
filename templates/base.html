@@ -56,43 +56,58 @@
         <a class="navbar-brand" href="{% url 'home' %}">Daniela Handmade</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <i class="fa-solid fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="/home" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="products" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        Products
-                    </button>
-                    {% unicorn 'nav_categories' %}
-                </div>
-
                 {% if user.is_authenticated %}
-                {% if user.is_superuser  %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin_crud_products' %}">Manage Products</a>
-                </li>
-                {% endif %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'account_logout' %}">Logout <span class="sr-only">(current)</span></a>
-                </li>
+                    {% if user.is_superuser  %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="/products/admin_crud_products" href="{% url 'admin_crud_products' %}">Manage Products</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item active">
+                        <a class="nav-link" id='/accounts/logout/' href="{% url 'account_logout' %}">Logout <span class="sr-only">(current)</span></a>
+                    </li>
                 {% else %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'account_login' %}">Login <span class="sr-only">(current)</span></a>
-                </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" id="/accounts/login/" href="{% url 'account_login' %}">Login <span class="sr-only">(current)</span></a>
+                    </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link" id="/profile/" href="{% url 'profile' %}">Profile</a>
                 </li>
             </ul>
-            {% unicorn 'bagstatus' %}
+
+            <div class="dropdown">
+                <button class="btn btn-blue dropdown-toggle" type="button" id="products" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Products
+                </button>
+                {% unicorn 'nav_categories' %}
+            </div>
         </div>
+        <div>
+                {% unicorn 'bagstatus' %}
+            </div>
     </nav>
     <section class="body-section container">
+        {% if messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
         {% block content %}
         {% endblock %}
     </section>
@@ -102,7 +117,26 @@
     </footer>
 
     {% block postloadjs %}
-    <!--<script type="text/javascript" src="{% static 'products/js/rotate_products.js' %}"></script>-->
+    <script>
+        let current_page_path = '{{ request.path }}'
+        current_page_path = current_page_path == '/' ? '/home' : current_page_path
+        for (let navlink of $('.nav-link')) {
+            if (navlink.id == current_page_path) {
+                navlink.style.scale = "1.1"
+                navlink.style.color = $('#products').css('backgroundColor')
+                navlink.style.margin = "0 20px"
+                navlink.style.padding = "0 20"
+            }
+            if(current_page_path.split('/')[1] == 'products'){
+                $('#products').css('scale', '1.1')
+            }
+        }
+        setTimeout(function () {
+            let messages = document.getElementById('msg');
+            let alert = new bootstrap.Alert(messages);
+            alert.close();
+        }, 2500);
+    </script>
     <script type="text/javascript" src="{% static 'products/js/product_component_selectors.js' %}"></script>
     {% endblock %}
 </body>
