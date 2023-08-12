@@ -23,24 +23,24 @@ body{
 
 /* different pages backgrounds */
 .home-background{
-    background: url("https://img.freepik.com/free-photo/woven-wool-cap-indigenous-culture-decoration-souvenir-generated-by-ai_188544-13944.jpg?t=st=1691657575~exp=1691661175~hmac=044e1708f079dd3955a5e6db7a3c54ae56460239587c1398da85dda4163de1c6&w=2000");
+    background: url("https://res.cloudinary.com/dgzv7gan8/image/upload/v1691862517/daniela_handmade/backgrounds/woven-wool-cap-indigenous-culture-decoration-souvenir-generated-by-ai_dooncd.jpg");
     opacity: 40%;
 }
 .bag-background{
-    background: url("https://img.freepik.com/free-photo/vibrant-colors-animal-markings-feathers-generated-by-ai_188544-43060.jpg?t=st=1691661992~exp=1691665592~hmac=109037b2bbc21618e32cb99c545232a559d0a8e2b78d718f79ee0e7be0b99731&w=2000");
+    background: url("https://res.cloudinary.com/dgzv7gan8/image/upload/v1691862517/daniela_handmade/backgrounds/vibrant-colors-animal-markings-feathers-generated-by-ai_xvimof.jpg");
     opacity: 20%;
 }
 .products-background{
-    background: url("https://img.freepik.com/free-photo/vibrant-colors-wool-spools-arrangement-generated-by-ai_188544-24650.jpg?t=st=1691662181~exp=1691665781~hmac=321c37086de2c78b49159252a1e35bf54d03dc4d38769088d2f381eb3a05ac8a&w=2000");
+    background: url("https://res.cloudinary.com/dgzv7gan8/image/upload/v1691862517/daniela_handmade/backgrounds/indigenous-pottery-workshop-creates-rustic-earthenware-bowls-generated-by-ai_qdemfz.jpg");
     opacity: 10%;
 }
 .profile-background{
-    background: url("https://img.freepik.com/free-photo/crafting-origami-sailboat-fun-childhood-pastime-generated-by-ai_188544-29946.jpg?t=st=1691662984~exp=1691666584~hmac=0e340516ae4a41d73a596aece44bfc7352cb7c44e8962b0e567f476260c52686&w=2000");
+    background: url("https://res.cloudinary.com/dgzv7gan8/image/upload/v1691862517/daniela_handmade/backgrounds/earthenware-pottery-collection-ornate-patterns-rustic-decoration-generated-by-ai_vqbow4.jpg");
     opacity: 20%;
 }
 
 .auth-background{
-    background: url("https://as2.ftcdn.net/v2/jpg/02/16/47/33/1000_F_216473351_FCLq1pZQOBFrgcyPBphKvBd8Z5wjD1dI.jpg");
+    background: url("https://res.cloudinary.com/dgzv7gan8/image/upload/v1691862518/daniela_handmade/backgrounds/vibrant-fashion-textile-pattern-collection-display-generative-ai_xk9tjj.jpg");
     opacity: 20%;
 }
 .auth-block-content{
@@ -99,6 +99,7 @@ footer{
     height: 5em;
     width: 100%;
     background-color: var(--base-nav-footer-color);
+    z-index: 2500;
 }
 
 
