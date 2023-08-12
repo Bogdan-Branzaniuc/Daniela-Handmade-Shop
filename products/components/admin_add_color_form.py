@@ -1,5 +1,5 @@
 from django_unicorn.components import UnicornView
-from products.models import AvailableColors
+from products.models import AvailableColor
 from scipy.spatial import KDTree
 from webcolors import CSS3_HEX_TO_NAMES, hex_to_rgb
 from django.contrib import messages
@@ -40,7 +40,8 @@ class AdminAddColorFormView(UnicornView):
                 hexcolor=self.hexcolor
             )
         else:
-            messages.error(self.request, f'{self.name} is already in the available colors')
+            messages.error(
+                self.request, f'{self.name} is already in the available colors')
         self.call('pageReload')
 
     def soft_delete(self, color):
@@ -53,4 +54,5 @@ class AdminAddColorFormView(UnicornView):
         AvailableColors.objects.get(name_EN=color).delete()
         self.soft_deleted_colors.remove(color)
         self.call('pageReload')
-        messages.success(self.request, f"Successfully deleted {color} from available colors")
+        messages.success(
+            self.request, f"Successfully deleted {color} from available colors")

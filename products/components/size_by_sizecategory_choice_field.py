@@ -1,6 +1,7 @@
 from django_unicorn.components import UnicornView
-from products.models import AvailableSizes
+from products.models import AvailableSize
 from django.contrib import messages
+
 
 class SizeBySizecategoryChoiceFieldView(UnicornView):
 
@@ -15,6 +16,7 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
     selected_infant_sizes = []
     selected_shoe_sizes = []
     final_sizes = []
+
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
         self.selected_size_category = 'universal'
@@ -22,7 +24,6 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
         self.standard_sizes = []
         self.infant_sizes = []
         self.shoe_sizes = []
-
 
     def mount(self):
         """
@@ -88,5 +89,3 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
             self.selected_shoe_sizes.remove(size)
 
         self.final_sizes = self.selected_shoe_sizes
-
-

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import Product, Category, AvailableSizes, AvailableColors
+from .models import Product, Category, AvailableSize, AvailableColor
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ProductForm
 import ast
+
 
 def products(request, category_name):
     '''
@@ -17,7 +18,7 @@ def products(request, category_name):
         products = Product.objects.filter(category=category)
 
     available_rgba_colors = {}
-    for color_instance in AvailableColors.objects.all():
+    for color_instance in AvailableColor.objects.all():
         hex_code = color_instance.hexcolor.replace('#', '')
         rgba_one = []
         rgba_zero = []
@@ -67,6 +68,7 @@ def admin_crud_products(request):
     }
     return render(request, 'products/admin_crud_products.html', context)
 
+
 @login_required
 def add_product(request):
     """
@@ -79,16 +81,19 @@ def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            product_sizes = ast.literal_eval(request.POST.get('extra_field_sizes'))
-            if AvailableSizes.objects.filter(size__in=product_sizes).count() == len(product_sizes):
-                size_instances = AvailableSizes.objects.filter(size__in=product_sizes)
+            product_sizes = ast.literal_eval(
+                request.POST.get('extra_field_sizes'))
+            if AvailableSize.objects.filter(size__in=product_sizes).count() == len(product_sizes):
+                size_instances = AvailableSize.objects.filter(
+                    size__in=product_sizes)
                 product = form.save()
                 product.sizes.set(size_instances)
                 product.save()
                 messages.success(request, 'Successfully added product!')
                 return redirect(reverse('admin_crud_products'))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
 
@@ -97,6 +102,7 @@ def add_product(request):
     }
 
     return render(request, 'products/add_product_sizes_colors_categories.html', context)
+
 
 @login_required
 def edit_product(request, product_id):
@@ -109,9 +115,11 @@ def edit_product(request, product_id):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            new_product_sizes = ast.literal_eval(request.POST.get('extra_field_sizes'))
-            if AvailableSizes.objects.filter(size__in=new_product_sizes).count() == len(new_product_sizes):
-                size_instances = AvailableSizes.objects.filter(size__in=new_product_sizes)
+            new_product_sizes = ast.literal_eval(
+                request.POST.get('extra_field_sizes'))
+            if AvailableSize.objects.filter(size__in=new_product_sizes).count() == len(new_product_sizes):
+                size_instances = AvailableSize.objects.filter(
+                    size__in=new_product_sizes)
                 form.save()
                 product.sizes.set(size_instances)
                 product.save()
@@ -122,7 +130,8 @@ def edit_product(request, product_id):
 
             return redirect(reverse('admin_crud_products'))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to update product. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')

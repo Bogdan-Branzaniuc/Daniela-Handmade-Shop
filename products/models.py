@@ -3,6 +3,7 @@ from colorfield.fields import ColorField
 from django.utils.html import format_html
 from cloudinary.models import CloudinaryField
 
+
 class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
@@ -16,7 +17,8 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
-class AvailableColors(models.Model):
+
+class AvailableColor(models.Model):
     name_EN = models.CharField(max_length=100, unique=True, null=True)
     hexcolor = ColorField(max_length=7, default="#ffffff")
 
@@ -30,7 +32,8 @@ class AvailableColors(models.Model):
     def __str__(self):
         return self.name_EN
 
-class AvailableSizes(models.Model):
+
+class AvailableSize(models.Model):
     SIZE_CHOICES = [
         ('U', 'U_universal'),
         ('XS', 'XS_standard'),
@@ -49,8 +52,10 @@ class AvailableSizes(models.Model):
         ('38-43', '38-43_shoe'),
     ]
     size = models.CharField(max_length=5, choices=SIZE_CHOICES, unique=True)
+
     def __str__(self):
         return self.size
+
 
 class Product(models.Model):
     category = models.ForeignKey(
@@ -70,10 +75,9 @@ class Product(models.Model):
     )
     # Cloudinary image
     colors = models.ManyToManyField(
-        'AvailableColors')
+        'AvailableColor')
     sizes = models.ManyToManyField(
-        'AvailableSizes')
+        'AvailableSize')
 
     def __str__(self):
         return self.name
-

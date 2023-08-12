@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 
 if os.path.isfile('env.py'):
     import env
@@ -32,7 +33,7 @@ CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 '8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com']
+                 '8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com']
 
 # Application definition
 SITE_ID = 2
@@ -91,8 +92,8 @@ SOCIALACCOUNT_STORE_TOKENS = True
 
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/',
                         'http://127.0.0.1:8000/products/',
-                        'https://8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com',
-                        'https://8000-bogdan-branzaniuc-daniel-412swd1d95.us2.codeanyapp.com/products/',]
+                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com',
+                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com/products/',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -174,6 +175,19 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -183,12 +197,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-# cloudinary.config(
-#     cloud_name="YOUR_CLOUD_NAME",
-#     api_key="YOUR_API_KEY",
-#     api_secret="YOUR_API_SECRET"
-# )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
