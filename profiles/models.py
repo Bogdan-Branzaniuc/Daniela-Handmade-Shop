@@ -33,8 +33,8 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
+        
+        
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
@@ -45,14 +45,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         user_profile.save()
     # Existing users: just save the profile
     instance.userprofile.save()
-
-
-@receiver(post_save, sender=SocialAccount)
-def create_or_update_user_profile_by_social(sender, instance, created, **kwargs):
-    """
-    Update the user profile
-    """
-    print(instance.extra_data['picture'])
-    user_profile = get_object_or_404(UserProfile, user=instance.user)
-    user_profile.google_profile_image = instance.extra_data['picture']
-    user_profile.save()

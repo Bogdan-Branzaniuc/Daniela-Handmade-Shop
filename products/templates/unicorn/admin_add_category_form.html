@@ -1,22 +1,36 @@
+{% load unicorn %}
+{% unicorn_errors %}
 <div class="row g-0">
-    <div class="col-6">
-        <div class="submit-button text-right mt-5 mb-2">
-            <input type="text" u:model="category">
-            <button u:click="add_category" id="submit-button" class="btn btn-black rounded-0">
-                <span class="font-weight-bold">Add Category</span>
-            </button>
-        </div>
+    <div class="col-4">
+        <style>
+            [unicorn\:error\:invalid] {
+                border: 1px solid red !important;
+            }
+
+            [unicorn\:error\:required] {
+                border: 1px solid red !important;
+            }
+        </style>
+        <span class="error">{{ unicorn.errors.publish_date.0.message }}</span>
+        <input type="text" u:model.lazy="category" id="category">
+        <button u:click="add_category" class="btn btn-green">
+            Add Category
+        </button>
     </div>
-    <div class="col-6">
+    <div class="col-8">
         {% for category in categories %}
         <div>
             {% if category.name in soft_deleted_categories %}
-                <p style="display:inline-block; color:darkgrey">{{category.name}}</p>
-                <a u:click="restore_category('{{category.name}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-arrow-left"></i>Restore</a>
-                <a u:click="perma_delete_category('{{category.name}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i>Delete Permanently</a>
+            <p style="display:inline-block; color:darkgrey">{{category.name}}</p>
+            <a u:click="restore_category('{{category.name}}')"
+                style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-arrow-left"></i>Restore</a>
+            <a u:click="perma_delete_category('{{category.name}}')"
+                style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i>Delete
+                Permanently</a>
             {% else %}
-                <p style="display:inline-block; color: {{color.hexcolor}}">{{category.name}}</p>
-                <a u:click="soft_delete('{{category.name}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i></a>
+            <p style="display:inline-block; color: {{color.hexcolor}}">{{category.name}}</p>
+            <a u:click="soft_delete('{{category.name}}')" style="cursor:pointer; display:inline-block; height:15px"><i
+                    class="fas fa-trash"></i></a>
             {% endif %}
         </div>
         {% endfor %}

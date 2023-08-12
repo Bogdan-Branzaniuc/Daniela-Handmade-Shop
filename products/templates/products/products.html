@@ -6,24 +6,24 @@
 {% block content %}
 <div class="products-background background-overlay"></div>
 
-<div class="container">
+<div class="container position-relative">
     <div class="row g-0">
         <div class="col-7 col-md-6">
             <h1 class="display-4">
                 {{ category_name }}
                 {% if category_name == 'All' %}
-                    Products
+                Products
                 {% else %}
-                    Collection
+                Collection
                 {% endif %}
             </h1>
         </div>
     </div>
-    <div  class="row g-0">
+    <div class="row g-0">
         {% for product in products %}
-            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                {% unicorn 'product' with product=product rgba_colors=available_rgba_colors size_units=size_units %}
-            </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+            {% unicorn 'product' product=product rgba_colors=available_rgba_colors size_units=size_units %}
+        </div>
         {% endfor %}
     </div>
 </div>

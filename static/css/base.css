@@ -10,7 +10,10 @@
 h1, h2, h3, h4, h5, h6{
     font-family: Montserrat;
 }
-
+.position-relative{
+    z-index:300;
+    position:relative;
+}
 body{
     background-color: #000000;
     position: relative;
@@ -47,6 +50,7 @@ body{
     width:100vw;
     height:100vh;
     position: fixed;
+    z-index: -500;
     top:0;
     left:0;
     background-repeat: no-repeat;
@@ -101,10 +105,24 @@ footer{
 
 /* Messages */
 
-.messages-container{
-    background-color: #3d9a66;
-    border-radius: 10px ;
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
 }
+
+.custom-toast {
+    position: relative;
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+/* TOASTS */
+
 
 /* buttons */
 .btn > a{

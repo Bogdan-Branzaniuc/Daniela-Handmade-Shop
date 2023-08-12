@@ -1,54 +1,65 @@
 <div style="color:white">
     Sizes
-     <div>
-        <button u:click.prevent="select_category_size('universal')" class="btn text-info" {% if selected_size_category == 'universal' %} autofocus {% endif %}> Universal </button>
+    <div>
+        <button u:click.prevent="select_category_size('universal')" class="btn text-info" 
+        {% if selected_size_category == 'universal' %} autofocus {% endif %}> Universal </button>
         {% if selected_size_category == 'universal' %}
-            <button class="btn btn-info" style="display: inline-block;" disabled> Products without size </button>
+        <button class="btn text-info" style="display: inline-block;" disabled> Products without size </button>
         {% else %}
-            </hr>
+        </hr>
         {% endif %}
 
     </div>
     <div>
-        <button u:click.prevent="select_category_size('standard')" class="btn text-info" {% if selected_size_category == 'standard' %} autofocus {% endif %}> Standard </button>
+        <button u:click.prevent="select_category_size('standard')" class="btn text-info" 
+        {% if selected_size_category == 'standard' %} autofocus {% endif %}> Standard </button>
         {% if selected_size_category == 'standard' %}
-            {% for size in standard_sizes %}
-                {% if size in selected_standard_sizes %}
-                <button u:click.prevent="toggle_selected_standard_size('{{size}}')" style="background-color: lightblue">{{ size }}</button>
-                {% else %}
-                <button u:click.prevent="toggle_selected_standard_size('{{size}}')" style="background-color: lightgray">{{ size }}</button>
-                {% endif %}
-            {% endfor %}
+        {% for size in standard_sizes %}
+        {% if size in selected_standard_sizes %}
+        <button u:click.prevent="toggle_selected_standard_size('{{size}}')" style="background-color: lightblue">
+            {{ size}}
+        </button>
         {% else %}
-            </hr>
+        <button u:click.prevent="toggle_selected_standard_size('{{size}}')" style="background-color: lightgray">
+            {{ size }}
+        </button>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        </hr>
         {% endif %}
     </div>
     <div>
-        <button u:click.prevent="select_category_size('infant')" class="btn text-info" {% if selected_size_category == 'infant' %} autofocus {% endif %}>Infant</button>
+        <button u:click.prevent="select_category_size('infant')" class="btn text-info" 
+        {% if selected_size_category == 'infant' %} autofocus {% endif %}>Infant</button>
         {% if selected_size_category == 'infant' %}
-            {% for size in infant_sizes %}
-                {% if size in selected_infant_sizes %}
-                    <button u:click.prevent="toggle_selected_infant_size('{{size}}')" style="background-color: lightblue">{{ size }}</button>
-                {% else %}
-                    <button u:click.prevent="toggle_selected_infant_size('{{size}}')" style="background-color: lightgray">{{ size }}</button>
-                {% endif %}
-            {% endfor %}
+        {% for size in infant_sizes %}
+        {% if size in selected_infant_sizes %}
+        <button u:click.prevent="toggle_selected_infant_size('{{size}}')" style="background-color: lightblue">
+            {{ size}}
+        </button>
         {% else %}
-            </hr>
+        <button u:click.prevent="toggle_selected_infant_size('{{size}}')" style="background-color: lightgray">
+            {{ size }}</button>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        </hr>
         {% endif %}
     </div>
     <div>
-        <button u:click.prevent="select_category_size('shoe')" class="btn text-info" {% if selected_size_category == 'shoe' %} autofocus {% endif %}> shoe </button>
+        <button u:click.prevent="select_category_size('shoe')" class="btn text-info" 
+        {% if selected_size_category == 'shoe' %} autofocus {% endif %}> shoe </button>
         {% if selected_size_category == 'shoe' %}
-            {% for size in shoe_sizes %}
-                {% if size in selected_shoe_sizes %}
-                <button u:click.prevent="toggle_selected_shoe_size('{{size}}')" style="background-color: lightblue">{{ size }}</button>
-                {% else %}
-                <button u:click.prevent="toggle_selected_shoe_size('{{size}}')" style="background-color: lightgray">{{ size }}</button>
-                {% endif %}
-            {% endfor %}
+        {% for size in shoe_sizes %}
+        {% if size in selected_shoe_sizes %}
+        <button u:click.prevent="toggle_selected_shoe_size('{{size}}')" style="background-color: lightblue">{{ size }}</button>
         {% else %}
-            </hr>
+        <button u:click.prevent="toggle_selected_shoe_size('{{size}}')" style="background-color: lightgray">{{ size }}</button>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        </hr>
         {% endif %}
     </div>
     <input type="hidden" value="{{final_sizes}}" name="extra_field_sizes">

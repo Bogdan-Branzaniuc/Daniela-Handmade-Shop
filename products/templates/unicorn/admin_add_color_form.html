@@ -1,24 +1,27 @@
 <div class="row g-0">
-    <div class="col-6">
-        <div class="submit-button text-right mt-5 mb-2">
-            <input type="color" u:model="hexcolor" value="#000000">
-            {{ hexcolor }}
-            <button u:click="add_color" id="submit-button" class="btn btn-black rounded-0">
-                <span class="font-weight-bold">Add Color</span>
-            </button>
-        </div>
+    <div class="col-4">
+        <input type="color" u:model="hexcolor" value="#000000">
+        {{ hexcolor }}
+        <button u:click="add_color" id="submit-button" class="btn btn-green">
+            Add Color
+        </button>
     </div>
-    <div class="col-6">
+    <div class="col-8 add-colors-form-div">
         {% for color in available_colors %}
         <div>
             {% if color.name_EN in soft_deleted_colors %}
-                <p style="display:inline-block; color:darkgrey">{{color.name_EN}}</p>
-                <a u:click="restore_color('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-arrow-left"></i>Restore</a>
-                <a u:click="perma_delete_color('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i>Delete Permanently</a>
+            <p style="display:inline-block; color:darkgrey">{{color.name_EN}}</p>
+            <a u:click="restore_color('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i
+                    class="fas fa-arrow-left"></i>Restore</a>
+            <a u:click="perma_delete_color('{{color.name_EN}}')"
+                style="cursor:pointer; display:inline-block; height:15px" class="text-danger"><i
+                    class="fas fa-trash"></i>Delete
+                Permanently</a>
             {% else %}
-                <p style="display:inline-block; color: {{color.hexcolor}}">{{color.name_EN}}</p>
-                <div style="display:inline-block; width:10px; height:10px; background-color: {{color.hexcolor}}"></div>
-                <a u:click="soft_delete('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i class="fas fa-trash"></i></a>
+            <p style="display:inline-block; color: {{color.hexcolor}}">{{color.name_EN}}</p>
+            <div style="display:inline-block; width:10px; height:10px; background-color: {{color.hexcolor}}"></div>
+            <a u:click="soft_delete('{{color.name_EN}}')" style="cursor:pointer; display:inline-block; height:15px"><i
+                    class="fas fa-trash"></i></a>
             {% endif %}
         </div>
         {% endfor %}

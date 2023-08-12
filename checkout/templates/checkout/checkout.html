@@ -69,23 +69,27 @@
         </fieldset>
 
         <div class="submit-button text-right mt-5 mb-2">
-            <a href="{% url 'bag' %}" class="btn btn-outline-black rounded-0">
-                <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
-                </span>
+            <a href="{% url 'bag' %}" class="btn btn-blue">
+                <i class="fas fa-chevron-left"></i>
                 <span class="font-weight-bold">Adjust Bag</span>
             </a>
-            <button id="submit-button" class="btn btn-black rounded-0">
+            <button id="submit-button" class="btn btn-blue">
                 <span class="font-weight-bold">Complete Order</span>
-                <span class="icon">
-                    <i class="fas fa-lock"></i>
-                </span>
+                <i class="fas fa-lock"></i>
             </button>
+
             <p class="small text-danger my-0">
                 <span class="icon">
                     <i class="fas fa-exclamation-circle"></i>
                 </span>
                 <span>Your card will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
+                <p>TOTAL: <strong>{{total}}</strong></p>
+                {% if delivery == 0 %}
+                    <p> Free delivery since you are spending over ${{delivery_treshold}}</p>
+                {% else %}
+                    <p>spend ${{ left_till_free }} more for free delivery </p>
+                    <p>delivery: <strong>{{delivery}}</strong></p>
+                {% endif %}    
             </p>
         </div>
     </form>
@@ -93,7 +97,7 @@
 <div id="loading-overlay">
     <h1 class="text-light logo-font loading-spinner">
         <span class="icon">
-            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            <i class="fa-solid fa-circle-notch fa-spin fa-spin-reverse"></i>
         </span>
     </h1>
 </div>

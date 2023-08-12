@@ -3,29 +3,23 @@
 {% load unicorn %}
 {% csrf_token %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
-<div class="container">
+<div class="products-background background-overlay"></div>
+
+<div class="container position-relative">
     <div class="row g-0">
         <div class="col-6">
             <h3> Add New Product </h3>
             <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    {% if field.name == 'product_image' %}
-                        {{ field }}
-                    {% elif field.name == 'colors' %}
-                        {{ field }}
-                    {% else %}
-                        {{ field | as_crispy_field }}
-                    {% endif %}
+                {% if field.name == 'product_image' %}
+                {{ field }}
+                {% elif field.name == 'colors' %}
+                {{ field }}
+                {% else %}
+                {{ field | as_crispy_field }}
+                {% endif %}
                 {% endfor %}
                 {% unicorn 'size_by_sizecategory_choice_field' %}
                 <div class="text-right">
@@ -44,8 +38,8 @@
         </div>
     </div>
 </div>
- <script type="text/javascript">
-    $('#new-image').change(function() {
+<script type="text/javascript">
+    $('#new-image').change(function () {
         var file = $('#new-image')[0].files[0];
         $('#filename').text(`Image will be set to: ${file.name}`);
     });

@@ -12,7 +12,7 @@ class AdminAddColorFormView(UnicornView):
     soft_deleted_colors = None
 
     def mount(self):
-        self.available_colors = AvailableColors.objects.all()
+        self.available_colors = AvailableColor.objects.all()
         self.hexcolor = '#000000'
         self.name = 'black'
         self.soft_deleted_colors = []
@@ -34,8 +34,8 @@ class AdminAddColorFormView(UnicornView):
 
         self.name = convert_rgb_to_names(hex_to_rgb(self.hexcolor))
 
-        if not AvailableColors.objects.filter(name_EN=self.name).exists():
-            AvailableColors.objects.create(
+        if not AvailableColor.objects.filter(name_EN=self.name).exists():
+            AvailableColor.objects.create(
                 name_EN=self.name,
                 hexcolor=self.hexcolor
             )
@@ -51,7 +51,7 @@ class AdminAddColorFormView(UnicornView):
         self.soft_deleted_colors.remove(color)
 
     def perma_delete_color(self, color):
-        AvailableColors.objects.get(name_EN=color).delete()
+        AvailableColor.objects.get(name_EN=color).delete()
         self.soft_deleted_colors.remove(color)
         self.call('pageReload')
         messages.success(

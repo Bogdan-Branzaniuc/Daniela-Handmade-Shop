@@ -32,7 +32,7 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
         """
         if self.product:
             product_sizes = [size.size for size in self.product.sizes.all()]
-            for choice_tuple in AvailableSizes.SIZE_CHOICES:
+            for choice_tuple in AvailableSize.SIZE_CHOICES:
                 if product_sizes[0] == choice_tuple[0]:
                     self.selected_size_category = choice_tuple[1].split('_')[1]
             if self.selected_size_category == 'standard':
@@ -44,7 +44,7 @@ class SizeBySizecategoryChoiceFieldView(UnicornView):
 
             self.final_sizes = product_sizes
 
-        for size_tuple in AvailableSizes.SIZE_CHOICES:
+        for size_tuple in AvailableSize.SIZE_CHOICES:
             if size_tuple[1].split('_')[1] == 'standard':
                 self.standard_sizes.append(size_tuple[0])
             elif size_tuple[1].split('_')[1] == 'infant':

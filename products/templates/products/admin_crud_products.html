@@ -3,30 +3,50 @@
 {% load unicorn %}
 {% csrf_token %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
 {% block content %}
-<div class="container">
-    <button class="nav-item">
+<div class="products-background background-overlay"></div>
+
+<div class="container position-relative">
+    <button class="btn btn-gate">
         <a href="{% url 'add_product' %}">Add new Products content</a>
     </button>
-
+    <br>
+    <br><br>
     {% for product in products %}
-        <div class="row g-0">
-            <div class="col-6">
-                <div class="product-card-img-div" style="background-image:url('{{ product.product_image.url }}')"></div>
-                <p>{{ product.name }}</p>
-                <p>{{ product.description }}</p>
-                <p>EUR {{ product.price }}</p>
-                <button class="btn btn-success"><a href="{% url 'edit_product' product.id%}"><i class="fas fa-edit"></i> Edit</a></button>
-                {% unicorn 'delete_product' product=product %}
+    <div class="row g-0">
+        <div class="col-6">
+            <div class="product-card-img-div" style="background-image:url('{{ product.product_image.url }}')"></div>
+            <p>{{ product.name }}</p>
+            <p>{{ product.description }}</p>
+            <p>EUR {{ product.price }}</p>
+            <p>Rating {{ product.rating }}</p>
+            <div class="input-group color-size">
+                <label for="colors" class="label-edit-widget"> Colors:</label>
+                <div class="non-lable-row-widget" name="colors">
+                    {% for color_instance in product.colors.all %}
+                    <div class="color-size-button" style="background-color:{{color_instance.hexcolor}};"></div>
+                    {% endfor %}
+                </div>
             </div>
+            <div class="input-group color-size">
+                <div class="non-lable-row-widget" name="sizes">
+                    <table class="table text-light">
+                        <tr>
+                        <td>Sizes:</td>
+                            {% for size_instance in product.sizes.all %}
+                            <td>{{ size_instance.size }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn-green">
+                <a href="{% url 'edit_product' product.id%}"><i class="fas fa-edit"></i>Edit</a>
+            </button>
+            {% unicorn 'delete_product' product=product %}
         </div>
+    </div>
+    <br>
     {% endfor %}
 </div>
 {% endblock %}
