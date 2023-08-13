@@ -15,9 +15,10 @@ class ItemInBagView(UnicornView):
     soft_deleted = None
     deleted = None
     product_image_url = None
-    bag = {}
+    bag = None
 
     def mount(self, *args, **kwargs):
+        self.bag = self.request.session.get('bag', {})
         self.editing = False
         self.soft_deleted = False
         self.deleted = False
@@ -25,11 +26,11 @@ class ItemInBagView(UnicornView):
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
         self.update_selections_focus_buttons()
-        self.bag = self.request.session.get('bag', {})
         self.product_image_url = self.product.product_image.url
         return super().mount()
 
     def editing_product(self):
+        self.bag = self.request.session.get('bag', {})
         self.editing = True
         self.update_selections_focus_buttons()
 
@@ -88,10 +89,12 @@ class ItemInBagView(UnicornView):
         """
         Give the user the chance to add the item back, or delete it for good.
         """
+        self.bag = self.request.session.get('bag', {})
         self.soft_deleted = True
         self.editing = False
 
     def add_item_back(self):
+        self.bag = self.request.session.get('bag', {})
         self.soft_deleted = False
         self.editing = False
 
@@ -111,10 +114,12 @@ class ItemInBagView(UnicornView):
         self.deleted = True
 
     def increment_component_quantity(self):
+        self.bag = self.request.session.get('bag', {})
         self.component_quantity += 1
         self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
+        self.bag = self.request.session.get('bag', {})
         if self.component_quantity > 0:
             self.component_quantity -= 1
         else:
@@ -133,6 +138,7 @@ class ItemInBagView(UnicornView):
         """
         calls js product_component_selector.js functions to set component properties
         """
+        self.bag = self.request.session.get('bag', {})
         if size_or_color == 'color':
             self.selected_color = selection
         elif size_or_color == 'size':
