@@ -1,8 +1,6 @@
 
 # Daniela-Handmade-ecommerce
 
-<img src="https://res.cloudinary.com/djnxh7xga/image/upload/v1684923696/logo_default_ibawlh.svg" alt="Tundorul Logo" style="width: 100px; height: 100px;">
-
 # Handmade Products  
 
 * [view Live Site Here](https://daniela-handmade-8a9762fab1c1.herokuapp.com/)
@@ -31,24 +29,14 @@ Description
 
 ### The business goals for this website are
 
-* Keeping in touch with the community
-* Setting grounds for future projects
-* Providing a space where feedback could be voted by the community
+* 1
 
 ### The customer goals of this website are
 
-* The Ability to keep in touch and follow the streamer's next steps
-* The Possibility to see livestreams directly from this website
-* The ability to see the past 10 streams in chronological order
-* The ability to write suggestions that once approved can be up voted by community members
-
+* 1
 ### The Ideal Client
 
-* Is already a Tundorul channel follower on twitch.
-* Loves a good vibe and games.
-* Acts within the community Rules.
-* Possibly subscribed to the Channel, but not mandatory
-* Treats every game with respect to the developers
+* 1
 
 ### User Stories
 
@@ -89,55 +77,41 @@ or a "you have to log in" page for suggestions and profile pages
 
 ### Nav Bar
 
-![navbar versions image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685360930/navbar_vqche2.png)
+![navbar versions image]()
 there are 3 states :
 
 * if Logged in as a normal User,
 * if Logged out,
 * if Logged in as an Admin,
-* all three states respect the collapsible feature from Bootstrap.
+* all three states inherit the collapsible feature from Bootstrap.
 
 ### Home Page
 
 * ### Welcome section
 
-![welcome-section image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685363582/home-welcome_sphhjg.png)
+![welcome-section image]()
 
-* A welcome message an an Iframe that is linked to Tundorul's live on Twitch showing Offline while there's no live stream
 
-* ### Schedule section
+### Products Page
 
-![schedule-section image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685363521/home-schedule_yaaemt.png)
+![vods Page image]()
 
-* This schedule is retrieved from Twitch and stored in an .ics file which then is rendered in html
-* there is a JS file that builds the countdown timer and updates the clock every second
-* The website updates the Schedule every 6 hours to determine if any changes were made in the Original Schedule on Twitch
-* **/// BUG ALERT ////**
-* The Js file is not yet configured to take into acount the user's current time if they are in a different timezone than the App's server.
-* There also seems to be a little counting issue in the code since there is 60 minutes and 23 seconds left, instead of 4 hours and 23 seconds.
-
-* ### Rules section
-
-![rules-section image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685363521/home-rules_lxwx2g.png)
-
-### Vods Page
-
-![vods Page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685363739/vods_Page_czswao.png)
-
-* The last 10 Vods are getting updated every 6 hours in the website Database
+* All Products
+* Collection based pages
+    
+    ## add configured product to the bag
+    ## delete configured product from bag
 
 ### Profile Page
 
-![profile Page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685364752/profile_ltkkcj.png)
+![profile Page image]()
 
-* If the user is logged in with his twitch account, he can see his profile image on twitch along with his twitch data
-* If the user isn't logged in yet, a message is rendered telling the user the page is available only when logged in with a twitch account
-* In the end of the page there is an animation and a message saying "more to follow", since this page is currently static, in the future it will hold Crud Functionality for the UserProfile Model as well as other related models.
+* If the user is logged in the website, 
+* If the user isn't logged in yet, he will be redirected to the login page
 
-### Suggestions Page
+### Cart Page
 
-![suggestions page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685365906/suggestions_page_nyrzlt.png)
-![suggestions mechanism image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685365804/suggestions_clwz4y.png)
+![Cart mechanism image]()
 
 * On This Page Django Unicorn was used to send Ajax requests to the backend, meaning everything that happens on this page is instantly rendered without full page reloading
 * users can only write or see suggestions if they are logged in, otherwise they will be showed a message telling them to Log in with their twitch account
@@ -154,9 +128,6 @@ there are 3 states :
   * By votes / by date
     * this filter works the same at all times
 
-### /// Important Feature left outside this version /// ###
-
-A user will be allowed a limit of suggestions per week for future spam preventions
 
 ### Log in
 
