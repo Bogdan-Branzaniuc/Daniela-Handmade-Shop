@@ -12,7 +12,7 @@ defusedxml==0.7.1
 dj-database-url==2.0.0
 Django==4.2.4
 django-allauth==0.52.0
-django-cloudinary-storage==0.3.0
+dj3-cloudinary-storage==0.0.6
 django-colorfield==0.9.0
 django-countries==7.5.1
 django-crispy-forms==2.0
