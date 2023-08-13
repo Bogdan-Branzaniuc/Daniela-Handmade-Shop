@@ -41,3 +41,4 @@ typing_extensions==4.7.1
 urllib3==1.26.16
 webcolors==1.13
 yarg==0.1.9
+gunicorn==21.2.0
