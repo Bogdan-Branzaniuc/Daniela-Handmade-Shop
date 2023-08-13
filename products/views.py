@@ -125,8 +125,6 @@ def edit_product(request, product_id):
                 product.save()
                 messages.success(request, 'Successfully updated product!')
                 return redirect(reverse('admin_crud_products'))
-            else:
-                print('something went wrong')
 
             return redirect(reverse('admin_crud_products'))
         else:

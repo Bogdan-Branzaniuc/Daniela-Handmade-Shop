@@ -101,7 +101,12 @@ footer{
     background-color: var(--base-nav-footer-color);
     z-index: 2500;
 }
-
+footer p{
+    text-align: center;
+}
+.social-link-div{
+    text-align: center;
+}
 
 
 /* Messages */

@@ -1,8 +1,10 @@
 from django_unicorn.components import UnicornView
 
+
 class BagstatusView(UnicornView):
     """
-    Unicorn Component view that handles all the interractions with the bag session
+    Unicorn Component view that handles all the interractions with the 
+    bag session
     """
     request = None
     name = 'bagstatus'
@@ -10,7 +12,6 @@ class BagstatusView(UnicornView):
 
     def mount(self, *args, **kwargs):
         self.update()
-        print(self.component_id)
         return super().mount()
 
     def update(self):

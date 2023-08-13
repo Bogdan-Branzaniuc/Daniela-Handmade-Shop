@@ -86,7 +86,7 @@
                 <p>quantity: {{ component_quantity }}</p>
                 <p>price: EUR{{ item.product.price }}</p>
                 <button u:click="editing_product" class="btn form-control text-success"><i class="fas fa-edit"></i> Edit </button>
-                <button u:click="soft_removal_from_bag" class="btn form-control text-danger"><i class="fas fa-trash"></i> Remove </button>
+                <button u:click.prevent="soft_removal_from_bag" class="btn form-control text-danger"><i class="fas fa-trash"></i> Remove </button>
             </div>
         {% endif %}
     {% endif %}

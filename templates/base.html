@@ -75,26 +75,28 @@
                     <a class="nav-link" id="/home" href="{% url 'home' %}">Home <span
                             class="sr-only">(current)</span></a>
                 </li>
-                {% if user.is_authenticated %}
-                {% if user.is_superuser %}
-                <li class="nav-item">
-                    <a class="nav-link" id="/products/admin_crud_products" href="{% url 'admin_crud_products' %}">Manage
-                        Products</a>
-                </li>
-                {% endif %}
-                <li class="nav-item active">
-                    <a class="nav-link" id='/accounts/logout/' href="{% url 'account_logout' %}">Logout <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                {% else %}
-                <li class="nav-item active">
-                    <a class="nav-link" id="/accounts/login/" href="{% url 'account_login' %}">Login <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" id="/profile/" href="{% url 'profile' %}">Profile</a>
                 </li>
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="/products/admin_crud_products" href="{% url 'admin_crud_products' %}">Manage
+                                Products</a>
+                        </li>
+                    {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link" id='/accounts/logout/' href="{% url 'account_logout' %}">Logout 
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" id="/accounts/login/" href="{% url 'account_login' %}">Login 
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <div>
@@ -141,13 +143,10 @@
                 </div>
             </div>
             <div class="col-1 col-sm-2 col-lg-3"></div>
-            <!--spacing-->
-            <div class="col-1 col-sm-2 col-lg-3"></div>
-            <!--spacing-->
-            <div class="col-10 col-sm-8 col-lg-6 made-by-col">
+            <!--spacing-->  
+            <div class="col-12">
                 <p>Made by Bogdan Branzaniuc</p>
             </div>
-            <div class="col-1 col-sm-2 col-lg-3"></div>
             <!--spacing-->
         </div>
     

@@ -17,8 +17,7 @@ class ProductForm(forms.ModelForm):
     )
     product_image = forms.ImageField(
         label='Image', required=True, widget=CustomClearableFileInput)
-    # available_colors = forms.MultipleChoiceField(label='colors', required=True)
-
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()

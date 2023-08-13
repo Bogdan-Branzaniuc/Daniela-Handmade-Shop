@@ -1,6 +1,7 @@
 from django_unicorn.components import UnicornView
 from django.contrib import messages
 
+
 class ItemInBagView(UnicornView):
     """
     Unicorn Component view that handles the user interactions with the bag
@@ -21,7 +22,6 @@ class ItemInBagView(UnicornView):
         self.soft_deleted = False
         self.deleted = False
         self.original_state_size = self.selected_size = self.item['size']
-        print(self.item)
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
         self.update_selections_focus_buttons()
@@ -69,7 +69,6 @@ class ItemInBagView(UnicornView):
                 else:
                     bag[p_id][s_size][s_color] = qty
             self.request.session['bag'] = bag
-            print(bag)
         else:
             self.soft_deleted = True
 
@@ -84,6 +83,7 @@ class ItemInBagView(UnicornView):
         if combined:
             self.call('pageReload')
             messages.add_message(self.request, messages.INFO, "the same product was already in your bag, We combined the quantities for you")
+
     def soft_removal_from_bag(self):
         """
         Give the user the chance to add the item back, or delete it for good.
@@ -109,22 +109,17 @@ class ItemInBagView(UnicornView):
 
         self.request.session['bag'] = self.bag
         self.deleted = True
-        print(self.selected_size)
-        print(self.selected_color)
-        print(self.bag)
 
     def increment_component_quantity(self):
         self.component_quantity += 1
         self.update_selections_focus_buttons()
-        print(self.component_quantity)
+
     def decrement_component_quantity(self):
         if self.component_quantity > 0:
             self.component_quantity -= 1
         else:
             self.component_quantity = 0
         self.update_selections_focus_buttons()
-        print(self.component_quantity)
-
 
     def update_selections_focus_buttons(self):
         """
@@ -143,5 +138,3 @@ class ItemInBagView(UnicornView):
         elif size_or_color == 'size':
             self.selected_size = selection
         self.update_selections_focus_buttons()
-
-        # add messages to let user combine quantities if selection already in bag.

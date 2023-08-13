@@ -2,6 +2,8 @@ from django_unicorn.components import UnicornView
 from products.models import Product
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+
+
 class DeleteProductView(UnicornView):
 
     product = None
@@ -12,7 +14,6 @@ class DeleteProductView(UnicornView):
 
     def soft_delete_this_product(self):
         self.soft_deleted_product = True
-        print('12')
 
     def restore_product(self):
         self.soft_deleted_product = False
