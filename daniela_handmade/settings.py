@@ -34,7 +34,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  '8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com',
-                 'https://daniela-handmade-8a9762fab1c1.herokuapp.com']
+                 'daniela-handmade-8a9762fab1c1.herokuapp.com']
 
 # Application definition
 SITE_ID = 2
