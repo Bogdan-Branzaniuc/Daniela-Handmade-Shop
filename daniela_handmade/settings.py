@@ -157,10 +157,10 @@ UNICORN = {
     "APPS": ["unicorn",],
     "CACHE_ALIAS": "default",
     "MINIFY_HTML": False,
-    "MINIFIED": False,
+    "MINIFIED": True,
     "RELOAD_SCRIPT_ELEMENTS": False,
     "SERIAL": {
-        "ENABLED": False,
+        "ENABLED": True,
         "TIMEOUT": 60,
     },
     "SCRIPT_LOCATION": "after",
