@@ -21,5 +21,5 @@ function pageReload(){
 function updateBagstatus(){
     setTimeout(()=>{
         Unicorn.call('bagstatus', 'update')
-    },300)
+    },100)
 }
