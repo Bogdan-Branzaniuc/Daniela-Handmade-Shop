@@ -94,7 +94,9 @@ SOCIALACCOUNT_STORE_TOKENS = True
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/',
                         'http://127.0.0.1:8000/products/',
                         'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com',
-                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com/products/',]
+                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com/products/',
+                        'https://daniela-handmade-8a9762fab1c1.herokuapp.com',
+                        'https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
