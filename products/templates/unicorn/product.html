@@ -34,12 +34,12 @@
     <div class="form-group row g-0 product-detail-menu">
         <div class="col-9">
             {% if component_quantity_changed and in_bag %}
-                <button u:click="adjust_bag" onclick="updateBagstatus()" class="form-control btn-gate"> Adjust </button>
+                <button u:click="adjust_bag"  class="form-control btn-gate"> Adjust </button>
             {% else %}
-                <button u:click="add_to_bag" onclick="updateBagstatus()" class="btn-gate form-control"> Add to cart </button>
+                <button u:click="add_to_bag"  class="btn-gate form-control"> Add to cart </button>
             {% endif %}
             {%if in_bag %}
-            <button u:click="remove_from_bag" onclick="updateBagstatus()"
+            <button u:click="remove_from_bag"
                 class="form-control btn-danger">
                 <i class="fas fa-trash"></i>
             </button>
