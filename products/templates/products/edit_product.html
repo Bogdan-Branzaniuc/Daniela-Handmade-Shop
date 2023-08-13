@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% load unicorn %}
-{% block extra_js %}
-    {% unicorn_scripts %}
-{% endblock %}
 
 {% block content %}
-{% csrf_token %}
 <div class="products-background background-overlay"></div>
 
 <div class="container position-relative">

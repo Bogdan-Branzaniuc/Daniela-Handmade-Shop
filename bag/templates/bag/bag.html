@@ -2,12 +2,7 @@
 {% load static %}
 {% load unicorn %}
 
-{% block extra_js %}
-    {% unicorn_scripts %}
-{% endblock %}
-
 {% block content %}
-{% csrf_token %}
 <div class="bag-background background-overlay"></div>
 <div class="container bag-body">
     {% if messages %}
@@ -25,7 +20,7 @@
     <hr>
     <hr>
     {% for item in bag_items %}
-            {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product size_units=size_units %}
+        {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product size_units=size_units %}
     {% endfor %}
     <button class="btn btn-gate form-control special"><a href="{% url 'checkout' %}">Checkout</a></button>
 </div>
