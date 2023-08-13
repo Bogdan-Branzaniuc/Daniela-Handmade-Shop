@@ -47,6 +47,7 @@
     {% endblock %}
 
     {% block extra_js %}
+        {% unicorn_scripts %}
     {% endblock %}
 
     {% block extra_head %}
@@ -151,7 +152,6 @@
     
     </footer>
     {% block postloadjs %}
-    {% unicorn_scripts %}
     <script>
         let current_page_path = '{{ request.path }}';
         current_page_path = current_page_path == '/' ? '/home' : current_page_path;
