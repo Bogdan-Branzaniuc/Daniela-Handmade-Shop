@@ -5,7 +5,6 @@ class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
-    bag = None
     in_bag = None
     component_quantity = None
     component_quantity_changed = None
@@ -15,6 +14,7 @@ class ProductView(UnicornView):
     str_id = None
     show_detail = None
     selected_rgba = None
+    bag = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
@@ -25,16 +25,17 @@ class ProductView(UnicornView):
         self.show_detail = False
 
     def mount(self, *args, **kwargs):
+        self.update_session()
         self.in_bag = False
         self.component_quantity = 0
         self.component_quantity_changed = False
-        self.bag = self.request.session.get('bag', {})
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
         self.selected_rgba = self.rgba_colors[self.selected_color]
         return super().mount()
 
     def toggle_detail(self):
+        self.update_session()
         self.show_detail = True if not self.show_detail else False
         self.update_selections_focus_buttons()
         self.is_in_bag()
@@ -45,8 +46,8 @@ class ProductView(UnicornView):
         in_bag property helps render the 'delete from bag' button in the product component template
         sets self.component_quantity according to the bag object in the current session
         """
+        self.update_session()
         str_id = str(self.product.id)
-        self.bag = self.request.session.get('bag', {})
         if str_id in self.bag.keys():
             if self.selected_size in self.bag[str_id].keys():
                 if self.selected_color in self.bag[str_id][self.selected_size].keys():
@@ -73,7 +74,7 @@ class ProductView(UnicornView):
         sets in_bag to True for instantaneous rendering of the product component template
         calls js product_component_selector.js functions to send this component's view properties into JS that calls the bag component's view
         """
-        self.bag = self.request.session.get('bag', {})
+        self.update_session()
         if not self.component_quantity_changed:
             self.component_quantity += 1
         str_id = str(self.product.id)
@@ -96,6 +97,7 @@ class ProductView(UnicornView):
         sets in_bag to False for instantaneous rendering of the product component template
         calls js product_component_selector.js functions to send this component's view properties into JS that calls the bag component's view
         """
+        self.update_session()
         product_id = str(self.product.id)
         if product_id in self.bag.keys():
             if self.selected_size in self.bag[product_id].keys():
@@ -113,6 +115,7 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
 
     def adjust_bag(self):
+        self.update_session()
         self.component_quantity_changed = False
         if self.component_quantity > 0:
             self.component_quantity_changed = True
@@ -127,6 +130,7 @@ class ProductView(UnicornView):
         """
         calls js product_component_selector.js functions to set component properties
         """
+        self.update_session()
         if size_or_color == 'color':
             self.selected_color = selection
         elif size_or_color == 'size':
@@ -137,11 +141,13 @@ class ProductView(UnicornView):
 
 
     def increment_component_quantity(self):
+        self.update_session()
         self.component_quantity += 1
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
+        self.update_session()
         if self.component_quantity > 0:
             self.component_quantity -= 1
         else:
@@ -150,6 +156,7 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
 
     def set_size_color(self, color, size):
+        self.update_session()
         self.selected_size = size
         self.selected_color = color
         self.selected_rgba = self.rgba_colors[self.selected_color]
@@ -157,3 +164,6 @@ class ProductView(UnicornView):
         self.is_in_bag()
         if not self.show_detail:
             self.toggle_detail()
+
+    def update_session(self):
+        self.bag = self.request.session.get('bag', {})
