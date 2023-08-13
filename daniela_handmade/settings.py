@@ -153,18 +153,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-UNICORN = {
-    "APPS": ["unicorn",],
-    "CACHE_ALIAS": "default",
-    "MINIFY_HTML": False,
-    "MINIFIED": True,
-    "RELOAD_SCRIPT_ELEMENTS": False,
-    "SERIAL": {
-        "ENABLED": True,
-        "TIMEOUT": 60,
-    },
-    "SCRIPT_LOCATION": "after",
-}
 
 cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
