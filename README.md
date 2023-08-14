@@ -71,7 +71,7 @@ or a "you have to log in" page for suggestions and profile pages
 
 # Display and Layout across devices
 
-![image with Layouts across devices](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685357777/displays_prjsfq.png)
+![image with Layouts across devices](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/layouts_a26qc4.png)
 
 * web large
 * web medium
