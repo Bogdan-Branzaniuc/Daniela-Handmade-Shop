@@ -176,6 +176,17 @@ A delete button will be displayed along with any suggestion
 
 </br></br></br>
 
+# \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ Bugs known \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ 
+
+When Dealing with product components and also item_in_bag components the following error comes in the console at an intermitent rate. 
+
+![error image]()
+
+
+    
+
+
+
 # Models
 
 [See the models wireframe]()
