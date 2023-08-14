@@ -3,6 +3,10 @@
 {% load unicorn %}
 {% csrf_token %}
 
+{% block extra_head %}
+<meta name="description" content="Add Product Sizes Colors page of Daniela-Handmade Project">
+{% endblock %}
+
 {% block content %}
 <div class="products-background background-overlay"></div>
 

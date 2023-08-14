@@ -4,6 +4,11 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
+
+{% block extra_head %}
+    <meta name="description" content="Checkout page of Daniela-Handmade Project">
+{% endblock %}
+
 {% load unicorn %}
 {% csrf_token %}
 
