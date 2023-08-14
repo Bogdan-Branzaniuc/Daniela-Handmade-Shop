@@ -16,8 +16,8 @@ Description
 * [Parties](#all-parties-involved-and-their-goals)
 * [Display](#display-and-layout-across-devices)
 * [Features](#features)
+* [Known Bugs](#bugs)
 * [Models](#models)
-* [Parts and applications](#parts-and-applications)
 * [Technologies used](#technologies)
 * [Deploiment](#deployment)
 * [Testing](#testing)
@@ -118,80 +118,55 @@ there are 3 states :
 ![Admin Crud Page Edit](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/admin_edit_product_n7mkgz.png)
 
 ### Profile Page
-
 ![profile Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/profile_page_hpwmps.png)
 
 * If the user is logged in the website, 
 * If the user isn't logged in yet, he will be redirected to the login page
 
+### Log In page
+![login Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/sign_in_g7b7l3.png)
+### Sign Up page
+![signup Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/sign_up_w6af3r.png)
+### Log Out page
+![logout Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/sign-out_w9nhey.png)
+
 ### Cart Page
-
-![Cart mechanism image]()
-
-* ///////// In products, admin crud and bag pages Django Unicorn was used to send Ajax requests to the backend, meaning everything that happens on this page is instantly rendered without full page reloading  /////////
-
-![filters image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685366887/filters_ldkiza.png)
-* There are 3 sets of filters:
-  * All / Mine  
-    * renders the list with all Approved Suggestions or just the current logged in User's suggestions.
-  * Approved / Awaiting Approval
-    * If awaiting approval is on the All/Mine filter will get set on Mine automatically.
-    ![filters-wireframe image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685369630/filters-miniwireframe_pfyzrc.png)
-  * By votes / by date
-    * this filter works the same at all times
+![Cart mechanism image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692044635/daniela_handmade/readme/cart_fgckmh.jpg)
 
 
+### Checkout
+![Checkout flow image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/checkout_yojfig.png)
 ### Log in
-
 ![sing in image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685367865/sign_in_gmsrex.png)
 
 ### Log out
-
 ![sign out image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685367866/sign_out_q6gdpv.png)
 
-### Awaiting Approval
-
-![awaiting approval page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685367866/awaiting_approval_page_lmwv0r.png)
-
-* here the admin will approve sugestions that are either newly created or edited by the users
-
-### /// Important Feature left outside this version /// ###
-
-A delete button will be displayed along with any suggestion
-
-### Footer
-
-![footer_image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685368482/footer_knmedl.png)
-
-* Social Media Links
-
-### Django Messages
-
-![django_messages_image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685369870/django-messages_rmckiv.png)
 
 ### Left to implement
-
 * Google login, as currently you can only connect a google account to your profile, bot you don't have the option of logging in with google
 * Contact Page
 * Blog Application
 * Gsap Library for front end user experience [see my CV as example](https://bogdan-branzaniuc.github.io/CV/)
 
 </br></br></br>
-
 # \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ Bugs known \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ 
+# Bugs
+    When Dealing with product components and also item_in_bag components the following error comes in the console at an intermitent rate. 
 
-When Dealing with product components and also item_in_bag components the following error comes in the console at an intermitent rate. 
+![error image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/console_errors_from_unicorn_dptenx.png)
+![requests](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/unicorn_error_zplkaw.png)
 
-![error image]()
-
-
-    
-
-
+*     Due to this issue, a checksum error might occur. Checksums are strings of characters that django-unicorn uses to identify components, 
+*     A checksum error could have a lot of sources, but what all of them have in common is when a page get's out of Sync.  
+*     With the current bug I could not reproduce a checksums error by spamming the buttons for 5 minutes, but as an extra-safety measure for testing
+      If it ever occurs, you have to delete the session_id stored in the browser application storage
+![checksums error session_id deletion](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038110/daniela_handmade/readme/session_id_e6ffmj.png)
+# \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ End of Bugs \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ 
+</br></br></br>
 
 # Models
-
-[See the models wireframe]()
+![models image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038109/daniela_handmade/readme/models_jghqrk.png)
 
 </br></br></br>
 
@@ -314,7 +289,7 @@ pip install -r requirements.txt //to install the requirements in the current env
 * Set Category to *Website Integration* and then click *create*
 
 * Go to your developer console and click *manage* on your newly created App
-* Set *OAuth Redirect URLs* to ```your_heroku_app_domain/accountstwitch/login/callback/``` it also supports localhost
+* Set *OAuth Redirect URLs* to ```your_heroku_app_domain/accounts/google/login/callback/``` it also supports localhost
   
 * In your settings.py file
 ```
@@ -380,7 +355,7 @@ SOCIALACCOUNT_STORE_TOKENS = True
 
 * log into your django admin panel
 * Go to ```Sites``` Model
-* Edit the site that django generated to point to your heroku app url ex ```https://tundorul.herokuapp.com/```
+* Edit the site that django generated to point to your heroku app url ex ```https://<your app>.herokuapp.com/```
 * click save
 
 * Go to SocialApplications model and create a new instance
