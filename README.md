@@ -16,7 +16,7 @@ Description
 * [Parties](#all-parties-involved-and-their-goals)
 * [Display](#display-and-layout-across-devices)
 * [Features](#features)
-* [Known Bugs](#bugs)
+* [Bug](#bug)
 * [Models](#models)
 * [Technologies used](#technologies)
 * [Deploiment](#deployment)
@@ -122,25 +122,29 @@ there are 3 states :
 
 * If the user is logged in the website, 
 * If the user isn't logged in yet, he will be redirected to the login page
+### Social Accounts
+![link social accounts](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692045615/daniela_handmade/readme/google_accounts_kelpcx.jpg)
+# IMPORTANT
+            this is part of a future use case,
+            1 - users will be able to log in with google and set a password to their user profile.
+            2 - users will be able to create a user profile and link their google accounts to it.
+            
+### Sign Up page
+![signup Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/sign_up_w6af3r.png)
 
 ### Log In page
 ![login Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/sign_in_g7b7l3.png)
-### Sign Up page
-![signup Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/sign_up_w6af3r.png)
+
 ### Log Out page
 ![logout Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/sign-out_w9nhey.png)
 
 ### Cart Page
 ![Cart mechanism image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692044635/daniela_handmade/readme/cart_fgckmh.jpg)
 
-
 ### Checkout
 ![Checkout flow image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/checkout_yojfig.png)
-### Log in
-![sing in image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685367865/sign_in_gmsrex.png)
 
-### Log out
-![sign out image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685367866/sign_out_q6gdpv.png)
+
 
 
 ### Left to implement
@@ -150,19 +154,50 @@ there are 3 states :
 * Gsap Library for front end user experience [see my CV as example](https://bogdan-branzaniuc.github.io/CV/)
 
 </br></br></br>
-# \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ Bugs known \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ 
-# Bugs
-    When Dealing with product components and also item_in_bag components the following error comes in the console at an intermitent rate. 
+# Bug 
+///////////////////////////
 
-![error image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/console_errors_from_unicorn_dptenx.png)
-![requests](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/unicorn_error_zplkaw.png)
+- ## Error
+  ![error image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/console_errors_from_unicorn_dptenx.png)
+  ![requests](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038133/daniela_handmade/readme/unicorn_error_zplkaw.png)
 
-*     Due to this issue, a checksum error might occur. Checksums are strings of characters that django-unicorn uses to identify components, 
-*     A checksum error could have a lot of sources, but what all of them have in common is when a page get's out of Sync.  
-*     With the current bug I could not reproduce a checksums error by spamming the buttons for 5 minutes, but as an extra-safety measure for testing
-      If it ever occurs, you have to delete the session_id stored in the browser application storage
-![checksums error session_id deletion](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038110/daniela_handmade/readme/session_id_e6ffmj.png)
-# \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ End of Bugs \/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\ 
+- ## moment of occurance
+    ```
+    when clicking any unicorn components buttons from **product** and **item_in_bag** components
+    ```
+
+- ## Environments it occures in 
+  ```
+      Production - Yes
+      Localhost - No
+  ```
+  
+- ## Cause
+  ```
+      Currently Unknown
+  ```
+- ## Possible causes:
+    * Django unicorn implementation - NO, since it is working fine in localhost. 
+    * Conflicts with current session that get's handled in the components
+    * Conflicts between dependencies - Possible
+  
+- ## Repercursions:
+* Due to this issue, a checksum error might occur. Checksums are strings of characters that django-unicorn uses to identify components, 
+* A checksum error could have a lot of sources, but what all of them have in common is when a page get's out of Sync.  
+* With the current bug I could not reproduce a checksums error by spamming the buttons for 5 minutes, but as an extra-safety measure for testing If it ever occurs, you have to delete the session_id stored in the browser application storage
+  ![checksums error session_id deletion](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038110/daniela_handmade/readme/session_id_e6ffmj.png)
+  
+- ## Bug type
+      NONFATAL
+- ## Conclusion
+If a button doesn't work, it can be pressed again untill it works, or the checksum error will eventualy kick in, however I couldn't obtain the checksum error by spammin the component template
+
+# /////////////////////////// End of Bug
+
+
+*     When working with different components as delete_product from admin crud page,
+*     no bug is ocurring
+![sample button](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692047650/daniela_handmade/readme/Screenshot_2023-08-14_194323_xff2wg.png)
 </br></br></br>
 
 # Models
@@ -413,11 +448,18 @@ Procfile
 
 * all the features were manualy tested by me during development and by me, friends and family after development
 
-  * Create A suggestion Test:
-    * wrote the title '123' while complying with the live form feedback
-    * wrote the suggestion body '12345678910' while complying with the live form feedback
-    * pressed Send
-    * Got a green message saying ('Your suggestion is awaiting approval')
+* Create A Product Test:
+    - 01 Pressed on Add new Products content button in admin_crud_products page
+    - 02 selected one of the existing categories
+    - 03 added a random number as sku '14351234' 9 digits long - maximum allowed by the form
+    - 04 wrote the title 'Barrette'
+    - 05 wrote the description 'A handmade knitted barrette'
+    - 06 set the price to 4
+    - 07 uploaded an image from my computer
+    - 08 selected crimson darkslateblue and limegreen colors from the selection widget
+    - 09 selected size U. universal
+    - 10 pressed add product
+    - 11 got message 'Successfuly added product'
 
 
 ## Database Testing
@@ -426,53 +468,21 @@ Procfile
 * Tested with the default database, migrated to a production Database, and tested again with the production Database
 
 ## Unit Tests
-
-![coverage tests report]()
-
-In order to run the tests you need to go in settings.py and use Django default database.
-
-```
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3',
-   }
-}
-```
-
-also make sure to start the virtual env
-
-```
-. my_env/bin/activate
-```
-
-and then run all tests with
-
-```
-python manage.py test 
-```
+    # Unchecked
 
 # Validators
-
 * html Validator.w3
-  * [Home page]()
-  * [Profile page]()
-  * [Products page]()
-  * [Bag page]()
-  * [Checkout out]()
-
-* Css Validator
-  * [base.css]()
-  * [profile.css]()
-  * [bag.css]()
-  * [user-profile.css]()
-  * [checkout.css]()
+  * [Home page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2F)
+  * [Profile page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fprofile%2F)
+  * [Products page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fproducts%2FAll)
+  * [Bag page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fbag%2F)
+  * [Checkout out](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fcheckout%2F)
 
 * Python Validator
   * As I developed this project in Pycharm, all the code is pep8 complient.
 
 * Lighthouse
-    ![Lighthouse immage]()
+    ![Lighthouse immage](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692047556/daniela_handmade/readme/lighthouse_y97a78.jpg)
   * Some accessibility errors are django related, they will be solved in future versions of my project
 </br></br></br>
 
