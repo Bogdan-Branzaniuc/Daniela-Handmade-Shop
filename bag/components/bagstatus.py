@@ -16,5 +16,3 @@ class BagstatusView(UnicornView):
 
     def update(self):
         self.bag = self.request.session.get('bag', {})
-
-    

@@ -30,11 +30,18 @@ class ItemInBagView(UnicornView):
         return super().mount()
 
     def editing_product(self):
+        """
+        switches to editing state
+        """
         self.bag = self.request.session.get('bag', {})
         self.editing = True
         self.update_selections_focus_buttons()
 
     def adjust_bag(self):
+        """
+        code to adjust the bag, when adding quantity or editing,
+        if same configuration of color and size is present, combines their quantities
+        """
         bag = self.request.session.get('bag', {})
         o_size = self.original_state_size
         s_size = self.selected_size
@@ -114,11 +121,17 @@ class ItemInBagView(UnicornView):
         self.deleted = True
 
     def increment_component_quantity(self):
+        """
+        increments component quantity
+        """
         self.bag = self.request.session.get('bag', {})
         self.component_quantity += 1
         self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
+        """
+        decrements component quantity
+        """
         self.bag = self.request.session.get('bag', {})
         if self.component_quantity > 0:
             self.component_quantity -= 1

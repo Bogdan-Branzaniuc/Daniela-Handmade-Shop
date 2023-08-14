@@ -27,35 +27,45 @@ Description
 
 # All Parties involved and their goals
 
-### The business goals for this website are
+### The customer's goals are
+* Buying their desired clothes or handmade accessories with just a few clicks
+* Making payments online and receiving their products delivered at home.
 
-* 1
+### The goals for this Ecommerce are
+* Providing handmade clothing products to paying customers
+* Generating online payments
+* Making sure customers get what they paied for
 
-### The customer goals of this website are
+### The administrator goals are
+* Being able to add, delete, edit products in the store
+* Being able to create and delete colors and categories
 
-* 1
 ### The Ideal Client
-
-* 1
+* Likes to wear unique clothes
 
 ### User Stories
 
-* As a User I want to be able to create a suggestion so I can help the comunity with my input
-* As a USER I want to be able to **SEE my non-approved suggestions** so I can **edit or delete them without waiting for them to be approved first**
-* As a USER I want to be able to Edit a suggestion if I want to add something to it or fix typo's
-* As a USER I want to be able to delete my suggestion so I can remove it if I changed my mind
-* As a USER I want to be able to Upvote Another user suggestion if I like it and want it implemented in future streams or website Architecture
+* As User I want to be able to log in with my google or facebook accounts or create a new account on the website
+* As User I want to have the option to change my details in my profile page, So the checkout process will be easier every time, or, Once I complete the checkout once, I can save my details on my profile or not.
+* As User I want to have a checkout page where I can pay with my credit card, without necessarily having an account
+* As User I want to be able to connect my google account to my existing account on the website, so In the future I can login with google
+* As a Customer I want to be able to see, filter and navigate through all the available products
+* As a User I want to see a product description when I click on a Product
+* As User I want to be able to add a product to my bag and go to the checkout or continue shopping
+* As User I want to be able to edit the products configuration in my bag before going to the checkout page
+* As User I want to be able to adjust the bag by setting a different quantity directly from the products page, and also from my shopping cart list
+* As user I want to delete an Item from bag either by pressing a button or setting the quantity to 0
+* As User I want to be able to see my profile page and edit my personal details
+
 
 ### Moderator Stories
-
-* As an **Admin** I want to be able to see and filter suggestions like a user, but including the non-approved suggestions
-* As an **Admin** I want to have a live-countdown in the home page to the next stream so my users can clearly see the time left to the closest stream
-* As and **Admin** I want to be able to retrieve my Stream Schedule from Twitch so I can display it into the Home Page
-* As an **Admin** I want to have an embeded Iframe with my Live or Offline status where my viewers can see me live directly from my website
-* As an **Admin** I want to be able to ban a user on my website so I can mentain a positive environment
-* As an **Admin** I want to be able to unban users so I can give them another chance or fix a mistake when banning the wrong user
-* As an **Admin** I want to be able to Display the user an error page when reaching a wrong url or display a Banned Page if the user was banned
+* As Admin I want to ensure my users will always receive their order information, even when a desync happens in the checkout form.
+* As Admin I want to be able to add new categories or delete old ones, As my collections might change in the future,
+I also want the categories to be displayed in the navbar
+* As Admin I want to be able to add new available colors to the website, by only selecting the color without knowing it's name
+* As Admin I want to be able to edit products in the store, As a new color or category was added to the Store
 or a "you have to log in" page for suggestions and profile pages
+* As an Admin I want to be able to insert new products on the website
 
 </br></br></br></br>
 
@@ -99,8 +109,8 @@ there are 3 states :
 * All Products
 * Collection based pages
     
-    ## add configured product to the bag
-    ## delete configured product from bag
+## add configured product to the bag
+## delete configured product from bag
 
 ### Profile Page
 
@@ -159,89 +169,50 @@ A delete button will be displayed along with any suggestion
 
 ### Left to implement
 
-* Giveaway Application
-* Spending Channel Points on the website
+* Google login, as currently you can only connect a google account to your profile, bot you don't have the option of logging in with google
+* Contact Page
+* Blog Application
 * Gsap Library for front end user experience [see my CV as example](https://bogdan-branzaniuc.github.io/CV/)
-* Sorting Vods by View-count or by date (as default)
-* Suggestions Pagination
 
 </br></br></br>
 
 # Models
 
-[See the models wireframe](https://www.figma.com/community/file/1245677960849513360/Bogdan-Branzaniuc)
+[See the models wireframe]()
 
 </br></br></br>
 
-# Parts And Applications
+# Applications
+## Home App
+    responsible for index.html page
+## Products App
+    responsible for products.html page and unicorn component product
+## Bag App
+    responsible for bag.html page and unicorn components item_in_bag and bagstatus
+## Profiles App
+    responsible for Profiles page
+## Checkout App
+    The checkout app comes from boutiquado walkthrough project from Code Institute Programme and addapted to my project
 
-## tundorul App
-
-- is responsible for all the views of the Website aside of suggestions view
-* log in
-* log out
-* home.py
-* user_profile.py
-* user_profile_build.py
-* vods.py
-* banned_user.py
-* handler_error_page.py
-* models: UserProfile, Vods
-
-## suggestion App
-
-- in order to render suggestions page with Django Unicorn, suggestion app was created
-* it is responsible for suggestion/components/suggestions.py view
-* model: Suggestions
-
-## jobs Appscheduler Directory
-
-- responsible for tasks that have to run once every n time [see Twitch Api](#twitch-api)
-</br></br></br>
-
-# Twitch API
-
-## Scheduled Requests
-
-* Appscheduler requests to twitch API
-  * every 6 hours to retrieve the last version of the Icalendar then updates the static file twitchdev.ics.
-  * every 6 hours to retrieve the last 10 vods and updates the Vods model
-  * every 4704769 seconds to store the Application Token needed for twitch Api requests.
-
-### ***Important Detail*** ###
-
-    The Application Token is stored in the environment variable "APP_TOKEN" and refreshed after a given interval. The Twitch Response is also providing this
-    interval, but a hardcoded interval was used due to insufficient time to figure out how to store the interval without calling the API twice.
-    This will be addressed in following versions.
-* Appscheduler is runed from jobs directory in root directory.
-
-## Signal based Requests
-
-* in tundorul.views.user_profile_build I used the receiver @receiver(user_logged_in) to trigger a request that creates or updates the UserProfile instance of the user,
-* Thea method is_follower() checks if the user is a follower to Tundorul's Channel and if true updates join_date with the response 'followed on' data.
-* This helps keeping user data updated every time they change something to their account, like, the name, email, profile immage
-
-## Endpoints Used
-
-* [Get Followed Channels](https://dev.twitch.tv/docs/api/reference/#get-followed-channels)
-* [Get Channel iCalendar](https://dev.twitch.tv/docs/api/reference/#get-channel-icalendar)
-* [Get Videos](https://dev.twitch.tv/docs/api/reference/#get-videos)
-* [App Access Token](https://dev.twitch.tv/docs/authentication/#app-access-tokens)
-</br></br></br></br>
 
 # Technologies
-
 * JS
 * Python and [pycharm](https://www.jetbrains.com/pycharm/) IDE
 * [Django framework](https://www.djangoproject.com/)
-* Django Libraries:
+* Django and Python resources:
   * [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
   * [Django Unicorn](https://www.django-unicorn.com/)
-  * [Appscheduler](https://pypi.org/project/django-apscheduler/)
+  * [crispy_forms]()
+  * [django_countries]()
+    [colorfield]()
+    [cloudinary_storage]()
+    [cloudinary]()
+    [crispy_forms]()
+    [crispy_bootstrap4]()
+    [webcolors]()
 * [Gunicorn](https://gunicorn.org/)
 * [Jquery](https://jquery.com/)
 * [Bootstrap](https://getbootstrap.com/)
-* [Twitch Api](https://dev.twitch.tv/docs/api/)
 * [Elephant SQL](https://www.elephantsql.com/)  
 * [Postgres](https://www.postgresql.org/)
 * [Heroku](https://dashboard.heroku.com/login)
@@ -254,7 +225,6 @@ A delete button will be displayed along with any suggestion
 </br></br></br></br>
 
 # Deployment
-
 * If you are using Gitpod with Pycharm, run this command in order to be able to install requirements to Django
 
 ```
@@ -333,22 +303,6 @@ pip install -r requirements.txt //to install the requirements in the current env
 * Go to your developer console and click *manage* on your newly created App
 * Set *OAuth Redirect URLs* to ```your_heroku_app_domain/accountstwitch/login/callback/``` it also supports localhost
   
-  env.py
-
-  ```
-    os.environ["CLIENT_ID"] = "owh7ttfh3085i7jg6jzl04tcg64u54"  
-  ```
-
-  the client Id from twitch is public info </br>
-  click on get secret in your Twitch manage-app dashboard
-
-  ```
-    os.environ["SECRET_KEY"] = "twitch app secret"
-    os.environ["APP_TOKEN"] = ""    
-  ```
-
-  APP_TOKEN remains empty, Appscheduler will populate it  after 6 hours from deploiment
-
 * In your settings.py file
 
   ```
@@ -358,33 +312,39 @@ pip install -r requirements.txt //to install the requirements in the current env
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
-    'apscheduler',
-    'tundorul',
-    'suggestion',
-    'django_unicorn',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.twitch',
+    'allauth.socialaccount.providers.google',
+    'django_unicorn',
+    'home',
+    'profiles',
+    'products',
+    'bag',
+    'checkout',
+    'django_countries',
+    'colorfield',
     'cloudinary_storage',
     'cloudinary',
-    'asyncio',
-    'twitchAPI',
-    'django_extensions',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'webcolors',
 ]
-  ACCOUNT_EMAIL_VERIFICATION = 'none'
-  LOGIN_REDIRECT_URL = '/'
-  LOGOUT_REDIRECT_URL = '/'
-  SOCIALACCOUNT_STORE_TOKENS = True
+
   SOCIALACCOUNT_PROVIDERS = {
-      'twitch': {
-          'SCOPE': ['user_read', 'user:read:follows'],
-          'AUTH_PARAMS': {'access_type': 'online'},
-          'METHOD': 'oauth2',
-      },
-  }
+    'google': {
+        'APP': {
+            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
+            'key': ''
+        }
+    }
+}
+
+SOCIALACCOUNT_STORE_TOKENS = True
+
   ```
 
 * In your project terminal
@@ -413,11 +373,13 @@ pip install -r requirements.txt //to install the requirements in the current env
 
 * Go to SocialApplications model and create a new instance
   * Provider: ```Twitch```
-  * Name: ```your heroku app, twitch app and this Social App would be great to have the same names for consistency reasons```
-  * Client id: ``` your twitch App client id ```
-  * Secret key: ``` your twitch App secret ```
+  * Name: ```your heroku app and google app would be great to have the same names for consistency reasons```
+  * Client id: ``` your google client id ```
+  * Secret key: ``` your google secret ```
   * Key: ``` blank ```
   * sites: ```select the site you created previously and click the arrow to move it to the right box```
+  * If you click on the site, you can see it's ID in the top url, 
+  Use SITE_ID = <that site id number> in you django settings 
 * click save
 
 </br>
@@ -429,7 +391,7 @@ pip install -r requirements.txt //to install the requirements in the current env
 Procfile
 
 ```
-  web: gunicorn tundorul_django.wsgi
+  web: gunicorn daniela_handmade.wsgi
 ```
 
 </br>
@@ -451,22 +413,14 @@ Procfile
 
 </br></br></br>
 
-# Notes file deleted
-
-![deleted notes file](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685572071/deleted_notes_xr8bhp.png)
-
-* this are two Twitch Accounts,
-  * the first one was deleted from twitch,
-  * the second one has only a refference instead of it's true password. It's password was changed and the account testBogdan123 will be provided to the test Commision in my submission details. since it has both a SocialAccount linked to it and superuser and staff status on the website.
 
 # Testing
 
 ## UX & UI
 
 * I used [BrowserStack](https://live.browserstack.com/dashboard#os=iOS&os_version=14.0&device_browser=safari&zoom_to_fit=true&full_screen=true&url=https%3A%2F%2F8000-bogdanbranzaniuc-cv-xsqhgnyysr5.ws-eu87.gitpod.io%2F%23about-me&speed=1) for testing the application across multiple browsers and devices within the limit of a free trial.
-
 * Also Tested directly on my devices:
-* One+ 9 Pro Android Chrome
+* One+ 9 Android Chrome
 * Windows Desktop Brave, Chrome, Mozila, Opera
 
 ## Manual Testing
@@ -531,7 +485,7 @@ Procfile
 
 ## Unit Tests
 
-![coverage tests report](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685522855/coverage_report_hosh5h.png)
+![coverage tests report]()
 
 In order to run the tests you need to go in settings.py and use Django default database.
 
@@ -556,40 +510,32 @@ and then run all tests with
 python manage.py test 
 ```
 
-# //// Important /////
-
-* the ```suggestion app```, ```Appscheduler``` and ```other Twitch Api Calls``` were manually and carefully tested
-* They were left outside the ```unitests``` Since the first is using Django Unicorn Library with Ajax calls and the later could end with a ban from twitch on my Twitch Application, which in fact happened once due to an error loop in Jobs directory that makes use of ```Appscheduler```.  
-* I waited for all the time intervals up to 5 times consecutively and checked the application's logs on heroku and everything was running smoothly.
-
 # Validators
 
 * html Validator.w3
-  * [Home page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2F)
-  * [Vods page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2Fvods)
-  * [Profile page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2Fuser_profile)
-  * [Suggestions page](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2Fsuggestions)
-  * [Log out](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2Faccountslogout%2F)
-  * [Log in](https://validator.w3.org/nu/?doc=https%3A%2F%2Ftundorul.herokuapp.com%2Faccountstwitch%2Flogin%2F)
+  * [Home page]()
+  * [Vods page]()
+  * [Profile page]()
+  * [Suggestions page]()
+  * [Log out]()
+  * [Log in]()
 
 * Css Validator
-  * [style.css](https://jigsaw.w3.org/css-validator/validator)
-  * [home.css](https://jigsaw.w3.org/css-validator/validator)
-  * [suggestions.css](https://jigsaw.w3.org/css-validator/validator)
-  * [user-profile.css](https://jigsaw.w3.org/css-validator/validator)
-  * [vods.css](https://jigsaw.w3.org/css-validator/validator)
+  * [style.css]()
+  * [home.css]()
+  * [suggestions.css]()
+  * [user-profile.css]()
+  * [vods.css]()
 
 * Python Validator
   * As I developed this project in Pycharm, all the code is pep8 complient.
 
 * Js Validator for streamschedule.js file
-    ![Streamschedule JS](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685695546/hint_js_zu6fbg.png)
-  * The variable ```dailyHours``` is an array built in a for loop in a template rendered by django with python backed data.
-      </br></br></br></br></br></br>
+    ![Streamschedule JS]()
 
 * Lighthouse
-    ![Lighthouse immage](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685694289/lighthouse_rgplid.png)
-  * Some accessibility errors are django related, they will be solved in future versions
+    ![Lighthouse immage]()
+  * Some accessibility errors are django related, they will be solved in future versions of my project
   
 </br></br></br>
 
@@ -601,40 +547,27 @@ python manage.py test
 
 ## Django Unicorn Library Developers
 
-## Twitch Api Developers
-
 ## Bootstrap Developers
 
 ## Python, Js, Jquery creators
+ 
 
 * Without this people, my project's current state would have been far from reality in this amount of time.
 
-## My Brother Tudor
 
-* He brought his own input to the project as the Website was designed for his work.
-
-## Media
-
-* The videos used on this website represent the intelectual property of Tundorul.
-* The Logo was made by ```Andrei Muresan```
-  * [linkedin](https://www.linkedin.com/in/andrei-muresan-5328a8220/?originalSubdomain=fr)
-  * [website](https://andrei-muresan-portfolio.webnode.fr/)
+## Media Files
+[background images are from FreePick](https://www.freepik.com/)
   
 ## Stack Overflow
 
 * I managed to overcome a lot of issues by just going on this amazing resource with a copy paste of my errors.
 
-## Twitch Developers Discord
-
-* At one point I was encoutering a problem with Allauth library, specifficly with it's sociallogin configuration.
-* I went on the discord server in the Authentication chat at 4 AM and 3 people responded in 2 minutes. It was a great feeling regardless of the timezone of each person involved. They managed to give me the most accurate direction pointing to my configuration after quickly inspecting the library Code and declaring it functionall. </br>
-  //////////////////// Cudos to this people \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 ## Chat GPT
 
 * I used Chat GPT to navigate Django's main concepts, As a beginner I found it the quickest way to see how Django's Lego pieces were coming together.
-* I learned to use this tool mainly for general and consistent concepts and documentations rather than specifics within libraries, since it's training consists of lying and deceiving about it's actual knowledge.
-* Lesson I learned from Chat GPT : ```When encountering Looping responses from it, try finding the answer elsewhere```
+* I learned to use ChatGPT mainly for general concepts rather than specifics, since it's training consists of lying and deceiving about it's current knowledge.
+* Lesson I learned from Chat GPT : ```When you feel like you're chasing your tail around ChatGPT, the answer is elsewhere```
 
 ## Code Institute
 
@@ -642,23 +575,17 @@ python manage.py test
 * For compacting and providing valuable information and know-how in their course
 
 ## Me
-
 * For designing the architecture of the website
-* For creating a decent product that meets the requirements of both Code Institute and Tundorul's Business
+* For creating a decent product that meets the requirements of both Code Institute and Daniela's Business
 * For understanding and writing all the code needed to interchange data between all the architectural parts and technologies used
 
 # Acknowledgements
 
-## My two mentors Reuben Ferante and Brian Macharia
-
-* Reuben Helped me at the beggining with great examples, directions and best practices
-* Towards the end of the project Reuben stepped down from Code Institute. On this regard I am thanking him for the previous help and his work as a mentor in this time.
+## My mentor Brian Macharia
 * Brian Helped me a lot towards the end of the project, knowing how to press the Turbo Button
 
-## Tundorul
-
-* for offering me the opportunity to build my project around his business.
+## Daniela
+* for offering me the opportunity to build my project around her future business.
 
 ## Student Care Team
-
 * For giving me the needed help and responding quickly to my requests.

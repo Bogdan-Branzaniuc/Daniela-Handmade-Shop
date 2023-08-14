@@ -35,6 +35,9 @@ class ProductView(UnicornView):
         return super().mount()
 
     def toggle_detail(self):
+        """
+        switches to show detail state
+        """
         self.update_session()
         self.show_detail = True if not self.show_detail else False
         self.update_selections_focus_buttons()
@@ -115,6 +118,10 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
 
     def adjust_bag(self):
+        """
+        adjusts the bag with new qty
+        if new quantity is 0, deletes product from bag
+        """
         self.update_session()
         self.component_quantity_changed = False
         if self.component_quantity > 0:
@@ -141,12 +148,18 @@ class ProductView(UnicornView):
 
 
     def increment_component_quantity(self):
+        """
+        increases component qantity
+        """
         self.update_session()
         self.component_quantity += 1
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
 
     def decrement_component_quantity(self):
+        """
+        decreases component qantity
+        """
         self.update_session()
         if self.component_quantity > 0:
             self.component_quantity -= 1
@@ -156,6 +169,9 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
 
     def set_size_color(self, color, size):
+        """
+        sets the size and color on the component for rendering new selections
+        """
         self.update_session()
         self.selected_size = size
         self.selected_color = color
@@ -166,4 +182,7 @@ class ProductView(UnicornView):
             self.toggle_detail()
 
     def update_session(self):
+        """
+        updates the session for a proper component checksum value
+        """
         self.bag = self.request.session.get('bag', {})
