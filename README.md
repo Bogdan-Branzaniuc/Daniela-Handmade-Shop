@@ -71,7 +71,7 @@ or a "you have to log in" page for suggestions and profile pages
 
 # Display and Layout across devices
 
-![image with Layouts across devices](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038112/daniela_handmade/readme/layouts_a26qc4.png)
+![image with Layouts across devices](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692039654/daniela_handmade/readme/layouts_a26qc4_jpg9io.jpg)
 
 * web large
 * web medium
@@ -87,9 +87,8 @@ or a "you have to log in" page for suggestions and profile pages
 
 ### Nav Bar
 
-![navbar versions image]()
+![navbar versions image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038110/daniela_handmade/readme/navbar_itoeqd.png)
 there are 3 states :
-
 * if Logged in as a normal User,
 * if Logged out,
 * if Logged in as an Admin,
@@ -97,24 +96,30 @@ there are 3 states :
 
 ### Home Page
 
-* ### Welcome section
-
-![welcome-section image]()
-
+![welcome-section image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692039853/daniela_handmade/readme/home_wid34m.jpg)
 
 ### Products Page
+![Products Page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/collections_pkl6dr.png)
 
-![vods Page image]()
+### Product component flow
+![Products Page image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/product-component_c1fr1l.png)
+* select configurations from bag to increase  - decrease quantity or delete them     
+* add configured product to the bag
+* by clicking add product the quantity will increase by 1
+* delete configured product from bag
 
-* All Products
-* Collection based pages
-    
-## add configured product to the bag
-## delete configured product from bag
+### Admin products crud Page
+![Admin Crud Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/admin_crud_page_cpoj3g.png)
+
+### Add new Product flow
+![Admin Crud Page Add](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/add_new_product_category_color_trqxk6.png)
+
+### Edit existing product flow
+![Admin Crud Page Edit](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/admin_edit_product_n7mkgz.png)
 
 ### Profile Page
 
-![profile Page image]()
+![profile Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/profile_page_hpwmps.png)
 
 * If the user is logged in the website, 
 * If the user isn't logged in yet, he will be redirected to the login page
@@ -123,11 +128,8 @@ there are 3 states :
 
 ![Cart mechanism image]()
 
-* On This Page Django Unicorn was used to send Ajax requests to the backend, meaning everything that happens on this page is instantly rendered without full page reloading
-* users can only write or see suggestions if they are logged in, otherwise they will be showed a message telling them to Log in with their twitch account
-* Once a suggestion's form is submitted, the suggestion goes into awaiting approval mode, The user can still edit or delete it at this point
-* Once a suggestion is approved it can be up voted by it's author or any other user
-* At this point the user can still edit or delete the suggestion, after submitting the edit form, if valid, the suggestion will go into approval mode again
+* ///////// In products, admin crud and bag pages Django Unicorn was used to send Ajax requests to the backend, meaning everything that happens on this page is instantly rendered without full page reloading  /////////
+
 ![filters image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1685366887/filters_ldkiza.png)
 * There are 3 sets of filters:
   * All / Mine  
@@ -315,8 +317,7 @@ pip install -r requirements.txt //to install the requirements in the current env
 * Set *OAuth Redirect URLs* to ```your_heroku_app_domain/accountstwitch/login/callback/``` it also supports localhost
   
 * In your settings.py file
-
-  ```
+```
   INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -356,7 +357,7 @@ pip install -r requirements.txt //to install the requirements in the current env
 
 SOCIALACCOUNT_STORE_TOKENS = True
 
-  ```
+```
 
 * In your project terminal
 
@@ -383,7 +384,7 @@ SOCIALACCOUNT_STORE_TOKENS = True
 * click save
 
 * Go to SocialApplications model and create a new instance
-  * Provider: ```Twitch```
+  * Provider: ```Google```
   * Name: ```your heroku app and google app would be great to have the same names for consistency reasons```
   * Client id: ``` your google client id ```
   * Secret key: ``` your google secret ```
@@ -404,10 +405,9 @@ Procfile
 ```
   web: gunicorn daniela_handmade.wsgi
 ```
-
 </br>
 
-# /////////// Make extra sure you have ```Debug = False``` in your settings.py \\\\\\\\\\\\\\\\\\\
+# // Make extra sure you have ```Debug = False``` in your settings.py \\
 
 ## Setup Heroku App for deploiment
 
@@ -444,50 +444,6 @@ Procfile
     * pressed Send
     * Got a green message saying ('Your suggestion is awaiting approval')
 
-  * Create A suggestion with the same title:
-    * wrote the title '123' while complying with the live form feedback
-    * wrote the suggestion body '12345678910' while complying with the live form feedback
-    * pressed Send
-    * Got a red message saying ('There is one suggestion with this title Already, you can change the title or upvote the current one if it's content is the same')  
-
-  * Upvote Suggestion
-    * If logged in, went on suggestions page and clicked the dark arrow up to a suggestion
-    * The arrow turned green and the sugegstion votes were updated instantly.
-
-  * Edit Suggestion
-    * If logged in, went on suggestions page and clicked the dark pencil icon to edit one of my suggestions
-    * a form with two buttons appeared. a green check mark(submit button) and a yellow X
-    * if wanted to edit
-      * Completed the form with new valid data and submitted by pressing the green check mark button
-      * Got a green message with "Your edit is awaiting approval."
-      * When trying to use an existing title got a red message with "Sorry!, There is one suggestion with this title Already"
-    * if wanted to return
-      * pressed the yellow X icon button and returned at the current state of the displayed suggestion
-
-  * Delete Suggestion
-    * If logged in, went on suggestions page and clicked on one of my suggestion's red bin icon
-    * two more buttons came in , a yellow X and a red check mark,
-    * pressed on the red check mark and the suggestion was deleted,
-    * pressed on the yellow X icon and returned at the current state of the displayed suggestion.
-
-  * Login
-    * If logged in on twitch allready
-    * pressed the log in button in the navbar
-    * On login page press Sign In
-    * Wait for the twitch verification or Authorise Tundorul Website in twitch confirmation pgae,
-    * Redirected on the Home page with a green message "Successfuly signed in as 'my username'"
-
-  * Login
-    * If not logged in on twitch allready
-    * pressed the log in button in the navbar
-    * On login page press Sign In
-    * Log in with my twitch account in the login form provided by twitch
-    * Redirected on the Home page with a green message "Successfuly signed in as 'my username'"
-
-  * Logout
-    * Once loged in on Tundorul, pressed the Log out button in the nav,
-    * On logout page pressed the Sign Out
-    * Redirected to the home page with green message "You have signed out".
 
 ## Database Testing
 
@@ -525,30 +481,26 @@ python manage.py test
 
 * html Validator.w3
   * [Home page]()
-  * [Vods page]()
   * [Profile page]()
-  * [Suggestions page]()
-  * [Log out]()
-  * [Log in]()
+  * [Products page]()
+  * [Bag page]()
+  * [Checkout out]()
 
 * Css Validator
-  * [style.css]()
-  * [home.css]()
-  * [suggestions.css]()
+  * [base.css]()
+  * [profile.css]()
+  * [bag.css]()
   * [user-profile.css]()
-  * [vods.css]()
+  * [checkout.css]()
 
 * Python Validator
   * As I developed this project in Pycharm, all the code is pep8 complient.
 
-* Js Validator for streamschedule.js file
-    ![Streamschedule JS]()
-
 * Lighthouse
     ![Lighthouse immage]()
   * Some accessibility errors are django related, they will be solved in future versions of my project
-  
 </br></br></br>
+
 
 # Credits
 
