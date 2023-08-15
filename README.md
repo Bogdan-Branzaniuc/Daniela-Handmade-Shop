@@ -5,8 +5,6 @@
 
 * [view Live Site Here](https://daniela-handmade-8a9762fab1c1.herokuapp.com/)
 
-Description
-
 </br>
 </br>
 </br>
@@ -113,7 +111,7 @@ there are 3 states :
 
 ### Add new Product flow
 ![Admin Crud Page Add](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/add_new_product_category_color_trqxk6.png)
-
+- The colors crud was implemented in a very user-friendly manner, when picking the color from the pallete the name of the color is found automatically.
 ### Edit existing product flow
 ![Admin Crud Page Edit](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/admin_edit_product_n7mkgz.png)
 
@@ -446,7 +444,7 @@ Procfile
 
 ## Manual Testing
 
-* all the features were manualy tested by me during development and by me, friends and family after development
+* Admin Crud Products Tests
 
 * Create A Product Test:
     - 01 Pressed on Add new Products content button in admin_crud_products page
@@ -460,15 +458,32 @@ Procfile
     - 09 selected size U. universal
     - 10 pressed add product
     - 11 got message 'Successfuly added product'
+      
+* Edit A Product Test:
+    - 01 Pressed on Edit at an exisitng product
+    - 02 changed it's data with another set of data that complies with the form validation
+    - 03 pressed Edit Product
+    - 04 got message 'Successfuly updated product'
 
-
+* Delete a Product Test:
+    - 01 Pressed on Delete at an existing product
+    - 02 Soft Deletion mode was activated for that product component
+    - 03 Pressed restore
+    - 04 Soft Deletion mode was deactivated
+    - 05 Pressed Delete again
+    - 06 Soft Deletion mode was activated again
+    - 07 Pressed Permanently delete
+    - 08 the product disspeared
+    - 09 got message "Successfuly deleted product"  
+ 
 ## Database Testing
 
 * The web app was developed with a Django default database
 * Tested with the default database, migrated to a production Database, and tested again with the production Database
 
 ## Unit Tests
-    # Unchecked
+- I decided to spend more time trying to fix the disturbing existing bug that appeard in the production environment. with no success
+- Unittests following in a future version.
 
 # Validators
 * html Validator.w3
@@ -499,9 +514,8 @@ Procfile
 
 ## Python, Js, Jquery creators
  
-
-* Without this people, my project's current state would have been far from reality in this amount of time.
-
+## Code Institute 
+Checkout app Product and UserProfile models as well as the webhook used for stripe were inspired from boutique_ado project made by Code Institute
 
 ## Media Files
 [background images are from FreePick](https://www.freepik.com/)
