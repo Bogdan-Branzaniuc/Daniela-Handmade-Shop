@@ -192,6 +192,16 @@ If a button doesn't work, it can be pressed again untill it works, or the checks
 
 # /////////////////////////// End of Bug
 
+# /// Update on BUG
+- In local environment I managed to reproduce the error by deleting the CSRF_TRUSTED_ORIGINS, as django-unicorn components make use of csrf_tokens. 
+- However the error in local environment will persist, it is not intermitent.
+
+- Next steps:
+            - test if latency in production playes a role in the way unicorn asks for csrf_tokens
+            - test if the use preprocessors for the bag stored in session has tangencies with the csrf_token used
+            - test the implementation of the csrf_token tag in templates, and how the server latency might behave in accordance to the template aspects    
+
+* /// End of Update
 
 *     When working with different components as delete_product from admin crud page,
 *     no bug is ocurring
