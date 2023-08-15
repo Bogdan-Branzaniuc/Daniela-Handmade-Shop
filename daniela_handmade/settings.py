@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import dj_database_url
 
+
 if os.path.isfile('env.py'):
     import env
 
@@ -29,10 +30,10 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 '8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com',
+                 '8000-bogdan-branzaniuc-daniel-lclgw5yfjk.us2.codeanyapp.com',
                  'daniela-handmade-8a9762fab1c1.herokuapp.com']
 
 # Application definition
@@ -90,12 +91,9 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_STORE_TOKENS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/',
-                        'http://127.0.0.1:8000/products/',
-                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com',
-                        'https://8000-bogdan-branzaniuc-daniel-6xs6ss0t2x.us2.codeanyapp.com/products/',
-                        'https://daniela-handmade-8a9762fab1c1.herokuapp.com',
-                        'https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/',]
+CSRF_TRUSTED_ORIGINS = [
+    'https://daniela-handmade-8a9762fab1c1.herokuapp.com/',
+    'https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
