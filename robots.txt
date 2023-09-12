@@ -1,0 +1,3 @@
+User-agent: *
+Dissallow:
+Sitemap: https://daniela-handmade-8a9762fab1c1.herokuapp.com/sitemap.xml

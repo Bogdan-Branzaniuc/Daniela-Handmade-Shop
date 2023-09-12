@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/All</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/Winter</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/Summer</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/Jewelry</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/products/Spring</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/accounts/login/?next=/profile/</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/accounts/login/</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/bag/</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/accounts/signup/?next=%2Fprofile%2F</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://daniela-handmade-8a9762fab1c1.herokuapp.com/accounts/login/?next=%2Fprofile%2F</loc>
+  <lastmod>2023-09-12T13:49:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>
