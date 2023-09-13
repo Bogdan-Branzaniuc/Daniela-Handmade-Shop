@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -10,3 +9,4 @@ handler403 = 'home.views.handler403'
 handler404 = 'home.views.handler404'
 handler405 = 'home.views.handler405'
 handler500 = 'home.views.handler500'
+

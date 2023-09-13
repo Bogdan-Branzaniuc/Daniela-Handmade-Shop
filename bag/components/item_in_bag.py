@@ -1,7 +1,6 @@
 from django_unicorn.components import UnicornView
 from django.contrib import messages
 
-
 class ItemInBagView(UnicornView):
     """
     Unicorn Component view that handles the user interactions with the bag
@@ -15,7 +14,7 @@ class ItemInBagView(UnicornView):
     soft_deleted = None
     deleted = None
     product_image_url = None
-    bag = None
+    bag = dict
 
     def mount(self, *args, **kwargs):
         self.bag = self.request.session.get('bag', {})
@@ -88,6 +87,7 @@ class ItemInBagView(UnicornView):
         self.selected_size = s_size
         self.component_quantity = qty
         self.editing = False
+        self.call('updateBagstatus')
         if combined:
             self.call('pageReload')
             messages.add_message(self.request, messages.INFO, "the same product was already in your bag, We combined the quantities for you")
@@ -119,6 +119,7 @@ class ItemInBagView(UnicornView):
 
         self.request.session['bag'] = self.bag
         self.deleted = True
+        self.call('updateBagstatus')
 
     def increment_component_quantity(self):
         """

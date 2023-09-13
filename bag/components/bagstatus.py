@@ -1,14 +1,13 @@
 from django_unicorn.components import UnicornView
-
+import time
 
 class BagstatusView(UnicornView):
     """
     Unicorn Component view that handles all the interractions with the 
     bag session
     """
-    request = None
     name = 'bagstatus'
-    bag = None
+    bag = dict
 
     def mount(self, *args, **kwargs):
         self.update()

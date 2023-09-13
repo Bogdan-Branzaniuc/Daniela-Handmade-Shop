@@ -1,20 +1,19 @@
 from django_unicorn.components import UnicornView
 
-
 class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
-    in_bag = None
-    component_quantity = None
-    component_quantity_changed = None
+    in_bag: bool = False
+    component_quantity: int = 0
+    component_quantity_changed: bool = False
     selected_color = None
     selected_size = None
     product_image_url = None
     str_id = None
-    show_detail = None
+    show_detail: bool = False
     selected_rgba = None
-    bag = None
+    bag = dict
 
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
@@ -25,20 +24,19 @@ class ProductView(UnicornView):
         self.show_detail = False
 
     def mount(self, *args, **kwargs):
-        self.update_session()
         self.in_bag = False
         self.component_quantity = 0
         self.component_quantity_changed = False
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
         self.selected_rgba = self.rgba_colors[self.selected_color]
+        self.update_session()
         return super().mount()
 
     def toggle_detail(self):
         """
         switches to show detail state
         """
-        self.update_session()
         self.show_detail = True if not self.show_detail else False
         self.update_selections_focus_buttons()
         self.is_in_bag()
@@ -94,6 +92,8 @@ class ProductView(UnicornView):
         self.in_bag = True
         self.component_quantity_changed = False
         self.update_selections_focus_buttons()
+        self.call('updateBagstatus')
+
 
     def remove_from_bag(self):
         """
@@ -116,6 +116,8 @@ class ProductView(UnicornView):
         self.component_quantity_changed = False
         self.component_quantity = 0
         self.update_selections_focus_buttons()
+        self.call('updateBagstatus')
+
 
     def adjust_bag(self):
         """
@@ -132,12 +134,12 @@ class ProductView(UnicornView):
             self.remove_from_bag()
             self.in_bag = False
         self.update_selections_focus_buttons()
+        self.call('updateBagstatus')
 
     def select_size_or_color(self, selection, size_or_color):
         """
         calls js product_component_selector.js functions to set component properties
         """
-        self.update_session()
         if size_or_color == 'color':
             self.selected_color = selection
         elif size_or_color == 'size':
@@ -151,7 +153,6 @@ class ProductView(UnicornView):
         """
         increases component qantity
         """
-        self.update_session()
         self.component_quantity += 1
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
@@ -160,19 +161,17 @@ class ProductView(UnicornView):
         """
         decreases component qantity
         """
-        self.update_session()
         if self.component_quantity > 0:
             self.component_quantity -= 1
         else:
             self.component_quantity = 0
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
-
     def set_size_color(self, color, size):
         """
         sets the size and color on the component for rendering new selections
         """
-        self.update_session()
+
         self.selected_size = size
         self.selected_color = color
         self.selected_rgba = self.rgba_colors[self.selected_color]

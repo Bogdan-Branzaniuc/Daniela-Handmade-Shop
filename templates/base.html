@@ -13,7 +13,7 @@
     {% endblock %}
 
     {% block extra_meta %}
-    <meta name="google-site-verification" content="nwyqOQqwBJchbNDvWC9Hxbmb88N1aAJBfywMLjQLvYE" />
+    <meta name="google-site-verification" content="nwyqOQqwBJchbNDvWC9Hxbmb88N1aAJBfywMLjQLvYE">
     {% endblock %}
 
     {% block corecss %}
@@ -29,7 +29,7 @@
     {% block extra_css %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     {% endblock %}
 
     {% block corejs %}
@@ -47,11 +47,11 @@
     {% endblock %}
 
     {% block extra_js %}
-        {% unicorn_scripts %}
     {% endblock %}
 
     {% block extra_head %}
     {% endblock %}
+    {% unicorn_scripts %}
 </head>
 
 <body>
