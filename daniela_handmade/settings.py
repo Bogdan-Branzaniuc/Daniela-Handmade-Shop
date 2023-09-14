@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  '8000-bogdan-branzaniuc-daniel-lclgw5yfjk.us2.codeanyapp.com',
@@ -106,6 +106,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'daniela_handmade.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGGING = {}
 
 LOGIN_REDIRECT_URL = 'home'
 TEMPLATES = [
