@@ -4,14 +4,14 @@ class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
-    in_bag = None
+    in_bag = False
+    show_detail= False
     component_quantity = None
-    component_quantity_changed = None
+    component_quantity_changed = False
     selected_color = None
     selected_size = None
     product_image_url = None
     str_id = None
-    show_detail= None
     selected_rgba = None
     bag = dict
 
@@ -20,10 +20,7 @@ class ProductView(UnicornView):
         self.is_in_bag()
         self.product_image_url = self.product.product_image.url
         self.str_id = str(self.product.id)
-        self.show_detail = False
-        self.in_bag = False
         self.component_quantity = 0
-        self.component_quantity_changed = False
         self.selected_size = str(self.product.sizes.all()[0])
         self.selected_color = str(self.product.colors.all()[0])
         self.selected_rgba = self.rgba_colors[self.selected_color]

@@ -5,22 +5,19 @@ class ItemInBagView(UnicornView):
     """
     Unicorn Component view that handles the user interactions with the bag
     """
-    editing = None
+    editing = False
     component_quantity = None
     original_state_size = None
     original_state_color = None
     selected_size = None
     selected_color = None
-    soft_deleted = None
-    deleted = None
+    soft_deleted = False
+    deleted = False
     product_image_url = None
     bag = dict
 
     def mount(self, *args, **kwargs):
         self.bag = self.request.session.get('bag', {})
-        self.editing = False
-        self.soft_deleted = False
-        self.deleted = False
         self.original_state_size = self.selected_size = self.item['size']
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
