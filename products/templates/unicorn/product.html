@@ -12,7 +12,7 @@
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button u:click="toggle_detail" class="btn btn-gate" type="button">
+        <button u:click.prevent="toggle_detail" class="btn btn-gate" type="button">
             {% if not show_detail %}
                 <i class="fas fa-caret-down">&nbsp buy</i>
             {% else %}
@@ -24,7 +24,7 @@
                 {% for item in bag_items %}
                     {% if item.item_id == str_id %}
                         &nbsp
-                        <button u:click="set_size_color('{{item.color}}', '{{item.size}}')" style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </button>
+                        <button u:click.prevent="set_size_color('{{item.color}}', '{{item.size}}')" style="background-color: {{item.color}}" class="color-size-button-in-cart">{{item.size}} </button>
                     {% endif %}
                 {% endfor %}
             <hr>
@@ -34,12 +34,12 @@
     <div class="form-group row g-0 product-detail-menu">
         <div class="col-9">
             {% if component_quantity_changed and in_bag %}
-                <button u:click="adjust_bag" class="form-control btn-gate"> Adjust </button>
+                <button u:click.prevent="adjust_bag" class="form-control btn-gate"> Adjust </button>
             {% else %}
-                <button u:click="add_to_bag" class="btn-gate form-control"> Add to cart </button>
+                <button u:click.prevent="add_to_bag" class="btn-gate form-control"> Add to cart </button>
             {% endif %}
             {%if in_bag %}
-            <button u:click="remove_from_bag"
+            <button u:click.prevent="remove_from_bag"
                 class="form-control btn-danger">
                 <i class="fas fa-trash"></i>
             </button>
@@ -48,7 +48,7 @@
             <label for="colors" class="label-edit-widget"> select colors </label>
                 <div class="non-lable-row-widget" name="colors">
                     {% for color_instance in product.colors.all %}
-                        <button u:click="select_size_or_color('{{color_instance.name_EN}}', 'color')"
+                        <button u:click.prevent="select_size_or_color('{{color_instance.name_EN}}', 'color')"
                                 data-btn-info="{{color_instance.name_EN}}"
                                 id="button-{{color_instance.name_EN}}-{{product.id}}"
                                 class="color-size-button"
@@ -70,7 +70,7 @@
                 </label>
                 <div class="non-lable-row-widget" name="sizes">
                     {% for size_instance in product.sizes.all %}
-                        <button u:click="select_size_or_color('{{size_instance.size}}', 'size')"
+                        <button u:click.prevent="select_size_or_color('{{size_instance.size}}', 'size')"
                                 data-btn-info="{{size_instance.size}}" id="button-{{size_instance.size}}-{{product.id}}"
                                 class="color-size-button">{{size_instance.size}}
                         </button>
@@ -79,12 +79,12 @@
             </div>
         </div>
         <div class="col-3 quantity-widget">
-            <button class="increment-qty btn form-control text-light" u:click="increment_component_quantity">
+            <button class="increment-qty btn form-control text-light" u:click.prevent="increment_component_quantity">
                 <i class="fas fa-arrow-up"></i>
             </button>
             <input class="form-control quantity-readonly" type="number" readonly
                 name="quantity" value="{{component_quantity}}" min="1" max="99">
-            <button class="decrement-qty btn form-control text-light" u:click="decrement_component_quantity">
+            <button class="decrement-qty btn form-control text-light" u:click.prevent="decrement_component_quantity">
                 <i class="fas fa-arrow-down"></i>
             </button>
         </div>

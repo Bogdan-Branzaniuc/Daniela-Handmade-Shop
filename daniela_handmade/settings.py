@@ -92,10 +92,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://daniela-handmade-8a9762fab1c1.herokuapp.com',
     'https://8000-bogdan-branzaniuc-daniel-lclgw5yfjk.us2.codeanyapp.com']
 
-ADMINS = [
-    ('Bogdan', 'branzaniucbogdan20@gmail.com'),
-]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -104,14 +100,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'daniela_handmade.middleware.ErrorMiddleware',
 ]
 
 ROOT_URLCONF = 'daniela_handmade.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-LOGGING = {}
 
 LOGIN_REDIRECT_URL = 'home'
 TEMPLATES = [
