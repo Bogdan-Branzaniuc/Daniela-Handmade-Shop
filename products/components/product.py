@@ -26,7 +26,6 @@ class ProductView(UnicornView):
         self.selected_color = str(self.product.colors.all()[0])
         self.selected_rgba = self.rgba_colors[self.selected_color]
         self.update_session()
-        print('this was tried')
         return super().mount()
 
     def toggle_detail(self):
