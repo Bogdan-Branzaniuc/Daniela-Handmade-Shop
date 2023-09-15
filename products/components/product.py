@@ -1,11 +1,12 @@
 from django_unicorn.components import UnicornView
+from django.utils.functional import cached_property
 
 class ProductView(UnicornView):
     """
     Unicorn Component view that handles user interactions with products
     """
     in_bag = False
-    show_detail= False
+    show_detail = False
     component_quantity = None
     component_quantity_changed = False
     selected_color = None
@@ -89,7 +90,6 @@ class ProductView(UnicornView):
         self.update_selections_focus_buttons()
         self.call('updateBagstatus')
 
-
     def remove_from_bag(self):
         """
         sets in_bag to False for instantaneous rendering of the product component template
@@ -112,7 +112,6 @@ class ProductView(UnicornView):
         self.component_quantity = 0
         self.update_selections_focus_buttons()
         self.call('updateBagstatus')
-
 
     def adjust_bag(self):
         """
@@ -143,7 +142,6 @@ class ProductView(UnicornView):
         self.selected_rgba = self.rgba_colors[self.selected_color]
         self.update_selections_focus_buttons()
 
-
     def increment_component_quantity(self):
         """
         increases component qantity
@@ -162,6 +160,7 @@ class ProductView(UnicornView):
             self.component_quantity = 0
         self.component_quantity_changed = True
         self.update_selections_focus_buttons()
+
     def set_size_color(self, color, size):
         """
         sets the size and color on the component for rendering new selections

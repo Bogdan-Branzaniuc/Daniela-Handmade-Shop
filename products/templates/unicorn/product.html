@@ -5,14 +5,13 @@
             style="background: linear-gradient(40deg, {{rgbas.op_one}} 0%, {{rgbas.op_zero}} 32%, {{rgbas.op_zero}} 68%, {{rgbas.op_zero}} 100%);"
         {% endif %}
     {% endfor %}
-{% endif %}
->
+{% endif %} >
     <div class="col-12">
-        <div class="product-card-img-div" style="background-image:url('{{product_image_url}}')"></div>
+        <div class="product-card-img-div" style="background-image:url('{{ product_image_url }}')"></div>
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>EUR {{ product.price }}</p>
-        <button u:click.prevent="toggle_detail" class="btn btn-gate" type="button">
+        <button u:click.prevent="toggle_detail" class="btn btn-gate">
             {% if not show_detail %}
                 <i class="fas fa-caret-down">&nbsp buy</i>
             {% else %}

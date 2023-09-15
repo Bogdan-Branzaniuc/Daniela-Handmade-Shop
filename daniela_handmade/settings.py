@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  '8000-bogdan-branzaniuc-daniel-lclgw5yfjk.us2.codeanyapp.com',
@@ -91,6 +91,13 @@ SOCIALACCOUNT_STORE_TOKENS = True
 CSRF_TRUSTED_ORIGINS = [
     'https://daniela-handmade-8a9762fab1c1.herokuapp.com',
     'https://8000-bogdan-branzaniuc-daniel-lclgw5yfjk.us2.codeanyapp.com']
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
