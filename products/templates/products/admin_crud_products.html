@@ -42,9 +42,7 @@
                     </table>
                 </div>
             </div>
-            <button class="btn btn-green">
-                <a href="{% url 'edit_product' product.id%}"><i class="fas fa-edit"></i>Edit</a>
-            </button>
+                <a class="btn btn-green" href="{% url 'edit_product' product.id%}"><i class="fas fa-edit"></i>Edit</a>
             {% unicorn 'delete_product' product=product %}
         </div>
     </div>

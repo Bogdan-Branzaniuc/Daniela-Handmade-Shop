@@ -33,7 +33,7 @@
         <br>
     <div class="table-bordered">
         <span class="display-4">Add a</span>
-        <button class="btn btn-green"> <a>{% include "socialaccount/snippets/provider_list.html" with process="connect" %} </a> </button>
+        <a class="btn btn-green">{% include "socialaccount/snippets/provider_list.html" with process="connect" %} </a>
         <span class="display-4">Account</span>
     </div>
     {% include "socialaccount/snippets/login_extra.html" %}

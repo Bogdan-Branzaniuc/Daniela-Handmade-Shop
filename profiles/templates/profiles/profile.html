@@ -27,7 +27,7 @@
         <br>
         <br>
         {% if not user.has_usable_password %}
-            <button class="btn btn-gate form-control"> <a href="{% url 'account_set_password' %}"> Set Password </a></button>
+            <a class="btn btn-gate form-control" href="{% url 'account_set_password' %}"> Set Password </a>
         {% endif %}
         <br>
         <br>
@@ -48,7 +48,7 @@
             </div>
         </div>
         {% endif %}
-        <button class="btn btn-green"> <a href="{% url 'socialaccount_connections' %}">Manage Social Accounts:</a></button>
+        <a class="btn btn-green" href="{% url 'socialaccount_connections' %}">Manage Social Accounts:</a>
 
         <br>
         <br>
@@ -99,7 +99,7 @@
     {% else %}
         <div class="container">
             <h1 class="display-4"> In order to have a profile you must have an account</h1>
-            <button class="btn btn-gate form-control"><a href="{% url 'account_login'%}">Login</a></button>
+            <a class="btn btn-gate form-control" href="{% url 'account_login'%}">Login</a>
         </div>
     {% endif %}
 </div>
