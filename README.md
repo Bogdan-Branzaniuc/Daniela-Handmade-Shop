@@ -546,13 +546,19 @@ This also explains why the bug only occurred in production environment and not l
 
 # Validators
 * html Validator.W3C
-  * [Home page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2F)
-  * [Profile page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fprofile%2F)
-  * [Products page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fproducts%2FAll)
-  * [Bag page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fbag%2F)
-  * [Checkout out](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fcheckout%2F)
+  * [Home page]()
+  * [Profile page]()
+  * [Products page]()
+  * [Bag page]()
+  * [Checkout out]()
+  * [Login/Logout]()
 
 * css Validator.W3C 
+  * base.html  <details> ![base.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/base.html_ocuhsc.png) </details>
+  * bag.css <details> ![bag.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/bag.css_wdskrx.png) </details>
+  * checkout.css <details> ![checkout.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/checkout.css_oyrygm.png) </details>
+  * product.css <details> ![product.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/products.css_wfdvds.png) </details>
+  * profiles.css <details> ![profiles.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/profiles.css_cn8lme.png) </details>
 * Python Validator
   * As I developed this project in Pycharm, all the code is pep8 complient.
 

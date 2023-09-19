@@ -6,7 +6,7 @@
         {% if selected_size_category == 'universal' %}
         <button class="btn text-info" style="display: inline-block;" disabled> Products without size </button>
         {% else %}
-        </hr>
+        <hr>
         {% endif %}
 
     </div>
@@ -26,7 +26,7 @@
         {% endif %}
         {% endfor %}
         {% else %}
-        </hr>
+        <hr>
         {% endif %}
     </div>
     <div>
@@ -44,7 +44,7 @@
         {% endif %}
         {% endfor %}
         {% else %}
-        </hr>
+        <hr>
         {% endif %}
     </div>
     <div>
@@ -59,7 +59,7 @@
         {% endif %}
         {% endfor %}
         {% else %}
-        </hr>
+        <hr>
         {% endif %}
     </div>
     <input type="hidden" value="{{final_sizes}}" name="extra_field_sizes">
