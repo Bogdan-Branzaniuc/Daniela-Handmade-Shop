@@ -25,6 +25,6 @@
     {% for item in bag_items %}
         {% unicorn 'item_in_bag' item=item item_index=forloop.counter0 product=item.product size_units=size_units key=forloop.counter0%}
     {% endfor %}
-    <button class="btn btn-gate form-control special"><a href="{% url 'checkout' %}">Checkout</a></button>
+   <a class="btn btn-gate form-control" href="{% url 'checkout' %}">Checkout</a>
 </div>
 {% endblock %}

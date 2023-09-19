@@ -546,12 +546,14 @@ This also explains why the bug only occurred in production environment and not l
 
 # Validators
 * html Validator.W3C
-  * [Home page]()
-  * [Profile page]()
-  * [Products page]()
-  * [Bag page]()
-  * [Checkout out]()
-  * [Login/Logout]()
+  * [Home page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2F)
+  * [Profile page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fprofile%2F) - a in button 
+  * [Products page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fproducts%2FAll) - hr trailings
+  * [Bag page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fprofile%2F) - hr trailings
+  * [Checkout out](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fcheckout%2F) - hr trailings
+  * [Login/Logout](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Faccounts%2Flogout%2F)
+   * the W3C validator is complaining about how django-unicorn library handles component implementation.
+   [unicorn documentation on template implementation](https://www.django-unicorn.com/docs/templates/)
 
 * css Validator.W3C 
   * base.html  <details> ![base.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/base.html_ocuhsc.png) </details>
@@ -574,6 +576,7 @@ This also explains why the bug only occurred in production environment and not l
 ### Bootstrap Developers
 ### Python, Js, Jquery creators
 ### Code Institute
+
 Checkout app Product and UserProfile models as well as the webhook used for stripe were inspired from boutique_ado project made by Code Institute
 
 ## Media Files
