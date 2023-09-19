@@ -2,7 +2,6 @@
 {% load unicorn %}
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Handmade Daniela With passion{% block extra_title %}{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dgzv7gan8/image/upload/v1692090532/daniela_handmade/readme/favicon_q4y4jm.png">
@@ -15,7 +14,6 @@
     {% block extra_meta %}
     <meta name="google-site-verification" content="nwyqOQqwBJchbNDvWC9Hxbmb88N1aAJBfywMLjQLvYE">
     {% endblock %}
-
     {% block corecss %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -45,7 +43,6 @@
     <!-- stripe   -->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
-
     {% block extra_js %}
     {% endblock %}
 
@@ -53,7 +50,6 @@
     {% endblock %}
     {% unicorn_scripts %}
 </head>
-
 <body>
     {% csrf_token %}
     <nav class="navbar navbar-expand-lg">
@@ -134,8 +130,8 @@
                                 class="fa-brands fa-instagram"></i></a>
                     </div>
                     <div class="col-4 social-link-div">
-                        <a href="https://www.youtube.com" target="_blank"><i
-                                class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61551253981141" target="_blank"><i
+                                class="fa-brands fa-facebook"></i></a>
                     </div>
                     <div class="col-4 social-link-div">
                         <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
@@ -149,7 +145,6 @@
             </div>
             <!--spacing-->
         </div>
-    
     </footer>
     {% block postloadjs %}
     <script>
@@ -172,13 +167,10 @@
             alert.close();
         }, 2500);
     </script>
-
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
-    
-    <script type="text/javascript" src="{% static 'products/js/product_component_selectors.js' %}"></script>
+    <script src="{% static 'products/js/product_component_selectors.js' %}"></script>
     {% endblock %}
 </body>
-
 </html>

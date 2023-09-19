@@ -107,7 +107,6 @@ footer p{
     text-align: center;
 }
 
-
 /* Messages */
 
 .message-container {
@@ -117,23 +116,7 @@ footer p{
     z-index: 99999999999;
 }
 
-.custom-toast {
-    position: relative;
-    overflow: visible;
-}
-
-.toast-capper {
-    height: 2px;
-}
-
-/* TOASTS */
-
-
 /* buttons */
-.btn > a{
-    text-decoration: none;
-    color:inherit;
-}
 .btn-green {
     background: #3d9a66;
     color: white;

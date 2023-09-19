@@ -1,20 +1,18 @@
-<div class="dropdown-menu" aria-labelledby="products">
-
-    <button class="dropdown-item" type="button">
+<menu class="dropdown-menu" aria-labelledby="products">
+    <li class="btn dropdown-item" type="button">
         {% if category_name == 'All' %}
-            <a class="nav-link text-dark rounded" href="{% url 'products' 'All' %}" style="border: 1px solid black"><strong>All Products</strong></a>
+            <a class="nav-link text-dark" href="{% url 'products' 'All' %}" style="border: 1px solid black"><strong>All Products</strong></a>
         {% else %}
-            <a class="nav-link rounded" href="{% url 'products' 'All' %}">All Products</a>
+            <a class="nav-link" href="{% url 'products' 'All' %}">All Products</a>
         {% endif %}
-    </button>
+    </li>
     {% for category in categories %}
-        <button class="dropdown-item" type="button">
-
+        <li class="dropdown-item">
             {% if category_name == category.name %}
-            <a class="nav-link rounded" href="{% url 'products' category.name%}" style="border: 1px solid black"><strong>{{ category.name }}</strong></a>
+                <a class="nav-link" href="{% url 'products' category.name%}" style="border: 2px solid black">{{ category.name }}</a>
             {% else %}
                 <a class="nav-link" href="{% url 'products' category.name%}">{{ category.name }}</a>
-        </button>
+        </li>
         {% endif %}
     {% endfor %}
-</div>
+</menu>
