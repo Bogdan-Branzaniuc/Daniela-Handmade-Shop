@@ -9,6 +9,7 @@ class ItemInBagView(UnicornView):
     component_quantity = None
     original_state_size = None
     original_state_color = None
+    original_state_quantity = None
     selected_size = None
     selected_color = None
     soft_deleted = False
@@ -21,6 +22,7 @@ class ItemInBagView(UnicornView):
         self.original_state_size = self.selected_size = self.item['size']
         self.original_state_color = self.selected_color = self.item['color'].name_EN
         self.component_quantity = self.item['quantity']
+        self.original_state_quantity = self.component_quantity
         self.update_selections_focus_buttons()
         self.product_image_url = self.product.product_image.url
         return super().mount()
@@ -73,21 +75,23 @@ class ItemInBagView(UnicornView):
                 else:
                     bag[p_id][s_size][s_color] = qty
             self.request.session['bag'] = bag
+            self.item['color'] = self.product.colors.get(name_EN=s_color)
+            self.item['size'] = self.product.sizes.get(size=s_size)
+            self.original_state_size = s_size
+            self.original_state_color = s_color
+            self.selected_color = s_color
+            self.selected_size = s_size
+            self.component_quantity = qty
+            self.editing = False
+            self.call('updateBagstatus')
+            if combined:
+                self.call('pageReload')
+                messages.add_message(self.request, messages.INFO,
+                                     "the same product was already in your bag, We combined the quantities for you")
         else:
             self.soft_deleted = True
-
-        self.item['color'] = self.product.colors.get(name_EN=s_color)
-        self.item['size'] = self.product.sizes.get(size=s_size)
-        self.original_state_size = s_size
-        self.original_state_color = s_color
-        self.selected_color = s_color
-        self.selected_size = s_size
-        self.component_quantity = qty
-        self.editing = False
-        self.call('updateBagstatus')
-        if combined:
-            self.call('pageReload')
-            messages.add_message(self.request, messages.INFO, "the same product was already in your bag, We combined the quantities for you")
+            self.editing = False
+            self.component_quantity = self.original_state_quantity
 
     def soft_removal_from_bag(self):
         """

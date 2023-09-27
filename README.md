@@ -503,55 +503,662 @@ This also explains why the bug only occurred in production environment and not l
 
 ## Manual Testing
 
-* Admin Crud Products Tests
+* ### Nav-bar Tests
+  <details>
+  <summary>Navbar Feature</summary>
+  
+  ![navbar image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038110/daniela_handmade/readme/navbar_itoeqd.png) 
+  </details>
 
-* Create A Product Test:
-    - 01 Pressed on Add new Products content button in admin_crud_products page
-    - 02 selected one of the existing categories
-    - 03 added a random number as sku '14351234' 9 digits long - maximum allowed by the form
-    - 04 wrote the title 'Barrette'
-    - 05 wrote the description 'A handmade knitted barrette'
-    - 06 set the price to 4
-    - 07 uploaded an image from my computer
-    - 08 selected crimson darkslateblue and limegreen colors from the selection widget
-    - 09 selected size U. universal
-    - 10 pressed add product
-    - 11 got message 'Successfuly added product'
-      
-* Edit A Product Test:
-    - 01 Pressed on Edit at an exisitng product
-    - 02 changed it's data with another set of data that complies with the form validation
-    - 03 pressed Edit Product
-    - 04 got message 'Successfuly updated product'
+  * <details>
+    <summary>click on Logo-Title</summary>
+    
+     ```
+       expected: clicking the Logo Title is expected to redirect the user to the home page
+       - tested by clicking the Logo title
+       - the App acted as expected and redirected the user to the home page
+     ```
+    </details>
 
-* Delete a Product Test:
-    - 01 Pressed on Delete at an existing product
-    - 02 Soft Deletion mode was activated for that product component
-    - 03 Pressed restore
-    - 04 Soft Deletion mode was deactivated
-    - 05 Pressed Delete again
-    - 06 Soft Deletion mode was activated again
-    - 07 Pressed Permanently delete
-    - 08 the product disspeared
-    - 09 got message "Successfuly deleted product"  
+  * <details>
+    <summary>click on products button</summary>
+  
+    ```
+    expected: clicking the products button is expected to open a dropdown menu with buttons for each product category
+     - tested by clicking the products button
+     - the App acted as expected and opend the menu with product categories buttons
+    ```
+    </details>
+
+  * <details>
+    <summary>click each product category button in the dropdown menu</summary>
+  
+    ```
+     expected: clicking any product category button is expected to redirect the 
+     user to a page with only the products in the selected category displayed.
+     - tested by clicking every product category button
+     - the App acted as expected and redirected to a page with sorted products by category
+    ```
+    </details>
+
+  * <details>
+    <summary>On smaller display, show burger icon</summary>
+  
+    ```
+    expected: when on displays that are smaller than 1000px the navlink buttons 
+    will be combined and hidden in a dropdown menu indicated by a burger icon.
+     - tested by decreasing window size at 999px width
+     - the App acted as expected and displayed the burger icon
+    ```
+    </details>
+  
+  * <details>
+    <summary>clicking the burger icon</summary>
+  
+    ```
+    expected: when clicking on the burger icon, we should see a dropdown menu
+    containing all the page navigation links as buttons
+     - tested by pressing or touching (on mobile and tablet) the burger icon
+     - the App acted as expected and displayed the dropdown menu with the page nav-link buttons
+    ```
+    </details>
+  
+  * <details>
+    <summary>click the home nav-link button</summary>
+  
+    ```
+    expected: when clicking on the home nav-link button the user is redirected to the home page
+    - tested by clicking on the home nav-link button
+    - the App acted as expected and redirected the user to the home page
+    ```
+    </details>
+  
+  * <details>
+    <summary>click the profile nav-link button</summary>
+    
+    ```
+    expected: when clicking on the profile nav-link button 
+    if logged in, the user is redirected to the profile page
+    else, the user is redirected to the sign in page
+    - tested by clicking on the profile nav-link button
+    - when logged in the App acted as expected and redirected the user to the profile page
+    - when logged out the App acted as expected and redirected the user to the sign in page 
+    ```
+    </details>
+  
+  * <details>
+    <summary>click the login nav-link button</summary>
+    
+    ```
+    expected: when not logged in the user will see a login nav-link button, when clicked 
+    it should redirect to the sign in page
+     - tested by clicking on the login nav-link button
+     - the App acted as expected and redirected the user to the sign in page
+    ```
+    </details>
+  
+  * <details>
+    <summary>click the logout nav-link button</summary>
+    
+    ```
+    expected: when logged in the user will see a logout nav-link button, when clicked 
+    it should redirect to the sign out page
+     - tested by clicking on the logout nav-link button
+     - the App acted as expected and redirected the user to the sign out page
+    ```
+    </details>
+
+  * <details>
+    <summary>display manage products nav-link button for admin users</summary>
+    
+    ```
+    expected: when logged in as admin, an extra nav-link button should be displayed
+    in the navbar for admin crud opperations within the website
+     - tested by logging in as admin
+     - the App acted as expected and added an extra button "manage products"
+     - tested by logging in as normal user
+     - the App acted as expected and did not display the extra button.
+    ```
+    </details>
+  
+  * <details>
+    <summary>display cart total in real time</summary>
+    
+    ```
+    expected: when a product is added, updated or deleted from bag, the total displayed in the navbar
+    should update in real time without the page being reloaded
+     - tested by adding a product 
+     - the app acted as expected and updated the new total in real time
+     - tested by updating the quantity of a product 
+     - the app acted as expected and updated the new total in real time
+     - tested by completely removing a product from bag
+     - the app acted as expected and updated the new total in real time
+    ```
+    </details>
+
+  * <details>
+    <summary>View Bag nav-link button</summary>
+    
+    ```
+    expected: when clicked, it should redirect the user to their bag page
+    ""
+     - tested by clicking the view bag nav-link button
+     - the app acted as expected and redirected the user to his bag page
+    ```
+    </details>
+* ### Products Page 
+  <details>
+  <summary>Products Page</summary>
+  
+  ![products page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/product-component_c1fr1l.png) 
+  </details>
+
+  * <details>
+    <summary>product buy button</summary>
+    
+    ```
+    expected: when clicked, it should open a product detail menu
+     - tested by clicking the product buy button.
+     - the app acted as expected and opened the product detail menu.
+    ```
+    </details>
+
+  * <details>
+    <summary>add to cart button</summary>
+    
+    ```
+    expected: when clicked the current selection of the product should be added to the cart
+    - if the quantity in the widget quantity is not changed, it will increase by 1
+    at all times
+    - else the changed quantity will be updated
+    the quentity in the nav-bar should increase with the appropriate quantity change
+    for that product
+    - a little icon button with the selected size and selected color will appear in front of the 
+    cart icon at the beggining of the menu
+    
+    - tested by pressing the add to cart button
+    - the app acted as expected and the total was updated, the encoded product was saved
+    in the session, the icon button with the selected size and selected color is visible in the 
+    cart preview
+    
+    ```
+    </details>
  
-## Database Testing
+  * <details>
+    <summary>display remove from cart button</summary>
+    
+    ```
+    expected: if the product is in the bag, the remove from bag button should be displayed only for 
+    that exact color and size selection 
+    
+    - tested by pressing the add to bag button
+    - the app acted as expected and the remove from bag button is displayed only after the product is in the bag.
+    ```
+    </details>
+  * <details>
+    <summary>click the remove from cart button</summary>
+    
+    ```
+    expected: when clicked the current selection of the product should be removed from the cart
+    the quentity in the nav-bar should update with the appropriate quantity change
+    for that product and the cart preview should update appropriately by removing that selection 
+    
+    - tested by pressing the remove from cart button
+    - the app acted as expected and the product was removed from cart, the nav-bar total was updated, and
+    the cart preview was updated.
+    
+    ```
+    </details>
+  
+  * <details>
+    <summary>Adjust with quantity 0</summary>
+    
+    ```
+    expected: when the product is in the cart and the user clicks adjust with the quantity in the widget
+    being 0, the product should be removed from the bag
+    
+    - tested by pressing the adjust button with selected quantity 0
+    - the app acted as expected and the product was removed from cart, the nav-bar total was updated, and
+    the cart preview was updated.
+    
+    ```
+    </details>
+  
+  * <details>
+    <summary>quantity toggle buttons</summary>
+    
+    ```
+    expected: when clicked the increase and decrease quantity buttons, 
+    the quantity in the widget should be updated appropriately
+    the add to cart button should be changed to adjust button only when the product
+    is already in the bag.
+     - tested by clicking the arrow up button.
+     - the app acted as expected and the quantity was increased by 1.
+     - tested by clicking the arrow down button.
+     - the app acted as expected and decreased the quantity by 1.
+     - in both cases the add to cart button was changed to "adjust" only when the
+    product was not yet in the bag.
+    ```
+    </details>
 
+  * <details>
+    <summary>select color buttons</summary>
+    
+    ```
+    expected: when clicked, the current sellected color should be highlighted
+    on the lower-left corner of the product card, 
+    if the product is already in the cart, the add to cart button will change to adjust
+     - tested by clicking the desired color in the menu
+     - the app acted as expected and the higlghted color appeared as a gradient
+    on the product card and only when the product was in the bag, 
+    the add to cart button changed to adjust.
+    ```
+    </details>
+
+  * <details>
+    <summary>select size buttons</summary>
+    
+    ```
+    expected: when clicked, the current sellected color should be highlighted
+    on the lower-left corner of the product card, 
+    if the product is already in the cart, the add to cart button will change to adjust
+     - tested by clicking the desired color in the menu
+     - the app acted as expected and the higlghted color appeared as a gradient
+    on the product card and only when the product was in the bag, 
+    the add to cart button changed to adjust.
+    ```
+    </details>
+
+  * <details>
+    <summary>cart preview buttons</summary>
+    
+    ```
+    expected: when clicked the product detail menu should open with the size and color indicated
+    by the button's text and color representing the current selection 
+     - tested by clicking the desired preview button
+     - the app acted as expected and the product detail menu is displayed with the appropriate 
+    selection
+    ```
+    </details>
+* ### Home Page 
+  <details>
+    <summary>Home Page</summary>
+    
+    ![welcome-section image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692039853/daniela_handmade/readme/home_wid34m.jpg)
+  </details>
+
+  * <details>
+    <summary>SHOP NOW button</summary>
+    
+    ```
+    expected: when clicked the user should be redirected to the products page with the category All Products
+     - tested by clicking the SHOP NOW button
+     - the app acted as expected and the user was redirected to the products page with the category All Products
+    ```
+    </details>
+* ### Profile Page 
+  <details>
+    <summary>Profile Page</summary>
+    
+    ![profile Page](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038111/daniela_handmade/readme/profile_page_hpwmps.png)
+  </details>
+ 
+  * <details>
+    <summary>profile form</summary>
+    
+    ```
+    expected: when completed with the correct data, the form should be submitted with a message "Profile updated successfully", 
+    the form will then host the data that was saved to that user profile permanently.
+     - tested by completing the form and submitting it
+     - the app acted as expected and the user got a message of "Profile updated successfully", the form is now populated with 
+    the user data.
+    ```
+    </details>
+
+  * <details>
+    <summary>manage social accounts button</summary>
+    
+    ```
+    expected: when clicked, the user should be redirected to the Connected Accounts page
+     - tested by clicking the manage social accounts button
+     - the app acted as expected and the user got redirected to the Connected Accounts page
+    ```
+    </details>
+
+  * <details>
+    <summary>Order History</summary>
+    
+    ```
+    expected: a table with the user's previous orders should be displayed here, hosting the correct 
+    orders ordered by the latest.
+     - tested by creating a new order
+     - the app acted as expected and added the order at the top of the table
+    ```
+    </details>
+
+  * <details>
+    <summary>clicking an order number</summary>
+    
+    ```
+    expected: when clicking the order number the user should be redirected to an order info
+    page displaying all the order informations.
+     - tested by clicking on the desired order number
+     - the app acted as expected and the user got redirected to an order info page displaying the correct
+    informations.
+    ```
+    </details>
+
+  * <details>
+    <summary>back to profile button on order info page</summary>
+    
+    ```
+    expected: when clicking the back to profile button on the order info page the user should be redirected
+    to his profile page
+     - tested by clicking the back to profile button
+     - the app acted as expected and redirected the user back to the profile page
+    ```
+    </details>
+  * <details>
+    <summary>Subscribe to Newsletter form</summary>
+    
+    ```
+    expected: when completing the form with an email and submitting it, the user should get an email
+    and a message within the website "Thank you for subscribing!", 
+    if they are already subscribed, the message should be "You're already subscribed, 
+    your profile has been updated. Thank you!" and no email should be sent
+     - tested by completing the form with a valid email and clicked subscribe
+     - the app acted as expected and sent an email to the specified email address, while satisfying the
+    messages values in both cases "subscribed for first time" and "already subscribed"
+    ```
+    </details>
+* ### Bag page 
+  <details>
+    <summary>Profile Page</summary>
+    
+    ![Cart mechanism image](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692044635/daniela_handmade/readme/cart_fgckmh.jpg)
+  </details>
+ 
+  * <details>
+    <summary>product edit button</summary>
+    
+    ```
+    expected: when pressed a form with current size color and quantity fields and an Adjust submit button should be displayed instantly
+    populated with the current version of the product in the bag
+     - tested by clicking the edit button of a product on the cart page
+     - the app acted as expected and the form was displayed instantly instead of the current product's information
+    populated with the current version of the product in the bag
+    ```
+    </details>
+
+  * <details>
+    <summary>Adjusting the product in bag</summary>
+    
+    ```
+    expected: when the Adjust button is clicked, the new version of the product should replace the old product in the bag,
+    1- if quantity was changed, the total in the navbar should be updated
+    2- if the new product configuration matches another product already in the bag,
+    the products quantities will be combined with a message 
+    "the same product was already in your bag, We combined the quantities for you"
+    3- if the product is updated with quantity 0, the soft delete mode for that product should be 
+    displayed instead of the normal version of the product in the bag. any other changes to the product
+    won't matter in this case. the old configuration will be considered as soft-deleted.
+    
+     1 - tested by clicking the adjust button after changing color and size that doesn't coincide with an existing in bag product
+     - the app acted as expected and the product was changed with the new configuration and message
+     2 - tested by clicking the adjust button after changing color and/or size that coincide with an existing in bag product
+     - the app acted as expected and combined the two quantities with the message 
+    "the same product was already in your bag, We combined the quantities for you"
+     3 - tested by clicking the adjust button after changing quantity to 0
+     - the app acted as expected and displayed the soft-deletion mode of the product
+    ```
+    </details>
+
+  * <details>
+    <summary>Remove product button</summary>
+    
+    ```
+    expected: when the remove product button is clicked, the product will enter the soft-deletion mode, the product info
+    should be displayed in gray and two buttons will be show, "permanently delete" and "add back"
+     - tested by clicking the remove product button
+     - the app acted as expected and the product entered the soft-delete mode.
+    ```
+  </details>
+
+  * <details>
+    <summary>permanently delete button</summary>
+    
+    ```
+    expected: when the permanently delete button is clicked, the product will be deleted from the list,
+    and the navbar total will be updated
+     - tested by clicking the permanently delete button
+     - the app acted as expected and the product was deleted, updating the total in the navbar.
+    ```
+  </details>
+
+  * <details>
+    <summary>add back button</summary>
+    
+    ```
+    expected: when the add back button is clicked, the product should exit the soft deleted state
+     - tested by clicking the add back button
+     - the app acted as expected and the product exited the soft-deletion state.
+     - when soft deletion mode is activated after updating a product with quantity 0:
+      - if add back is clicked the product in bag will be shown with the edited selections, but it should
+      actually revert back to the original state of color, size and quantity. At the moment it will show
+      quantity 0 and will not delete the product. the backend does not register any changes. 
+      - in order for the frontend to display the original state, I changed the implementation by
+      activating the soft deletion mode with the original product's information. 
+     (see method . bag.components.item_in_bag.ItemInBagView.adjust_bag)
+      - now the app is acting as expected and won't display a phantom product with quantity 0 in the bag list, 
+      instead it will display the original state of the product before the edit button was clicked.
+    
+    ```
+    </details>
+  * <details>
+    <summary>checkout button - empty bag</summary>
+    
+    ```
+    expected: when clicking the checkout button with the cart empty, the app should redirect the user to the
+    products page with a message of "There is nothing in your bag at the moment" 
+     - tested by clicking the checkout button with the cart empty
+     - the app acted as expected redirected the user on the products page with a message of "There is nothing in 
+    your bag at the moment" 
+    ```
+    </details>
+  * <details>
+    <summary>checkout button - non-empty bag</summary>
+    
+    ```
+    expected: when clicking the checkout button with items in the cart, the app should redirect the user to the
+    checkout page
+     - tested by clicking the checkout button with products in the cart
+     - the app acted as expected redirected the user on the checkout page. 
+    ```
+    </details>
+* ### Manage Products page
+  <details>
+    <summary>Admin Crud Products flow</summary>
+    
+    ![Admin Crud Page Edit](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692038108/daniela_handmade/readme/admin_edit_product_n7mkgz.png)  </details>
+  </details>
+
+  * <details>
+    <summary>add new product content button</summary>
+    
+    ```
+    expected: when pressing the add new product content button
+    the admin should be redirected to add_product_sizes_color_categories page
+     - tested by clicking the add new product content button
+     - the app acted as expected and redirected the admin to the add_product_sizes_color_categories page.
+    ```
+    </details>
+    
+    * #### add_product_sizes_color_categories page
+      * <details>
+        <summary> Add New Product Form </summary>    
+  
+        ```
+        expected: when completing the form with valid data, a new product should be created in the database and
+        the admin should be redirected to admin_crud_products page with a message of "Successfuly added product"
+        - tested by filling the form with valid data and submitted it.
+        - the app acted as expected and inserted the new product in the database, and redirected the admin to 
+        admin_crud_products page with a message of "Successfuly added product" 
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Categories  add category </summary>
+        
+        ```
+        expected: when adding a new category through the form,
+        the app should instantly add the category name to the list on the right,
+        - tested by typing in a category name and clicking Add Category button
+        - the app acted as expected and instantly inserted the name to the list on the right.
+        ```
+        </details>
+
+      * <details>
+        <summary> Manage Categories - delete category </summary>    
+  
+        ```
+        expected: after clicking on the trash icon, a soft deletion mode should be activated
+        displaying to buttons "restore and permanently delete" instead of the trash icon
+        - tested by pressing the trash icon from the manage category section
+        - the app acted as expected and activated the soft deletion mode, dysplaying the two buttons accordingly.
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Categories - restore category </summary>    
+  
+        ```
+        expected: when pressing the restore button, the trash icon should appear back instead of the two buttons "restore" and
+        "permanently delete"
+        - tested by pressing the restore button
+        - the app acted as expected and deactivated the soft deletion mode, dysplaying the trash icon.
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Categories - permanently delete category </summary>    
+  
+        ```
+        expected: when clicking the permanently delete button, the app should delete that category from the list
+        - tested by pressing the permanently delete button
+        - the app acted as expected and removed the category from the list.
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Colors - add color </summary>    
+  
+        ```
+        expected: when clicking color box the app should display a color palete pciker menu.
+        when selecting the color with the cursor picker and clicking add color, the app should
+        automaticaly find the closest nuance to the choosen one that has a registered name in CSS, and 
+        display add the color name in the list of colors with it's color value equal to it's hex value.
+        - tested by clicking the color box
+        - the app acted as expected and displayed the color palete 
+        - tested by choosing a color and clicking the add color button
+        - the app acted as expected and inserted a coloured color name in the list that was very close to
+        the color selected manually by the admin
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Colors - delete color </summary>    
+  
+        ```
+        expected: after clicking on the trash icon, a soft deletion mode should be activated
+        displaying to buttons "restore and permanently delete" instead of the trash icon
+        - tested by pressing the trash icon from the manage category section
+        - the app acted as expected and activated the soft deletion mode, dysplaying the two buttons accordingly.
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Colors - restore color </summary>    
+  
+        ```
+        expected: when pressing the restore button, the trash icon should appear back instead of the two buttons "restore" and
+        "permanently delete"
+        - tested by pressing the restore button
+        - the app acted as expected and deactivated the soft deletion mode, dysplaying the trash icon.
+        ```  
+        </details>
+      * <details>
+        <summary> Manage Colors - permanently delete color </summary>    
+  
+        ```
+        expected: when clicking the permanently delete button, the app should delete that color from the list
+        - tested by pressing the permanently delete button
+        - the app acted as expected and removed the color from the list.
+        ```  
+        </details>
+
+    * #### edit product
+      * <details>
+        <summary> Edit Product Button </summary>    
+  
+        ```
+        expected: when clicking the edit button of a product, the app should redirect the admin to
+        an edit page of the product
+        - tested by clicking the edit button of any product
+        - the app acted as expected and redirected the admin to the edit page of that product
+        ```  
+        </details>
+      * <details>
+        <summary> Edit Product Form </summary>    
+  
+        ```
+        expected: when changing the prepopulated form's data and clicking submit, the admin should 
+        be redirected to the admin_crud_products with a message of "Successfuly updated product"
+        - tested by changing the all the prepopulated fields of the edit form and submitted it.
+        - the app acted as expected and redirected the admin to the admin_crud_products page with the message 
+        "Successfuly updated product"
+        ```  
+        </details>
+      
+    * #### delete product
+      * <details>
+        <summary> Delete product </summary>    
+  
+        ```
+        expected: after clicking on the trash icon, a soft deletion mode should be activated
+        displaying to buttons "restore and permanently delete" instead of the trash icon
+        - tested by pressing the trash icon from the manage category section
+        - the app acted as expected and activated the soft deletion mode, dysplaying the two buttons accordingly.
+        ```  
+        </details>
+      * <details>
+        <summary> restore product </summary>    
+  
+        ```
+        expected: when pressing the restore button, the trash icon should appear back instead of the two buttons "restore" and
+        "permanently delete"
+        - tested by pressing the restore button
+        - the app acted as expected and deactivated the soft deletion mode, dysplaying the trash icon.
+        ```  
+        </details>
+      * <details>
+        <summary> permanently delete product </summary>    
+  
+        ```
+        expected: when clicking the permanently delete button, the app should delete that color from the list
+        - tested by pressing the permanently delete button
+        - the app acted as expected and removed the product from the page.
+        ```  
+        </details>
+    
+* ### Checkout page
+
+## Database Testing
 * The web app was developed with a Django default database
 * Tested with the default database, migrated to a production Database, and tested again with the production Database
-
-## Unit Tests
-- I decided to spend more time trying to fix the disturbing existing bug that appeard in the production environment. with no success
-- Unittests following in a future version.
-
 # Validators
 * html Validator.W3C
   * [Home page](https://validator.w3.org/nu/?useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2F)
   * [Products page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fproducts%2FAll)
   * [Bag page](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Fbag%2F)
   * [Login/Logout](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2Faccounts%2Flogout%2F)
-   * the W3C validator is complaining about how django-unicorn library handles component implementation.
-   [unicorn documentation on template implementation](https://www.django-unicorn.com/docs/templates/)
+  * the W3C validator is complaining about how django-unicorn library handles component implementation,
+    django-unicorn is a library that allows refreshing parts/sections/components on the page instead of refreshing the 
+    whole document for small changes to a component.
+  [django-unicorn documentation on template implementation](https://www.django-unicorn.com/docs/templates/)
 
 * css Validator.W3C 
   * base.html  <details> ![base.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/base.html_ocuhsc.png) </details>
@@ -560,7 +1167,7 @@ This also explains why the bug only occurred in production environment and not l
   * product.css <details> ![product.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/products.css_wfdvds.png) </details>
   * profiles.css <details> ![profiles.css](https://res.cloudinary.com/dgzv7gan8/image/upload/v1695132536/daniela_handmade/readme/profiles.css_cn8lme.png) </details>
 * Python Validator
-  * As I developed this project in Pycharm, all the code is pep8 complient.
+  * As I developed this project in Pycharm, all the code is pep8 compliant.
 
 * Lighthouse
     ![Lighthouse immage](https://res.cloudinary.com/dgzv7gan8/image/upload/v1692047556/daniela_handmade/readme/lighthouse_y97a78.jpg)
