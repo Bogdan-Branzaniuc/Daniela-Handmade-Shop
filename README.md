@@ -1145,10 +1145,49 @@ This also explains why the bug only occurred in production environment and not l
         </details>
     
 * ### Checkout page
+* <details>
+      <summary> Checkout user data form </summary>
+    
+      ```
+      expected: if user data is saved on the user profile page, this form should be prepopulated with that data,
+      if not the user has the chance to fill in the form with data and save it on his profile from here.
+      The user can also overwrite the data in his profile with this form.
+      - tested by filling the form on on the user profile page and save it.
+      - the app acted as expected and the form on the checkout page was prepopulated with relevant data.
+      - tested by filling the form for the first time on the checkout page
+      - the app acted as expected and the form on the user profile page was populated with the data.
+      - tested by changing the prepopulated data in the checkout
+      - the app acted as expected and overwrote the details in the use profile page.
+  </details>
+* <details>
+      <summary> Checkout card details form </summary>
+    
+      ```
+      expected: stripe should determine what type of card the user uses after typing the first 2 digits of the
+      card number, and also give instant feedback to the user throughout the completion of card number, expiry date and cvv
+      - tested by filling the form with different card numbers
+      - the app acted as expected and changed the card icon to the card paymant company the carn number indicated
+      - tested by filling out the form with fake card details
+      - the app acted as expected and gave instant feedback with the mistake: 
+      "your card number is invalid"
+
+  </details>
+* <details>
+    <summary> Checkout Webhook </summary>
+  
+    ```
+    expected: when completing the checkout process, if the javascript form does not submit for any reason, the 
+    data should still be submitted to the backend and the user should still get the email with his order.
+    - tested by removing the javascript form.submit() function that handles form submission and completed the checkout 
+    process
+    - the app acted as expected and the order was successfuly created with the user data and items that he ordered,
+    in stripe, the webhook was handled with a status of 200.
+    ```
+</details>
 
 ## Database Testing
 * The web app was developed with a Django default database
-* Tested with the default database, migrated to a production Database, and tested again with the production Database
+* Tested all the base functionality with the default database, migrated to a production Database, and tested again with the production Database
 # Validators
 * html Validator.W3C
   * [Home page](https://validator.w3.org/nu/?useragent=Validator.nu%2FLV+http%3A%2F%2Fvalidator.w3.org%2Fservices&acceptlanguage=&doc=https%3A%2F%2Fdaniela-handmade-8a9762fab1c1.herokuapp.com%2F)
